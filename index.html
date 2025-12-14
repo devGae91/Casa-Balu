@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Casa Balù · Camera Warm & Cozy · Osio Sotto — Prenota</title>
+<meta name="description" content="Casa Balù - Camera Warm & Cozy a Osio Sotto (BG). Bagno privato, Wi-Fi, check-in autonomo. Prenota ora." />
+<meta name="theme-color" content="#7a4a2f" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Casa Balù · Camera Warm & Cozy · Osio Sotto" />
+<meta property="og:description" content="Camera con bagno privato, comfort e atmosfera calda. Prenota ora." />
+<meta property="og:image" content="./img/og-image.jpg" />
+<meta property="og:type" content="website" />
+
+<link rel="icon" href="/favicon.ico" />
+
+<style>
+:root{--bg:#fbf8f5;--card:#fff;--muted:#6b6058;--accent:#7a4a2f;--accent-2:#c27a4a;--shadow:0 12px 30px rgba(17,17,17,0.08);--radius:14px;--maxw:1100px}
+*{box-sizing:border-box}html,body{height:100%;margin:0;background:var(--bg);color:#1b1b1b;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial}
+.container{max-width:var(--maxw);margin:30px auto;padding:0 18px}
+.header{background:linear-gradient(120deg,var(--accent),var(--accent-2));color:white;padding:44px;border-radius:20px;box-shadow:var(--shadow);display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.header .hero{flex:1;min-width:220px}
+.header h1{margin:0;font-size:clamp(20px,3.2vw,34px);line-height:1.06}
+.header p{margin:8px 0 0;opacity:0.95}
+.header .badge{background:rgba(255,255,255,0.12);padding:8px 12px;border-radius:999px;font-weight:700;display:inline-block;margin-top:12px}
+.grid{display:grid;grid-template-columns:1fr 360px;gap:20px;margin-top:20px}
+@media(max-width:960px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-radius:10px;overflow:hidden}
+.gallery img{width:100%;height:160px;object-fit:cover;display:block;cursor:pointer;transition:transform .28s}
+.gallery img:hover{transform:scale(1.03)}
+@media(max-width:720px){.gallery{grid-template-columns:repeat(2,1fr)} .gallery img{height:120px}}
+h2{margin:0 0 10px}
+.features{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;color:var(--muted)}
+.features li{margin-bottom:6px}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.btn{padding:10px 14px;border-radius:10px;font-weight:700;border:0;cursor:pointer}
+.btn-primary{background:var(--accent);color:white}
+.btn-outline{background:transparent;border:2px solid #f1eae6;color:var(--accent);font-weight:700}
+.aside .meta{font-size:13px;color:var(--muted);margin-bottom:8px}
+.price{font-size:22px;font-weight:800;color:var(--accent)}
+.small{font-size:13px;color:var(--muted)}
+.sep{height:1px;background:#f3efe9;margin:12px 0;border-radius:4px}
+#lightbox{position:fixed;inset:0;background:rgba(6,6,6,0.75);display:none;align-items:center;justify-content:center;z-index:1000}
+#lightbox img{max-width:92%;max-height:88%;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+.cal-wrap{margin-top:10px}
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:10px}
+.cal-cell{background:#fff;border-radius:10px;padding:8px;text-align:center;min-height:78px;box-shadow:0 6px 18px rgba(10,10,10,0.03)}
+.cal-cell.day-name{background:transparent;box-shadow:none;font-weight:700;color:var(--muted)}
+.cal-cell.booked{background:linear-gradient(180deg,#fdecea,#ffd6d6);color:#8b1a1a}
+.cal-cell.today{outline:2px solid rgba(122,74,47,0.12)}
+.select-highlight{outline:4px solid rgba(194,122,74,0.12);border-radius:8px}
+.modal-backdrop{position:fixed;inset:0;background:rgba(10,10,10,0.55);display:none;align-items:center;justify-content:center;z-index:1100}
+.modal{background:white;border-radius:12px;padding:18px;max-width:780px;width:100%;box-shadow:0 30px 80px rgba(10,10,10,0.2)}
+.form-row{margin-top:10px}
+.form-row label{display:block;font-weight:700;margin-bottom:6px}
+.form-row input,.form-row textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #efe6e0;background:#fff}
+.kv{font-weight:700;color:var(--accent);margin-bottom:6px}
+footer{margin-top:26px;text-align:center;color:var(--muted);font-size:14px;padding:20px}
+@media(max-width:520px){.header{padding:20px}}
+</style>
+</head>
+<body>
+<main class="container" id="top">
+  <header class="header" role="banner" aria-label="Hero Casa Balu">
+    <div class="hero">
+      <h1>Casa Balù — Camera Warm & Cozy · Osio Sotto</h1>
+      <p class="small">Atmosfera calda e accogliente, perfetta per brevi soggiorni e trasferte. Bagno privato en-suite, Wi-Fi e check-in autonomo.</p>
+      <div class="badge">Stanza privata · Bagno en-suite · Check-in autonomo</div>
+    </div>
+    <div style="text-align:right;">
+      <div class="small">Prezzo indicativo</div>
+      <div class="price">€<span id="priceBase">85</span> / notte</div>
+      <div class="small" style="margin-top:8px">Sconti per settimane e permanenze</div>
+    </div>
+  </header>
+
+  <div class="grid">
+
+    <section class="card" aria-labelledby="room-title">
+      <h2 id="room-title">La camera Warm & Cozy</h2>
+
+      <div class="gallery" id="gallery">
+        <!-- Metti qui le tue foto nella cartella img/ con questi nomi -->
+        <img src="./img/camera1.jpg" alt="Camera matrimoniale calda" data-full="./img/camera1.jpg" />
+        <img src="./img/camera2.jpg" alt="Dettaglio camera" data-full="./img/camera2.jpg" />
+        <img src="./img/bagno.jpg" alt="Bagno privato con doccia" data-full="./img/bagno.jpg" />
+        <img src="./img/living.jpg" alt="Angolo comune e cucina" data-full="./img/living.jpg" />
+        <img src="./img/esterno.jpg" alt="Esterno e vicinanze" data-full="./img/esterno.jpg" />
+        <img src="./img/bed.jpg" alt="Letto matrimoniale" data-full="./img/bed.jpg" />
+      </div>
+
+      <p class="small" style="margin-top:12px">Camera privata, letto matrimoniale (o due letti singoli su richiesta), bagno privato, armadio e scrittoio. Biancheria inclusa. Parcheggio pubblico a pochi metri. Wi-Fi incluso.</p>
+
+      <div class="sep" aria-hidden="true"></div>
+
+      <h3>Servizi</h3>
+      <ul class="features">
+        <li>Wi-Fi illimitato</li>
+        <li>Bagno privato</li>
+        <li>Check-in autonomo</li>
+        <li>Biancheria inclusa</li>
+        <li>Riscaldamento / aria condizionata</li>
+        <li>Parcheggio vicino</li>
+      </ul>
+
+      <div class="sep" aria-hidden="true"></div>
+
+      <h3>Controlla disponibilità</h3>
+      <p class="small">Date prenotate appaiono in rosso. Seleziona l'intervallo desiderato (arrivo-partenza).</p>
+      <div class="cal-wrap card" id="calendarWrap" aria-live="polite">
+        <div class="controls">
+          <button class="btn btn-outline" id="prev">‹ Mese</button>
+          <div id="monthLabel" style="font-weight:700"></div>
+          <button class="btn btn-outline" id="next">Mese ›</button>
+          <div style="margin-left:auto" class="small">Legenda:<span style="display:inline-block;width:12px;height:12px;background:#ffdede;margin-left:8px;border-radius:3px;vertical-align:middle"></span> prenotato</div>
+        </div>
+
+        <div class="cal-grid" id="calGrid" aria-hidden="false"></div>
+
+        <div class="form-row" style="margin-top:10px">
+          <label for="range">Intervallo scelto</label>
+          <input id="range" readonly class="small" placeholder="Seleziona due date nel calendario" style="padding:8px;border-radius:8px;border:1px solid #efe6e0" />
+        </div>
+
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <button class="btn btn-primary" id="openBooking">Richiedi prenotazione</button>
+          <button class="btn btn-outline" id="exportIcal">Scarica iCal</button>
+        </div>
+      </div>
+
+      <div class="sep"></div>
+
+      <h3>FAQ rapide</h3>
+      <details><summary><strong>Accesso cucina?</strong></summary><p class="small">Sì, su richiesta.</p></details>
+      <details><summary><strong>Check-in / Check-out</strong></summary><p class="small">Check-in: dalle 14:00. Check-out: entro le 11:00.</p></details>
+      <details><summary><strong>Animali</strong></summary><p class="small">Animali piccoli previa approvazione.</p></details>
+    </section>
+
+    <aside>
+      <div class="card aside">
+        <div class="meta">Contatto diretto</div>
+        <p style="margin:6px 0 0"><strong id="ownerEmail">daidonegaetano91@gmail.com</strong><br/><span id="ownerPhone">+39 329 608 3422</span></p>
+        <div class="sep"></div>
+
+        <div class="meta">Prenota</div>
+        <p class="small">Scegli date nel calendario o prenota tramite i portali (link quando disponibili).</p>
+        <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+          <a id="linkAirbnb" class="btn btn-primary" href="#" target="_blank" rel="noopener">Airbnb</a>
+          <a id="linkBooking" class="btn btn-outline" href="#" target="_blank" rel="noopener">Booking</a>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="meta">Prezzo base</div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div class="price">€<span id="priceDisplay">85</span></div>
+          <div class="small">/ notte (media)</div>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="meta">Servizi inclusi</div>
+        <ul class="small"><li>Pulizia standard</li><li>Biancheria</li><li>Wi-Fi</li></ul>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <h3>Invia richiesta</h3>
+        <p class="small">Risposta entro 24h (indicativamente).</p>
+
+        <form id="contactForm" action="https://formspree.io/f/xvgelnqn" method="POST">
+          <div class="form-row"><label for="c_name">Nome</label><input id="c_name" name="name" required /></div>
+          <div class="form-row"><label for="c_email">Email</label><input id="c_email" name="email" type="email" required /></div>
+          <div class="form-row"><label for="c_phone">Telefono</label><input id="c_phone" name="phone" /></div>
+          <div class="form-row"><label for="c_dates">Date richieste</label><input id="c_dates" name="dates" placeholder="2026-01-10 → 2026-01-13" /></div>
+          <div class="form-row"><label for="c_msg">Messaggio</label><textarea id="c_msg" name="message" rows="4"></textarea></div>
+          <input type="hidden" name="_subject" value="Richiesta prenotazione - Casa Balù" />
+          <div style="margin-top:10px;display:flex;gap:8px">
+            <button class="btn btn-primary" type="submit">Invia</button>
+            <button type="reset" class="btn btn-outline">Pulisci</button>
+          </div>
+        </form>
+        <p class="small" style="margin-top:8px">Controlla anche la cartella spam se non ricevi risposta.</p>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="card" style="margin-top:18px">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+      <div class="small">© <span id="year"></span> Casa Balù · Osio Sotto — <span id="ownerEmailFooter">daidonegaetano91@gmail.com</span></div>
+      <div class="small">Indirizzo: Via Brembate 2, Osio Sotto (BG)</div>
+    </div>
+  </footer>
+</main>
+
+<div id="lightbox" role="dialog" aria-modal="true"><img src="" alt="Immagine ingrandita" /></div>
+
+<div class="modal-backdrop" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal" role="document">
+    <h3>Invia richiesta di prenotazione</h3>
+    <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+      <div style="flex:1">
+        <div class="kv">Date selezionate</div>
+        <div id="selRange">—</div>
+        <div style="margin-top:12px" class="kv">Prezzo stimato</div>
+        <div id="estPrice">€0</div>
+        <div style="margin-top:12px" class="small">Compila i campi a destra e invia: riceverai una mail.</div>
+      </div>
+
+      <div style="width:320px">
+        <form id="modalForm" action="https://formspree.io/f/xvgelnqn" method="POST">
+          <input type="hidden" name="_subject" value="Richiesta prenotazione (modal) - Casa Balù">
+          <div class="form-row"><label for="m_name">Nome</label><input id="m_name" name="name" required /></div>
+          <div class="form-row"><label for="m_email">Email</label><input id="m_email" name="email" type="email" required /></div>
+          <div class="form-row"><label for="m_phone">Telefono</label><input id="m_phone" name="phone" /></div>
+          <div class="form-row"><label for="m_dates">Date</label><input id="m_dates" name="dates" readonly /></div>
+          <div style="margin-top:10px;display:flex;gap:8px">
+            <button class="btn btn-primary" type="submit">Invia richiesta</button>
+            <button type="button" id="closeModal" class="btn btn-outline">Chiudi</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const CONFIG = {
+  priceBase: 85,
+  currency: "€",
+  ownerEmail: "daidonegaetano91@gmail.com",
+  ownerPhone: "+39 329 608 3422",
+  airbnbUrl: "#",
+  bookingUrl: "#",
+  icalUrl: ""
+};
+
+document.getElementById('priceBase').textContent = CONFIG.priceBase;
+document.getElementById('priceDisplay').textContent = CONFIG.priceBase;
+document.getElementById('ownerEmail').textContent = CONFIG.ownerEmail;
+document.getElementById('ownerPhone').textContent = CONFIG.ownerPhone;
+document.getElementById('ownerEmailFooter').textContent = CONFIG.ownerEmail;
+document.getElementById('linkAirbnb').href = CONFIG.airbnbUrl;
+document.getElementById('linkBooking').href = CONFIG.bookingUrl;
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* LIGHTBOX */
+const lightbox = document.getElementById('lightbox');
+const lbImg = lightbox.querySelector('img');
+document.getElementById('gallery').addEventListener('click', (e) => {
+  const img = e.target.closest('img');
+  if(!img) return;
+  lbImg.src = img.dataset.full || img.src;
+  lbImg.alt = img.alt || 'Foto';
+  lightbox.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+});
+lightbox.addEventListener('click', (e) => { if(e.target === lbImg) return; lightbox.style.display='none'; document.body.style.overflow=''; });
+
+/* CALENDAR (semplificato) */
+let bookedRanges = [];
+function parseYMD(s){ const p=s.split('-'); return new Date(p[0],p[1]-1,p[2]); }
+function fmtYMD(d){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function addDays(d,n){ const r=new Date(d); r.setDate(r.getDate()+n); return r; }
+function rangesToDates(ranges){ return ranges.map(r => ({start: parseYMD(r[0]), end: parseYMD(r[1])})); }
+let bookedRangesDates = rangesToDates(bookedRanges);
+function isBooked(date){ for(const r of bookedRangesDates){ const s=r.start, e=addDays(r.end,-1); if(date>=s && date<=e) return true; } return false; }
+
+const calGrid = document.getElementById('calGrid');
+const monthLabel = document.getElementById('monthLabel');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
+const rangeInput = document.getElementById('range');
+
+let viewDate = new Date(); viewDate.setDate(1);
+let selected = [];
+
+function renderCal(){ calGrid.innerHTML=''; const year=viewDate.getFullYear(), month=viewDate.getMonth(); const monthNames=["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"]; monthLabel.textContent = `${monthNames[month]} ${year}`; const dayNames=['Lun','Mar','Mer','Gio','Ven','Sab','Dom']; dayNames.forEach(dn=>{const el=document.createElement('div');el.className='cal-cell day-name';el.textContent=dn;calGrid.appendChild(el)}); const firstWeekday=(new Date(year,month,1).getDay()+6)%7; for(let i=0;i<firstWeekday;i++){const e=document.createElement('div');e.className='cal-cell';e.innerHTML='&nbsp;';calGrid.appendChild(e);} const days=new Date(year,month+1,0).getDate(); for(let d=1;d<=days;d++){const dt=new Date(year,month,d);const cell=document.createElement('div');cell.className='cal-cell'; if(isBooked(dt)) cell.classList.add('booked'); if(fmtYMD(dt)===fmtYMD(new Date())) cell.classList.add('today'); const num=document.createElement('div'); num.style.fontWeight=700; num.textContent=d; const iso=document.createElement('div'); iso.className='small'; iso.textContent=fmtYMD(dt); iso.style.marginTop='6px'; cell.appendChild(num); cell.appendChild(iso); cell.addEventListener('click', ()=>onDateClick(dt)); calGrid.appendChild(cell);} highlightSelection(); }
+function onDateClick(date){ if(isBooked(date)){ alert('Data non disponibile.'); return; } if(selected.length===0){ selected=[date]; } else if(selected.length===1){ if(date < selected[0]) selected=[date, selected[0]]; else selected.push(date); } else selected=[date]; updateRange(); highlightSelection(); }
+function updateRange(){ if(selected.length===0){ rangeInput.value=''; return; } const s=selected[0], e=selected[1]||selected[0]; rangeInput.value = fmtYMD(s)+' → '+fmtYMD(e); const nights = Math.max(1, Math.round((e-s)/(1000*60*60*24))+1); document.getElementById('estPrice').textContent = `${CONFIG.currency}${nights * CONFIG.priceBase} (${nights} notti)`; document.getElementById('selRange').textContent = rangeInput.value; document.getElementById('m_dates').value = rangeInput.value; }
+function highlightSelection(){ const cells = calGrid.querySelectorAll('.cal-cell'); cells.forEach(c=>c.classList.remove('select-highlight')); if(selected.length===0) return; const s=selected[0], e=selected[1]||selected[0]; cells.forEach(c=>{ const iso = c.querySelector('.small') ? c.querySelector('.small').textContent : null; if(!iso) return; const dt = parseYMD(iso); if(dt>=s && dt<=e && !c.classList.contains('day-name')) c.classList.add('select-highlight'); }); }
+prevBtn.addEventListener('click', ()=>{ viewDate.setMonth(viewDate.getMonth()-1); renderCal(); });
+nextBtn.addEventListener('click', ()=>{ viewDate.setMonth(viewDate.getMonth()+1); renderCal(); });
+document.getElementById('openBooking').addEventListener('click', ()=>{ if(selected.length===0){ alert('Seleziona prima l\\'intervallo.'); return; } document.getElementById('m_dates').value = rangeInput.value; document.getElementById('modal').style.display='flex'; document.getElementById('modal').setAttribute('aria-hidden','false'); });
+document.getElementById('closeModal').addEventListener('click', ()=>{ document.getElementById('modal').style.display='none'; document.getElementById('modal').setAttribute('aria-hidden','true'); });
+document.getElementById('exportIcal').addEventListener('click', ()=>{ const ical = genICal(bookedRanges); const blob=new Blob([ical],{type:'text/calendar;charset=utf-8'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='casa-balu-bookings.ics'; a.click(); URL.revokeObjectURL(url); });
+function genICal(ranges){ function toICalDate(d){ return d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0'); } let out="BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//CasaBalu//Bookings//IT\r\n"; ranges.forEach((r,i)=>{ const s=parseYMD(r[0]), e=parseYMD(r[1]); out+="BEGIN:VEVENT\r\nUID:cb-"+i+"@casabalu\r\nDTSTAMP:"+toICalDate(new Date())+"\r\nDTSTART;VALUE=DATE:"+toICalDate(s)+"\r\nDTEND;VALUE=DATE:"+toICalDate(e)+"\r\nSUMMARY:Prenotato\r\nEND:VEVENT\r\n"; }); out+="END:VCALENDAR"; return out; }
+function parseYMD(s){ const p=s.split('-'); return new Date(p[0],p[1]-1,p[2]); }
+function rangesToDates(ranges){ return ranges.map(r=>({start:parseYMD(r[0]),end:parseYMD(r[1])})); }
+renderCal();
+window.addBookedRange=function(a,b){ bookedRanges.push([a,b]); bookedRangesDates=rangesToDates(bookedRanges); renderCal(); console.log('Aggiunta',a,b); };
+window.removeBookedRange=function(a,b){ bookedRanges=bookedRanges.filter(r=>!(r[0]===a&&r[1]===b)); bookedRangesDates=rangesToDates(bookedRanges); renderCal(); console.log('Rimosso',a,b); };
+</script>
+</body>
+</html>
