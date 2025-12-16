@@ -2,119 +2,184 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
+
   <title>Casa Balù | Camera Premium a Osio Sotto (BG)</title>
 
   <meta name="description"
-        content="Casa Balù – Camera elegante e confortevole a Osio Sotto (Bergamo). Prenotazione diretta, calendario in tempo reale, soggiorni brevi e business.">
+        content="Casa Balù – Camera elegante e accogliente a Osio Sotto (Bergamo). Prenotazione diretta, calendario disponibilità in tempo reale, soggiorni business e relax.">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/style.css">
+  <!-- ================= CSS ================= -->
+  <!-- ATTENZIONE: percorso RELATIVO corretto per GitHub Pages -->
+  <link rel="stylesheet" href="./css/style.css?v=5.1">
 
-  <!-- Fonts -->
+  <!-- ================= FONT ================= -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 <!-- ================= HERO ================= -->
-<header class="hero fade-in">
-  <div>
-    <h1>Casa Balù</h1>
-    <p>Camera elegante a Osio Sotto · Comfort · Relax · Posizione strategica</p>
-    <a href="#prenotazione" class="btn">Verifica disponibilità</a>
+<header class="hero">
+  <div class="hero-content fade-in">
+    <h1 class="hero-title">Casa Balù</h1>
+
+    <p class="hero-subtitle">
+      Camera premium a Osio Sotto.<br>
+      Comfort, silenzio e cura dei dettagli.
+    </p>
+
+    <a href="#prenotazione" class="btn btn-primary">
+      Verifica disponibilità
+    </a>
   </div>
 </header>
 
-<!-- ================= PRESENTAZIONE ================= -->
-<section class="fade-in">
-  <div class="info-card">
-    <h2>Un soggiorno curato, come a casa</h2>
-    <p>
-      Casa Balù è una camera privata pensata per chi cerca tranquillità, comfort
-      e una posizione strategica vicino a Bergamo.
-      Ideale per soggiorni di lavoro, brevi vacanze o pernottamenti di passaggio.
-    </p>
-    <p>
-      Ambienti puliti, curati e accoglienti, con attenzione ai dettagli
-      per offrirti un’esperienza semplice ma di qualità.
-    </p>
+<!-- ================= ESPERIENZA ================= -->
+<section class="section section-warm fade-in">
+  <div class="container">
+    <div class="info-card">
+      <h2>Un’esperienza, non solo una stanza</h2>
+
+      <p>
+        Casa Balù è uno spazio pensato per farti sentire subito a tuo agio.
+        Ogni dettaglio è studiato per offrire tranquillità, ordine e comfort,
+        che tu sia in viaggio per lavoro o per relax.
+      </p>
+
+      <p>
+        Qui trovi silenzio, pulizia impeccabile e un’atmosfera rilassante:
+        arrivi, posi le valigie… e respiri.
+      </p>
+    </div>
   </div>
 </section>
 
-<!-- ================= GALLERY ================= -->
-<section class="fade-in">
-  <h2>La camera</h2>
-  <div class="gallery">
-    <img src="img/room1.jpg" alt="Camera Casa Balù">
-    <img src="img/room2.jpg" alt="Dettaglio camera">
-    <img src="img/bathroom.jpg" alt="Bagno privato">
-    <img src="img/living.jpg" alt="Spazi comuni">
-    <img src="img/street.jpg" alt="Zona e posizione">
+<!-- ================= CAMERA ================= -->
+<section class="section section-light fade-in">
+  <div class="container">
+    <div class="info-card">
+      <h2>La camera</h2>
+
+      <p>
+        Luminosa, spaziosa e arredata con toni caldi.
+        Il letto è comodo, i tessuti sono morbidi e l’ambiente è sempre curato.
+      </p>
+
+      <p>
+        Ideale per dormire profondamente, lavorare in tranquillità
+        o rilassarsi dopo una giornata intensa.
+      </p>
+
+      <div class="gallery">
+        <img src="./img/room1.jpg" alt="Camera Casa Balù">
+        <img src="./img/room2.jpg" alt="Dettaglio camera">
+        <img src="./img/bathroom.jpg" alt="Bagno privato">
+        <img src="./img/living.jpg" alt="Spazi comuni">
+        <img src="./img/street.jpg" alt="Zona e posizione">
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ================= SERVIZI ================= -->
-<section class="fade-in">
-  <div class="info-card">
-    <h2>Servizi inclusi</h2>
-    <p>✔ Letto confortevole</p>
-    <p>✔ Bagno pulito e funzionale</p>
-    <p>✔ Wi-Fi veloce</p>
-    <p>✔ Posizione strategica (Bergamo / autostrada)</p>
-    <p>✔ Ambiente tranquillo e riservato</p>
+<section class="section section-warm fade-in">
+  <div class="container">
+    <div class="info-card">
+      <h2>Servizi inclusi</h2>
+
+      <ul class="services-list">
+        <li>Letto confortevole</li>
+        <li>Bagno privato pulito e funzionale</li>
+        <li>Wi-Fi veloce e stabile</li>
+        <li>Posizione strategica (Bergamo / autostrada)</li>
+        <li>Ambiente tranquillo e riservato</li>
+      </ul>
+    </div>
   </div>
 </section>
 
 <!-- ================= PRENOTAZIONE ================= -->
-<section id="prenotazione" class="fade-in">
-  <h2>Prenota il tuo soggiorno</h2>
+<section id="prenotazione" class="section section-booking fade-in">
+  <div class="container">
 
-  <div class="booking-wrapper">
+    <h2 class="booking-title">
+      Disponibilità e prenotazione
+    </h2>
 
-    <!-- CALENDARIO -->
-    <div class="calendar">
-      <h3>Seleziona le date</h3>
-      <div id="calendar"></div>
-      <p id="price" class="price"></p>
+    <div class="booking-wrapper">
+
+      <!-- ===== CALENDARIO ===== -->
+      <div class="calendar-card">
+        <h3>Seleziona le date</h3>
+
+        <div id="calendar"></div>
+
+        <p id="price" class="price"></p>
+
+        <p class="calendar-note">
+          Le date occupate sono bloccate automaticamente.
+        </p>
+      </div>
+
+      <!-- ===== FORM ===== -->
+      <form
+        class="booking-form"
+        action="https://formspree.io/f/xvgelnqn"
+        method="POST"
+      >
+        <h3>Richiesta di prenotazione</h3>
+
+        <input
+          type="text"
+          name="name"
+          placeholder="Nome e cognome"
+          required
+          autocomplete="name"
+        >
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          required
+          autocomplete="email"
+        >
+
+        <input type="hidden" name="checkin" id="checkin">
+        <input type="hidden" name="checkout" id="checkout">
+
+        <textarea
+          name="message"
+          rows="4"
+          placeholder="Messaggio (opzionale)"
+          autocomplete="off"
+        ></textarea>
+
+        <button type="submit" class="btn btn-primary">
+          Invia richiesta
+        </button>
+
+        <p class="note">
+          Riceverai una risposta via email per conferma disponibilità.<br>
+          Nessun pagamento richiesto in questa fase.
+        </p>
+      </form>
+
     </div>
-
-    <!-- FORM -->
-    <form
-      action="https://formspree.io/f/xvgelnqn"
-      method="POST"
-      class="booking-form"
-    >
-      <h3>Richiesta di prenotazione</h3>
-
-      <input type="text" name="name" placeholder="Nome e cognome" required>
-      <input type="email" name="email" placeholder="Email" required>
-
-      <input type="hidden" name="checkin" id="checkin">
-      <input type="hidden" name="checkout" id="checkout">
-
-      <textarea name="message" rows="4" placeholder="Messaggio (opzionale)"></textarea>
-
-      <button type="submit" class="btn">Invia richiesta</button>
-
-      <p class="note">
-        Riceverai una risposta via email per conferma disponibilità.
-        Nessun pagamento richiesto in questa fase.
-      </p>
-    </form>
-
   </div>
 </section>
 
 <!-- ================= FOOTER ================= -->
-<footer>
+<footer class="footer">
   <p>© Casa Balù – Osio Sotto (BG)</p>
 </footer>
 
-<!-- JS -->
-<script src="js/gallery.js" defer></script>
-<script src="js/calendar.js" defer></script>
+<!-- ================= JS ================= -->
+<!-- ATTENZIONE: percorsi RELATIVI -->
+<script src="./js/gallery.js" defer></script>
+<script src="./js/calendar.js" defer></script>
 
 </body>
 </html>
