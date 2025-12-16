@@ -1,0 +1,33 @@
+{
+  "source": "manual / future-airbnb-booking-sync",
+  "lastUpdated": "2025-02-01",
+  "currency": "EUR",
+  "pricePerNight": 70,
+
+  "bookings": [
+    {
+      "id": "BK001",
+      "source": "manual",
+      "checkin": "2025-02-10",
+      "checkout": "2025-02-13"
+    },
+    {
+      "id": "BK002",
+      "source": "airbnb",
+      "checkin": "2025-02-18",
+      "checkout": "2025-02-22"
+    },
+    {
+      "id": "BK003",
+      "source": "booking",
+      "checkin": "2025-03-05",
+      "checkout": "2025-03-08"
+    }
+  ],
+
+  "blockedDates": [
+    "2025-02-01",
+    "2025-02-02",
+    "2025-04-25"
+  ]
+}
