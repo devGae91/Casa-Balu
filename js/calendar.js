@@ -1,22 +1,22 @@
 /* =====================================================
-   CASA BALÙ – CALENDARIO PREMIUM (v1.0)
+   CASA BALÙ – CALENDARIO PREMIUM v2.0
    -----------------------------------------------------
-   - Multi-mese reale (stile Booking/Airbnb)
-   - Selezione range check-in / check-out
-   - Evidenziazione fascia completa
-   - Date occupate bloccate (da JSON esterno)
-   - Pronto per futura integrazione Airbnb/Booking (iCal)
+   ✔ Multi-mese reale (stile Airbnb / Booking)
+   ✔ Selezione range con evidenziazione completa
+   ✔ Date occupate + date bloccate
+   ✔ GitHub Pages safe
+   ✔ Pronto per iCal Airbnb / Booking
    ===================================================== */
 
-/* ====== CONFIGURAZIONE ====== */
+/* ===== CONFIG ===== */
 const CONFIG = {
-  pricePerNight: 60,
+  pricePerNight: 70,
   minNights: 1,
   monthsToShow: 2,
-  bookedDatesUrl: 'data/booked-dates.json' // FUTURO: iCal / API
+  bookedDatesUrl: 'data/booked-dates.json'
 };
 
-/* ====== STATO ====== */
+/* ===== STATO ===== */
 let state = {
   currentMonth: new Date(),
   checkIn: null,
@@ -24,27 +24,54 @@ let state = {
   bookedDates: []
 };
 
-/* ====== ELEMENTI DOM ====== */
+/* ===== DOM ===== */
 const calendarEl = document.getElementById('calendar');
 const priceEl = document.getElementById('price');
 const inputCheckin = document.getElementById('checkin');
 const inputCheckout = document.getElementById('checkout');
 
-/* ====== UTIL ====== */
+/* ===== UTILS ===== */
 const formatDate = d => d.toISOString().split('T')[0];
-const isSameDay = (a, b) => a && b && a.toDateString() === b.toDateString();
+const isSameDay = (a, b) =>
+  a && b && a.getFullYear() === b.getFullYear() &&
+  a.getMonth() === b.getMonth() &&
+  a.getDate() === b.getDate();
+
 const addDays = (date, days) => {
   const d = new Date(date);
   d.setDate(d.getDate() + days);
   return d;
 };
 
-/* ====== CARICAMENTO DATE OCCUPATE ====== */
+/* ===== LOAD BOOKED DATES ===== */
 async function loadBookedDates() {
   try {
     const res = await fetch(CONFIG.bookedDatesUrl);
     const data = await res.json();
-    state.bookedDates = data.map(d => new Date(d));
+
+    let dates = [];
+
+    // bookings (range)
+    if (Array.isArray(data.bookings)) {
+      data.bookings.forEach(b => {
+        let d = new Date(b.checkin);
+        const end = new Date(b.checkout);
+        while (d < end) {
+          dates.push(new Date(d));
+          d = addDays(d, 1);
+        }
+      });
+    }
+
+    // blockedDates (singole)
+    if (Array.isArray(data.blockedDates)) {
+      data.blockedDates.forEach(d => {
+        dates.push(new Date(d));
+      });
+    }
+
+    state.bookedDates = dates;
+
   } catch (e) {
     console.warn('Impossibile caricare le date occupate', e);
     state.bookedDates = [];
@@ -55,7 +82,7 @@ function isBooked(date) {
   return state.bookedDates.some(d => isSameDay(d, date));
 }
 
-/* ====== GENERAZIONE CALENDARIO ====== */
+/* ===== CALENDAR RENDER ===== */
 function renderCalendar() {
   calendarEl.innerHTML = '';
   const base = new Date(state.currentMonth);
@@ -71,7 +98,10 @@ function renderMonth(date) {
   wrapper.className = 'calendar-month';
 
   const title = document.createElement('h4');
-  title.textContent = date.toLocaleDateString('it-IT', { month: 'long', year: 'numeric' });
+  title.textContent = date.toLocaleDateString('it-IT', {
+    month: 'long',
+    year: 'numeric'
+  });
   wrapper.appendChild(title);
 
   const grid = document.createElement('div');
@@ -85,13 +115,17 @@ function renderMonth(date) {
   });
 
   const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-  const startOffset = (firstDay.getDay() + 6) % 7;
+  const offset = (firstDay.getDay() + 6) % 7;
 
-  for (let i = 0; i < startOffset; i++) {
+  for (let i = 0; i < offset; i++) {
     grid.appendChild(document.createElement('div'));
   }
 
-  const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+  const daysInMonth = new Date(
+    date.getFullYear(),
+    date.getMonth() + 1,
+    0
+  ).getDate();
 
   for (let d = 1; d <= daysInMonth; d++) {
     const dayDate = new Date(date.getFullYear(), date.getMonth(), d);
@@ -107,7 +141,13 @@ function renderMonth(date) {
 
     if (isSameDay(dayDate, state.checkIn)) cell.classList.add('checkin');
     if (isSameDay(dayDate, state.checkOut)) cell.classList.add('checkout');
-    if (state.checkIn && state.checkOut && dayDate > state.checkIn && dayDate < state.checkOut) {
+
+    if (
+      state.checkIn &&
+      state.checkOut &&
+      dayDate > state.checkIn &&
+      dayDate < state.checkOut
+    ) {
       cell.classList.add('in-range');
     }
 
@@ -118,9 +158,9 @@ function renderMonth(date) {
   return wrapper;
 }
 
-/* ====== INTERAZIONE ====== */
+/* ===== INTERACTION ===== */
 function onDayClick(date) {
-  if (!state.checkIn || (state.checkIn && state.checkOut)) {
+  if (!state.checkIn || state.checkOut) {
     state.checkIn = date;
     state.checkOut = null;
   } else if (date > state.checkIn) {
@@ -148,10 +188,12 @@ function hasBookedBetween(start, end) {
   return false;
 }
 
-/* ====== PREZZO ====== */
+/* ===== PRICE ===== */
 function updatePrice() {
   if (state.checkIn && state.checkOut) {
-    const nights = Math.round((state.checkOut - state.checkIn) / (1000 * 60 * 60 * 24));
+    const nights = Math.round(
+      (state.checkOut - state.checkIn) / (1000 * 60 * 60 * 24)
+    );
     const total = nights * CONFIG.pricePerNight;
     priceEl.textContent = `${nights} notti – Totale €${total}`;
   } else {
@@ -159,13 +201,13 @@ function updatePrice() {
   }
 }
 
-/* ====== INPUT ====== */
+/* ===== INPUTS ===== */
 function updateInputs() {
   inputCheckin.value = state.checkIn ? formatDate(state.checkIn) : '';
   inputCheckout.value = state.checkOut ? formatDate(state.checkOut) : '';
 }
 
-/* ====== NAVIGAZIONE ====== */
+/* ===== NAV ===== */
 function addNavigation() {
   const nav = document.createElement('div');
   nav.className = 'calendar-nav';
@@ -189,7 +231,7 @@ function addNavigation() {
   calendarEl.before(nav);
 }
 
-/* ====== INIT ====== */
+/* ===== INIT ===== */
 (async function initCalendar() {
   await loadBookedDates();
   addNavigation();
