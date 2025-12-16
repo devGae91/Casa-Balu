@@ -1,308 +1,78 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Casa Balù · Camera Warm & Cozy · Osio Sotto</title>
 
-<meta name="description" content="Casa Balù a Osio Sotto: camera privata Warm & Cozy con bagno en-suite, Wi-Fi, check-in autonomo. Ideale per soggiorni brevi, lavoro o relax.">
-<meta name="theme-color" content="#7a4a2f">
+<title>Casa Balù – Camera accogliente a Osio Sotto (BG)</title>
+<meta name="description" content="Casa Balù – Camera privata warm & cozy a Osio Sotto, Bergamo. Ideale per soggiorni brevi, lavoro o relax. Prenotazione diretta.">
 
-<link rel="icon" href="./favicon.ico">
+<link rel="stylesheet" href="css/style.css">
 
-<!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --bg:#fbf8f5;
-  --card:#ffffff;
-  --text:#1b1b1b;
-  --muted:#6b6058;
-  --accent:#7a4a2f;
-  --accent2:#c27a4a;
-  --shadow:0 14px 40px rgba(0,0,0,.08);
-  --radius:16px;
-  --maxw:1100px;
-}
-
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-}
-
-h1,h2,h3{font-family:"Playfair Display",serif}
-p{line-height:1.6}
-a{text-decoration:none;color:inherit}
-
-.container{max-width:var(--maxw);margin:auto;padding:20px}
-.section{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-top:24px}
-.section:hover{transform:translateY(-4px);box-shadow:0 22px 50px rgba(0,0,0,.12)}
-.section{transition:.4s}
-
-.reveal{opacity:0;transform:translateY(30px);transition:.8s}
-.reveal.active{opacity:1;transform:none}
-
-header.hero{
-  background:linear-gradient(120deg,var(--accent),var(--accent2));
-  color:#fff;
-  padding:48px 28px;
-  border-radius:24px;
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  flex-wrap:wrap;
-}
-
-.hero h1{font-size:clamp(26px,3.2vw,40px)}
-.hero .badge{
-  display:inline-block;
-  background:rgba(255,255,255,.15);
-  padding:8px 14px;
-  border-radius:999px;
-  font-weight:600;
-  margin-top:14px;
-}
-
-.price{font-size:26px;font-weight:800}
-
-.grid{
-  display:grid;
-  grid-template-columns:1fr 360px;
-  gap:22px;
-}
-@media(max-width:900px){.grid{grid-template-columns:1fr}}
-
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-}
-.gallery img{
-  width:100%;
-  height:160px;
-  object-fit:cover;
-  border-radius:14px;
-  cursor:pointer;
-  transition:.4s;
-}
-.gallery img:hover{
-  transform:scale(1.06);
-  box-shadow:0 20px 45px rgba(0,0,0,.25);
-}
-
-.features{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:8px;
-  color:var(--muted);
-  padding-left:18px;
-}
-
-.cta{
-  margin-top:18px;
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-button{
-  border:0;
-  padding:12px 18px;
-  border-radius:12px;
-  font-weight:700;
-  cursor:pointer;
-  transition:.25s;
-}
-button:active{transform:scale(.96)}
-
-.btn-primary{
-  background:var(--accent);
-  color:#fff;
-  animation:pulse 6s infinite;
-}
-.btn-primary:hover{background:var(--accent2)}
-
-.btn-outline{
-  background:transparent;
-  border:2px solid var(--accent);
-  color:var(--accent);
-}
-.btn-outline:hover{background:var(--accent);color:#fff}
-
-@keyframes pulse{
-  0%{box-shadow:0 0 0 0 rgba(196,155,99,.4)}
-  70%{box-shadow:0 0 0 18px rgba(196,155,99,0)}
-  100%{box-shadow:0 0 0 0 rgba(196,155,99,0)}
-}
-
-/* CALENDARIO */
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:14px}
-.cal-cell{
-  background:#fff;
-  padding:10px;
-  min-height:78px;
-  border-radius:12px;
-  text-align:center;
-  cursor:pointer;
-  transition:.25s;
-}
-.cal-cell:hover{background:var(--accent);color:#fff;transform:scale(1.05)}
-.cal-cell.booked{background:#fdecea;color:#8b1a1a;cursor:not-allowed}
-.cal-cell.selected{background:var(--accent2);color:#fff}
-
-/* MODAL */
-.modal-bg{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:1000;
-}
-.modal-bg.show{display:flex}
-.modal{
-  background:#fff;
-  border-radius:18px;
-  padding:22px;
-  max-width:520px;
-  width:92%;
-  box-shadow:0 30px 80px rgba(0,0,0,.3);
-}
-
-footer{
-  margin-top:32px;
-  text-align:center;
-  color:var(--muted);
-  font-size:14px;
-  padding:24px;
-}
-
-/* MOBILE */
-@media(max-width:520px){
-  .gallery img{height:110px}
-  header.hero{padding:28px}
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<div class="container">
-
-<header class="hero reveal">
-  <div>
-    <h1>Casa Balù · Camera Warm & Cozy</h1>
-    <p>Un rifugio accogliente a Osio Sotto, ideale per lavoro, relax o brevi soggiorni. Privacy, comfort e semplicità.</p>
-    <div class="badge">Camera privata · Bagno en-suite · Check-in autonomo</div>
-  </div>
-  <div>
-    <div class="small">Prezzo indicativo</div>
-    <div class="price">€85 / notte</div>
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-overlay">
+    <h1>Casa Balù</h1>
+    <p>Camera accogliente a Osio Sotto (BG)</p>
+    <a href="#prenotazione" class="btn-primary">Richiedi disponibilità</a>
   </div>
 </header>
 
-<div class="grid">
-
-<section class="section reveal">
-  <h2>La camera</h2>
-
-  <div class="gallery">
-    <img src="./img/room1.jpg">
-    <img src="./img/room2.jpg">
-    <img src="./img/bathroom.jpg">
-    <img src="./img/living.jpg">
-    <img src="./img/hero.jpg">
-    <img src="./img/street.jpg">
-  </div>
-
+<!-- STRUTTURA -->
+<section class="section fade-in">
+  <h2>La struttura</h2>
   <p>
-    Camera luminosa e silenziosa con letto matrimoniale, bagno privato,
-    Wi-Fi veloce e ambiente curato. Pensata per chi cerca tranquillità,
-    autonomia e comfort.
+    Casa Balù è una camera privata calda e confortevole, ideale per soggiorni brevi,
+    trasferte lavorative o momenti di relax.  
+    Posizione strategica vicino a Bergamo, autostrada e servizi.
   </p>
-
-  <h3>Servizi inclusi</h3>
-  <ul class="features">
-    <li>Wi-Fi veloce</li>
-    <li>Bagno privato</li>
-    <li>Check-in autonomo</li>
-    <li>Biancheria inclusa</li>
-    <li>Parcheggio facile</li>
-    <li>Zona tranquilla</li>
-  </ul>
-
-  <div class="cta">
-    <button class="btn-primary" id="openModal">Richiedi disponibilità</button>
-    <button class="btn-outline">Scarica iCal</button>
-  </div>
 </section>
 
-<aside class="section reveal">
-  <h3>Contatti</h3>
-  <p>
-    📧 <strong>daidonegaetano91@gmail.com</strong><br>
-    📞 <strong>+39 329 608 3422</strong>
+<!-- GALLERY -->
+<section class="gallery fade-in">
+  <img src="img/room1.jpg" alt="Camera matrimoniale">
+  <img src="img/room2.jpg" alt="Dettagli camera">
+  <img src="img/bathroom.jpg" alt="Bagno privato">
+  <img src="img/living.jpg" alt="Zona comune">
+  <img src="img/street.jpg" alt="Zona e strada">
+</section>
+
+<!-- PRENOTAZIONE -->
+<section id="prenotazione" class="section booking fade-in">
+  <h2>Seleziona le date</h2>
+
+  <div id="calendar"></div>
+  <p id="price" class="price">Prezzo stimato: €0</p>
+
+  <h3>Richiesta di prenotazione</h3>
+
+  <form action="https://formspree.io/f/xvgelnqn" method="POST">
+    <input type="text" name="name" placeholder="Nome e cognome" required>
+    <input type="email" name="email" placeholder="Email" required>
+
+    <input type="hidden" name="checkin" id="checkin">
+    <input type="hidden" name="checkout" id="checkout">
+
+    <button type="submit" class="btn-primary">Invia richiesta</button>
+  </form>
+
+  <p class="note">
+    Riceverai una risposta via email per confermare la disponibilità.
   </p>
+</section>
 
-  <p>
-    📍 Via Brembate 2, Osio Sotto (BG)
-  </p>
-
-  <p class="small">
-    Risposta rapida, generalmente entro 24 ore.
-  </p>
-</aside>
-
-</div>
-
+<!-- FOOTER -->
 <footer>
-  © <span id="year"></span> Casa Balù · Osio Sotto
+  <p>© Casa Balù – Osio Sotto (BG)</p>
 </footer>
 
-</div>
-
-<!-- MODAL -->
-<div class="modal-bg" id="modal">
-  <div class="modal">
-    <h3>Richiesta prenotazione</h3>
-    <form action="https://formspree.io/f/xvgelnqn" method="POST">
-      <input type="hidden" name="_subject" value="Richiesta prenotazione Casa Balù">
-      <input name="name" placeholder="Nome" required><br><br>
-      <input name="email" type="email" placeholder="Email" required><br><br>
-      <input name="phone" placeholder="Telefono"><br><br>
-      <textarea name="message" placeholder="Date richieste / messaggio"></textarea><br><br>
-      <button class="btn-primary" type="submit">Invia richiesta</button>
-      <button class="btn-outline" type="button" id="closeModal">Chiudi</button>
-    </form>
-  </div>
-</div>
-
-<script>
-document.getElementById("year").textContent=new Date().getFullYear();
-
-const reveals=document.querySelectorAll(".reveal");
-function reveal(){
-  reveals.forEach(el=>{
-    if(el.getBoundingClientRect().top < window.innerHeight-100){
-      el.classList.add("active");
-    }
-  });
-}
-window.addEventListener("scroll",reveal);
-reveal();
-
-const modal=document.getElementById("modal");
-document.getElementById("openModal").onclick=()=>modal.classList.add("show");
-document.getElementById("closeModal").onclick=()=>modal.classList.remove("show");
-</script>
+<script src="js/gallery.js" defer></script>
+<script src="js/calendar.js" defer></script>
 
 </body>
 </html>

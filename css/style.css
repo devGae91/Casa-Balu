@@ -1,0 +1,163 @@
+:root {
+  --bg: #fdfaf7;
+  --card: #ffffff;
+  --text: #2b2b2b;
+  --muted: #6f665f;
+  --accent: #8b5e3c;
+  --accent-light: #cfa57a;
+  --radius: 16px;
+  --shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+h1,h2,h3 {
+  margin-bottom: 12px;
+}
+
+.section {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.fade-in {
+  animation: fade 1.2s ease forwards;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* HERO */
+.hero {
+  height: 70vh;
+  background: url("../img/hero.jpg") center/cover no-repeat;
+  position: relative;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+}
+
+.btn-primary {
+  margin-top: 20px;
+  padding: 14px 26px;
+  background: var(--accent);
+  color: white;
+  border-radius: var(--radius);
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background: var(--accent-light);
+}
+
+/* GALLERY */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+  gap: 14px;
+  padding: 0 20px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: transform .3s, box-shadow .3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow);
+}
+
+/* BOOKING */
+.booking {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 30px 20px;
+}
+
+#calendar {
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.day {
+  padding: 12px;
+  background: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,.05);
+}
+
+.day:hover {
+  background: var(--accent-light);
+}
+
+.selected {
+  background: var(--accent);
+  color: white;
+}
+
+.blocked {
+  background: #eee;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.price {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+form input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.note {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 30px;
+  color: var(--muted);
+}
