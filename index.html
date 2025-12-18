@@ -5,110 +5,75 @@
   <title>Casa Balù – Camera Premium a Osio Sotto (BG)</title>
 
   <meta name="description"
-        content="Casa Balù – Camera premium a Osio Sotto (BG). Comfort, relax e stile. Prenotazione diretta con calendario in tempo reale.">
+        content="Casa Balù – Camera premium a Osio Sotto (BG). Prenotazione diretta con calendario in tempo reale.">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/style.css?v=5.0">
-
-  <!-- Fonts -->
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Flatpickr CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<!-- ================= HERO PREMIUM ================= -->
+<!-- HERO -->
 <header class="hero">
   <div class="hero-overlay"></div>
 
   <div class="hero-content fade-in">
-    <div class="hero-image-wrapper">
-      <!-- QUESTA È LA FOTO DAVANTI ALLO SFONDO -->
-      <img src="img/room1.jpg" alt="Casa Balù – Camera" class="hero-image">
-    </div>
+    <img src="img/room1.jpg" alt="Casa Balù" class="hero-image">
 
     <h1 class="hero-title">Casa Balù</h1>
 
     <p class="hero-subtitle">
-      Un rifugio caldo e curato a Osio Sotto.<br>
-      Dove comfort, silenzio e stile si incontrano.
+      Comfort, silenzio e stile a Osio Sotto
     </p>
 
-    <a href="#prenotazione" class="btn hero-btn">
-      Verifica disponibilità
-    </a>
+    <a href="#prenotazione" class="btn">Verifica disponibilità</a>
   </div>
 </header>
 
-<!-- ================= ESPERIENZA ================= -->
-<section class="section-colored fade-in">
-  <div class="info-card">
-    <h2>Un’esperienza, non solo una stanza</h2>
-
+<!-- ESPERIENZA -->
+<section class="section">
+  <div class="card">
+    <h2>Un’esperienza autentica</h2>
     <p>
-      Casa Balù nasce per offrire più di un semplice pernottamento.
-      È uno spazio pensato per farti sentire subito a tuo agio, che tu sia
-      in viaggio per lavoro o in cerca di una pausa rigenerante.
-    </p>
-
-    <p>
-      Ogni dettaglio è studiato per trasmettere calma, ordine e comfort.
-      Arrivi, posi le valigie… e respiri.
+      Casa Balù è uno spazio curato, silenzioso e accogliente.
+      Pensato per chi vuole sentirsi a casa, anche lontano da casa.
     </p>
   </div>
 </section>
 
-<!-- ================= LA CAMERA ================= -->
-<section class="section-light fade-in">
-  <div class="info-card">
+<!-- GALLERY -->
+<section class="section light">
+  <div class="card">
     <h2>La camera</h2>
 
-    <p>
-      Luminosa, spaziosa e arredata con toni caldi.
-      Il letto è comodo, i tessuti sono morbidi e l’ambiente è sempre pulito e ordinato.
-    </p>
-
-    <p>
-      Ideale per dormire profondamente, lavorare in tranquillità
-      o rilassarsi dopo una giornata intensa.
-    </p>
-
     <div class="gallery">
-      <img src="img/room1.jpg" alt="Camera Casa Balù">
-      <img src="img/room2.jpg" alt="Dettaglio camera">
-      <img src="img/bathroom.jpg" alt="Bagno privato">
-      <img src="img/living.jpg" alt="Spazi comuni">
-      <img src="img/street.jpg" alt="Zona e posizione">
+      <img src="img/room1.jpg">
+      <img src="img/room2.jpg">
+      <img src="img/bathroom.jpg">
+      <img src="img/living.jpg">
+      <img src="img/street.jpg">
     </div>
   </div>
 </section>
 
-<!-- ================= SERVIZI ================= -->
-<section class="section-colored fade-in">
-  <div class="info-card">
-    <h2>Servizi inclusi</h2>
-
-    <ul class="services-list">
-      <li>Letto confortevole e ambiente silenzioso</li>
-      <li>Bagno pulito e funzionale</li>
-      <li>Wi-Fi veloce e stabile</li>
-      <li>Posizione strategica vicino a Bergamo e autostrada</li>
-      <li>Spazio riservato, ordinato e rilassante</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ================= PRENOTAZIONE ================= -->
-<section id="prenotazione" class="booking-section fade-in">
-  <h2 class="booking-title">Disponibilità e prenotazione</h2>
+<!-- PRENOTAZIONE -->
+<section id="prenotazione" class="section booking">
+  <h2 class="center">Disponibilità</h2>
 
   <div class="booking-wrapper">
 
-    <!-- CALENDARIO (SOSTITUIREMO CON FLATPICKR) -->
-    <div class="calendar">
+    <!-- CALENDARIO -->
+    <div class="card calendar-card">
       <h3>Seleziona le date</h3>
-      <div id="calendar"></div>
+      <input id="calendar" placeholder="Check-in → Check-out" readonly>
       <p id="price" class="price"></p>
     </div>
 
@@ -116,12 +81,12 @@
     <form
       action="https://formspree.io/f/xvgelnqn"
       method="POST"
-      class="booking-form"
+      class="card form-card"
     >
-      <h3>Richiesta di prenotazione</h3>
+      <h3>Richiesta prenotazione</h3>
 
-      <input type="text" name="name" placeholder="Nome e cognome" autocomplete="name" required>
-      <input type="email" name="email" placeholder="Email" autocomplete="email" required>
+      <input type="text" name="name" placeholder="Nome e cognome" required>
+      <input type="email" name="email" placeholder="Email" required>
 
       <input type="hidden" name="checkin" id="checkin">
       <input type="hidden" name="checkout" id="checkout">
@@ -131,21 +96,22 @@
       <button type="submit" class="btn">Invia richiesta</button>
 
       <p class="note">
-        Riceverai una risposta via email per conferma disponibilità.
-        Nessun pagamento richiesto in questa fase.
+        Nessun pagamento ora. Conferma via email.
       </p>
     </form>
 
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
 <footer>
-  <p>© Casa Balù – Osio Sotto (BG)</p>
+  © Casa Balù – Osio Sotto (BG)
 </footer>
 
+<!-- Flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 <!-- JS -->
-<script src="js/calendar.js" defer></script>
+<script src="js/calendar.js"></script>
 
 </body>
 </html>
