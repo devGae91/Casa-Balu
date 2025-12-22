@@ -1,0 +1,381 @@
+/* =====================================================
+   RESET & BASE
+===================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f7f4ef;
+  color: #2b2b2b;
+  line-height: 1.7;
+}
+
+/* =====================================================
+   COLOR SYSTEM & VARIABLES
+===================================================== */
+:root {
+  --caramel: #e2b27f;
+  --caramel-dark: #c8965e;
+  --caramel-soft: #f0d3b2;
+
+  --blue-accent: #3b82f6;
+
+  --soft-bg: #f7f2ec;
+  --light-bg: #ffffff;
+  --dark: #2b2b2b;
+  --accent: #8a5a2b;
+
+  --radius: 18px;
+  --shadow: 0 25px 60px rgba(0,0,0,0.12);
+}
+
+/* =====================================================
+   LANGUAGE SWITCHER
+===================================================== */
+.lang-switch {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 1000;
+}
+
+.lang-switch button {
+  background: rgba(255,255,255,0.9);
+  border: none;
+  padding: 6px 14px;
+  margin-left: 6px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.lang-switch button.active {
+  background: var(--caramel);
+  color: #fff;
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.65)),
+    url("../img/hero.jpg") center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 850px;
+  padding: 2.5rem;
+  color: #fff;
+}
+
+.hero-image {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
+  border: 5px solid rgba(255,255,255,0.25);
+}
+
+.hero h1,
+.hero-title {
+  font-size: 3.3rem;
+  color: var(--caramel);
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.hero p,
+.hero-subtitle {
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+  color: #f2f2f2;
+}
+
+/* =====================================================
+   BUTTON
+===================================================== */
+.btn {
+  display: inline-block;
+  padding: 0.95rem 2.8rem;
+  background: linear-gradient(135deg, var(--caramel), var(--caramel-dark));
+  color: #2b2b2b;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+}
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+.section {
+  padding: 5.5rem 1.5rem;
+}
+
+.soft-bg {
+  background: linear-gradient(135deg, #f7f2ec, #efe6db);
+}
+
+.light-bg {
+  background: var(--light-bg);
+}
+
+.caramel-bg {
+  background: linear-gradient(135deg, var(--caramel-soft), var(--caramel));
+}
+
+.container {
+  max-width: 1050px;
+  margin: auto;
+}
+
+.section h2 {
+  font-size: 2.4rem;
+  margin-bottom: 1.6rem;
+  color: var(--dark);
+}
+
+.section p {
+  font-size: 1.05rem;
+  color: #444;
+}
+
+/* =====================================================
+   GALLERY
+===================================================== */
+.gallery {
+  margin-top: 2.2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 1.2rem;
+}
+
+.gallery img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* =====================================================
+   SERVICES
+===================================================== */
+.services,
+.services-list {
+  list-style: none;
+  margin-top: 2rem;
+  font-size: 1.05rem;
+}
+
+.services li,
+.services-list li {
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  font-weight: 500;
+}
+
+.services li::before,
+.services-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* =====================================================
+   BOOKING / CALENDAR
+===================================================== */
+.booking-section {
+  padding: 6rem 1.5rem;
+  background: var(--soft-bg);
+}
+
+.booking-title {
+  text-align: center;
+  font-size: 2.6rem;
+  margin-bottom: 3.5rem;
+}
+
+.booking-grid,
+.booking-wrapper {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.calendar-box,
+.calendar,
+.booking-form {
+  background: #fff;
+  padding: 2.8rem;
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+}
+
+.calendar h2,
+.calendar h3,
+.booking-form h2,
+.booking-form h3 {
+  margin-bottom: 1.4rem;
+}
+
+.calendar input,
+.calendar select {
+  width: 100%;
+  padding: 0.9rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.price {
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+/* =====================================================
+   FORM
+===================================================== */
+.booking-form input,
+.booking-form textarea {
+  width: 100%;
+  padding: 0.9rem;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+}
+
+.booking-form button {
+  width: 100%;
+}
+
+.form-note,
+.note {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 1rem;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+footer {
+  background: #2b2b2b;
+  color: #f1f1f1;
+  text-align: center;
+  padding: 1.8rem;
+  font-size: 0.9rem;
+}
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+.fade-in {
+  animation: fadeIn 1.1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =====================================================
+   FLATPICKR – BOOKING STYLE
+===================================================== */
+.flatpickr-calendar {
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  font-family: 'Inter', sans-serif;
+}
+
+.flatpickr-months {
+  background: var(--soft-bg);
+  border-radius: 18px 18px 0 0;
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange {
+  background: var(--blue-accent);
+  border-color: var(--blue-accent);
+  color: #fff;
+}
+
+.flatpickr-day.inRange {
+  background: rgba(59,130,246,0.15);
+}
+
+.flatpickr-day:hover {
+  background: rgba(59,130,246,0.15);
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+@media (max-width: 900px) {
+  .booking-grid,
+  .booking-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1,
+  .hero-title {
+    font-size: 2.6rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-image {
+    width: 180px;
+    height: 180px;
+  }
+}

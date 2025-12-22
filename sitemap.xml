@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://devGae91.github.io/casa-balu-osio/</loc><changefreq>weekly</changefreq></url>
-  <url><loc>https://devGae91.github.io/casa-balu-osio/privacy.html</loc><changefreq>yearly</changefreq></url>
+
+  <url>
+    <loc>https://devgae91.github.io/Casa-Balu/</loc>
+    <lastmod>2025-01-01</lastmod>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://devgae91.github.io/Casa-Balu/privacy.html</loc>
+    <lastmod>2025-01-01</lastmod>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>
