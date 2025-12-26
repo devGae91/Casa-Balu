@@ -6,15 +6,26 @@
   <title>Casa Balù – Camera Premium a Osio Sotto (Bergamo)</title>
 
   <meta name="description"
-        content="Casa Balù è una camera premium a Osio Sotto (BG). Fino a 4 ospiti, colazione inclusa, comfort e silenzio. Vicino Bergamo, Orio al Serio e Milano. Prenotazione diretta.">
+        content="Casa Balù è una camera premium a Osio Sotto (BG). Fino a 4 ospiti, colazione inclusa, comfort, silenzio e posizione strategica vicino Bergamo, Orio al Serio e Milano. Prenotazione diretta.">
 
+  <meta name="keywords"
+        content="Casa Balù, camera Osio Sotto, alloggio Bergamo, affitto breve Bergamo, camera vicino Milano, Orio al Serio, pernottamento Bergamo, B&B Osio Sotto">
+
+  <meta name="author" content="Casa Balù">
+  <meta name="robots" content="index, follow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- SEO BASE -->
-  <meta name="robots" content="index, follow">
+  <!-- OPEN GRAPH -->
+  <meta property="og:title" content="Casa Balù – Camera Premium a Osio Sotto">
+  <meta property="og:description" content="Comfort, silenzio e posizione strategica. Fino a 4 ospiti, colazione inclusa.">
+  <meta property="og:image" content="img/hero.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="it_IT">
+
+  <!-- CANONICAL -->
   <link rel="canonical" href="https://devgae91.github.io/Casa-Balu/">
 
-  <!-- FONTS -->
+  <!-- GOOGLE FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <!-- CSS -->
@@ -22,137 +33,146 @@
 
   <!-- FLATPICKR -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+  <!-- STRUCTURED DATA -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    "name": "Casa Balù",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Osio Sotto",
+      "addressRegion": "BG",
+      "addressCountry": "IT"
+    },
+    "priceRange": "€70–€120",
+    "amenityFeature": [
+      { "@type": "LocationFeatureSpecification", "name": "Wi-Fi" },
+      { "@type": "LocationFeatureSpecification", "name": "Colazione inclusa" },
+      { "@type": "LocationFeatureSpecification", "name": "Animali ammessi" }
+    ]
+  }
+  </script>
 </head>
 
 <body>
 
-<!-- ================= LANGUAGE SWITCH ================= -->
+<!-- LANGUAGE SWITCH -->
 <div class="lang-switch">
   <button data-lang="it" class="active">IT</button>
   <button data-lang="en">EN</button>
 </div>
 
-<!-- ================= HERO ================= -->
+<!-- HERO -->
 <header class="hero">
-  <div class="hero-overlay"></div>
-
   <div class="hero-content fade-in">
-    <img src="img/hero.jpg" alt="Casa Balù" class="hero-image">
-
-    <h1 class="hero-title" data-i18n="title">Casa Balù</h1>
-
-    <p class="hero-subtitle" data-i18n="subtitle">
+    <h1 data-i18n="title">Casa Balù</h1>
+    <p data-i18n="subtitle">
       Un rifugio caldo e curato a Osio Sotto.<br>
       Comfort, silenzio e stile.
     </p>
-
-    <a href="#prenotazione" class="btn hero-btn" data-i18n="booking">
+    <a href="#prenotazione" class="btn" data-i18n="booking">
       Verifica disponibilità
     </a>
   </div>
 </header>
 
-<!-- ================= ESPERIENZA ================= -->
-<section class="section-colored fade-in">
-  <div class="info-card">
+<!-- ESPERIENZA -->
+<section class="section section-colored fade-in">
+  <div class="container narrow">
     <h2 data-i18n="experience_title">Un’esperienza autentica</h2>
-
     <p data-i18n="experience_text_1">
-      Casa Balù è pensata per chi cerca tranquillità, spazi curati e comfort,
-      in un ambiente caldo e accogliente.
+      Casa Balù nasce per offrire un soggiorno intimo, curato e rilassante,
+      in un ambiente caldo dove sentirsi subito a casa.
     </p>
-
     <p data-i18n="experience_text_2">
-      Ideale per soggiorni di lavoro o relax, in una zona silenziosa e strategica
-      vicino a Bergamo e Milano.
+      Ideale per lavoro, turismo o brevi pause rigeneranti,
+      in una zona tranquilla e strategica.
     </p>
   </div>
 </section>
 
-<!-- ================= CAMERA + SLIDER ================= -->
-<section class="section-light fade-in">
-  <div class="info-card">
+<!-- CAMERA + GALLERIA -->
+<section class="section section-light fade-in">
+  <div class="container">
     <h2 data-i18n="room_title">La camera</h2>
-
     <p data-i18n="room_text_1">
-      Letto matrimoniale e divano letto, fino a 4 ospiti in totale comfort.
+      Letto matrimoniale e divano letto, fino a 4 ospiti.
+      Ambienti curati, tessuti morbidi e colori caldi.
+    </p>
+    <p data-i18n="room_text_2">
+      Silenzio, comfort e privacy per un riposo totale.
     </p>
 
-    <div class="gallery">
-      <img src="img/room1.jpg" alt="Camera">
-      <img src="img/room2.jpg" alt="Dettaglio">
-      <img src="img/bathroom.jpg" alt="Bagno">
-      <img src="img/living.jpg" alt="Zona living">
-      <img src="img/street.jpg" alt="Quartiere">
+    <div class="gallery-wrapper">
+      <button id="prev">‹</button>
+      <div class="gallery">
+        <img src="img/room1.jpg" alt="Camera Casa Balù">
+        <img src="img/room2.jpg" alt="Dettaglio camera">
+        <img src="img/bathroom.jpg" alt="Bagno">
+        <img src="img/living.jpg" alt="Zona living">
+        <img src="img/street.jpg" alt="Quartiere">
+      </div>
+      <button id="next">›</button>
     </div>
   </div>
 </section>
 
-<!-- ================= TERRITORIO 50/50 ================= -->
-<section class="section-colored fade-in">
-  <div class="info-card" style="display:grid; grid-template-columns:1fr 1fr; gap:3rem;">
-    
+<!-- TERRITORIO -->
+<section class="section section-colored fade-in">
+  <div class="container territory-grid">
     <div>
-      <h2>Dove siamo</h2>
+      <h2>Il territorio</h2>
       <p>
-        Casa Balù si trova a Osio Sotto, in un quartiere tranquillo e riservato,
-        perfetto per riposare ma vicino a tutto.
+        Casa Balù si trova a Osio Sotto, in un quartiere tranquillo
+        vicino al centro del paese, in una posizione ideale per esplorare
+        Bergamo, Milano e le bellezze della Lombardia.
       </p>
       <p>
-        Bergamo, Orio al Serio, Milano e le principali arterie stradali sono
-        facilmente raggiungibili in pochi minuti.
+        Arte, cultura, enogastronomia locale e natura
+        si incontrano in un territorio autentico e ricco di esperienze.
       </p>
     </div>
 
     <div>
-      <h2>Cosa visitare</h2>
-      <ul class="services-list">
-        <li>Bergamo Alta e mura veneziane</li>
-        <li>Orio Center e aeroporto</li>
-        <li>Milano (30 minuti)</li>
-        <li>Ristoranti e tradizione locale</li>
-        <li>Laghi e colline bergamasche</li>
+      <ul class="distances">
+        <li>📍 Bergamo – 20 min</li>
+        <li>✈ Aeroporto Orio al Serio – 15 min</li>
+        <li>🛍 Orio Center – 10 min</li>
+        <li>🚆 Milano – 30 min</li>
       </ul>
     </div>
-
   </div>
 </section>
 
-<!-- ================= SERVIZI + PREZZI ================= -->
-<section class="section-light fade-in">
-  <div class="info-card" style="display:grid; grid-template-columns:1fr 1fr; gap:3rem;">
-    
+<!-- SERVIZI + PREZZI -->
+<section class="section section-light fade-in">
+  <div class="container territory-grid">
     <div>
       <h2 data-i18n="services_title">Servizi inclusi</h2>
-      <ul class="services-list">
-        <li data-i18n="service_1">Colazione inclusa</li>
-        <li data-i18n="service_2">Wi-Fi veloce</li>
-        <li data-i18n="service_3">Animali ammessi (+15€)</li>
-        <li data-i18n="service_4">Posizione strategica</li>
-        <li data-i18n="service_5">Ambiente silenzioso</li>
+      <ul class="services">
+        <li>Colazione inclusa</li>
+        <li>Wi-Fi veloce</li>
+        <li>Animali di piccola taglia ammessi (+15€)</li>
+        <li>Ambiente silenzioso e riservato</li>
       </ul>
     </div>
 
-    <div>
+    <div class="prices-box">
       <h2>Prezzi</h2>
       <p>1–2 persone: <strong>70 € / notte</strong></p>
       <p>3 persone: <strong>100 € / notte</strong></p>
       <p>4 persone: <strong>120 € / notte</strong></p>
-      <p>Animali: supplemento 15 €</p>
     </div>
-
   </div>
 </section>
 
-<!-- ================= PRENOTAZIONE (INTOCCATA) ================= -->
-<section id="prenotazione" class="booking-section fade-in">
-  <h2 class="booking-title" data-i18n="booking_title">
-    Disponibilità e prenotazione
-  </h2>
+<!-- PRENOTAZIONE -->
+<section id="prenotazione" class="section section-colored fade-in">
+  <div class="container booking-grid">
 
-  <div class="booking-wrapper">
-
-    <div class="calendar">
+    <div class="calendar-box">
       <h3 data-i18n="calendar_title">Seleziona le date</h3>
 
       <label for="guests" data-i18n="guests_label">Numero ospiti</label>
@@ -164,11 +184,14 @@
       </select>
 
       <input type="text" id="date-range" readonly>
-
-      <p id="price" class="price"></p>
+      <p id="price"></p>
     </div>
 
-    <form action="https://formspree.io/f/xvgelnqn" method="POST" class="booking-form">
+    <form
+      action="https://formspree.io/f/xvgelnqn"
+      method="POST"
+      class="booking-form"
+    >
       <h3 data-i18n="form_title">Richiesta di prenotazione</h3>
 
       <input type="text" name="name" placeholder="Nome e cognome" required>
@@ -179,13 +202,20 @@
 
       <textarea name="message" rows="4" placeholder="Messaggio (opzionale)"></textarea>
 
-      <button type="submit" class="btn" data-i18n="send">Invia richiesta</button>
+      <button type="submit" class="btn" data-i18n="send">
+        Invia richiesta
+      </button>
+
+      <p class="note">
+        Nessun pagamento richiesto ora.<br>
+        Riceverai conferma via email.
+      </p>
     </form>
 
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
+<!-- FOOTER -->
 <footer>
   <p>
     📞 +39 329 608 3422<br>
@@ -198,6 +228,9 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="js/calendar.js"></script>
 <script src="js/lang.js"></script>
+<script src="js/slider.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/hover-effects.js"></script>
 
 </body>
 </html>
