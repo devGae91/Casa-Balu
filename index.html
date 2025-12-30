@@ -58,28 +58,62 @@
 
 <body>
 
+  <header class="site-header">
+  <div class="header-inner">
+
+    <!-- LOGO -->
+    <div class="logo">
+      Casa <span>Balù</span>
+    </div>
+
+    <!-- MENU -->
+    <nav class="main-nav">
+      <a href="#home">Home</a>
+      <a href="#esperienza">Esperienza</a>
+      <a href="#galleria">Galleria</a>
+      <a href="#servizi">Servizi</a>
+      <a href="#prenotazione">Prenotazione</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="burger" id="burger">
+      ☰
+    </div>
+
+  </div>
+</header>
+
 <!-- LANGUAGE SWITCH -->
 <div class="lang-switch">
   <button data-lang="it" class="active">IT</button>
   <button data-lang="en">EN</button>
 </div>
 
-<!-- HERO -->
-<header class="hero">
+<!-- HERO -->>
+<header class="hero" id="home">
+  <div class="hero-overlay"></div>
+
   <div class="hero-content fade-in">
-    <h1 data-i18n="title">Casa Balù</h1>
-    <p data-i18n="subtitle">
+    <div class="hero-badge">Camera Premium</div>
+
+    <h1 class="hero-title">
+      Casa <span>Balù</span>
+    </h1>
+
+    <p class="hero-subtitle">
       Un rifugio caldo e curato a Osio Sotto.<br>
-      Comfort, silenzio e stile.
+      <strong>Comfort, silenzio e stile.</strong>
     </p>
-    <a href="#prenotazione" class="btn" data-i18n="booking">
+
+    <a href="#prenotazione" class="btn hero-btn">
       Verifica disponibilità
     </a>
   </div>
 </header>
 
 <!-- ESPERIENZA -->
-<section class="section section-colored fade-in">
+<section class="section section-colored fade-in" id="esperienza">
   <div class="container narrow">
     <h2 data-i18n="experience_title">Un’esperienza autentica</h2>
     <p data-i18n="experience_text_1">
@@ -94,7 +128,7 @@
 </section>
 
 <!-- CAMERA + GALLERIA -->
-<section class="section section-light fade-in">
+<section class="section section-light fade-in" id="galleria">
   <div class="container">
     <h2 data-i18n="room_title">La camera</h2>
     <p data-i18n="room_text_1">
@@ -107,13 +141,17 @@
 
     <div class="gallery-wrapper">
       <button id="prev">‹</button>
-      <div class="gallery">
+    
+      <div class="gallery-container">
+        <div class="gallery">
         <img src="img/room1.jpg" alt="Camera Casa Balù">
         <img src="img/room2.jpg" alt="Dettaglio camera">
         <img src="img/bathroom.jpg" alt="Bagno">
         <img src="img/living.jpg" alt="Zona living">
         <img src="img/street.jpg" alt="Quartiere">
-      </div>
+           </div>
+         </div>
+
       <button id="next">›</button>
     </div>
   </div>
@@ -147,7 +185,7 @@
 </section>
 
 <!-- SERVIZI + PREZZI -->
-<section class="section section-light fade-in">
+<section class="section section-light fade-in" id="servizi">
   <div class="container territory-grid">
     <div>
       <h2 data-i18n="services_title">Servizi inclusi</h2>
@@ -216,7 +254,7 @@
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer id="contatti">
   <p>
     📞 +39 329 608 3422<br>
     ✉️ daidonegaetano91@gmail.com
@@ -232,6 +270,7 @@
 <script src="js/slider.js"></script>
 <script src="js/animations.js"></script>
 <script src="js/hover-effects.js"></script>
+<script src="js/menu.js"></script>
 
 </body>
 </html>
