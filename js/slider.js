@@ -52,3 +52,22 @@ document.addEventListener("DOMContentLoaded", () => {
     update();
   });
 });
+
+/* ===== LIGHTBOX ===== */
+const lightbox = document.createElement("div");
+lightbox.className = "lightbox";
+document.body.appendChild(lightbox);
+
+const lightImg = document.createElement("img");
+lightbox.appendChild(lightImg);
+
+document.querySelectorAll(".gallery img").forEach(img => {
+  img.addEventListener("click", () => {
+    lightImg.src = img.src;
+    lightbox.classList.add("active");
+  });
+});
+
+lightbox.addEventListener("click", () => {
+  lightbox.classList.remove("active");
+});
