@@ -58,30 +58,31 @@
 
 <body>
 
+<!-- ================= HEADER ================= -->
 <header class="main-header">
   <div class="header-container">
-    
-    <!-- LOGO -->
-    <div class="logo">
-      <img src="img/logo-casa-balu.svg" alt="Casa Balù – Alloggio premium">
-    </div>
 
-    <!-- MENU -->
-    <nav class="main-nav">
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#gallery">Galleria</a></li>
-        <li><a href="#services">Servizi</a></li>
-        <li><a href="#territory">Territorio</a></li>
-        <li><a href="#booking">Prenotazione</a></li>
-        <li><a href="#contacts">Contatti</a></li>
-      </ul>
-    </nav>
+    <!-- LEFT -->
+    <div class="header-left">
+      <div class="logo">
+        <img src="img/logo-casa-balu.svg" alt="Casa Balù – Alloggio premium">
+      </div>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#esperienza">Esperienza</a></li>
+          <li><a href="#galleria">Galleria</a></li>
+          <li><a href="#servizi">Servizi</a></li>
+          <li><a href="#prenotazione">Prenota</a></li>
+        </ul>
+      </nav>
+    </div>
 
     <!-- RIGHT -->
     <div class="header-right">
       <button class="lang-btn">IT / EN</button>
-      <button class="burger">
+      <button class="burger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -89,39 +90,7 @@
   </div>
 </header>
 
-  <header class="site-header">
-  <div class="header-inner">
-
-    <!-- LOGO -->
-    <div class="logo">
-      Casa <span>Balù</span>
-    </div>
-
-    <!-- MENU -->
-    <nav class="main-nav">
-      <a href="#home">Home</a>
-      <a href="#esperienza">Esperienza</a>
-      <a href="#galleria">Galleria</a>
-      <a href="#servizi">Servizi</a>
-      <a href="#prenotazione">Prenotazione</a>
-      <a href="#contatti">Contatti</a>
-    </nav>
-
-    <!-- MOBILE MENU -->
-    <div class="burger" id="burger">
-      ☰
-    </div>
-
-  </div>
-</header>
-
-<!-- LANGUAGE SWITCH -->
-<div class="lang-switch">
-  <button data-lang="it" class="active">IT</button>
-  <button data-lang="en">EN</button>
-</div>
-
-<!-- HERO -->>
+<!-- ================= HERO ================= -->
 <header class="hero" id="home">
   <div class="hero-overlay"></div>
 
@@ -143,64 +112,58 @@
   </div>
 </header>
 
-<!-- ESPERIENZA -->
+<!-- ================= ESPERIENZA ================= -->
 <section class="section section-colored fade-in" id="esperienza">
   <div class="container narrow">
-    <h2 data-i18n="experience_title">Un’esperienza autentica</h2>
-    <p data-i18n="experience_text_1">
+    <h2>Un’esperienza autentica</h2>
+    <p>
       Casa Balù nasce per offrire un soggiorno intimo, curato e rilassante,
       in un ambiente caldo dove sentirsi subito a casa.
     </p>
-    <p data-i18n="experience_text_2">
+    <p>
       Ideale per lavoro, turismo o brevi pause rigeneranti,
       in una zona tranquilla e strategica.
     </p>
   </div>
 </section>
 
-<!-- CAMERA + GALLERIA -->
+<!-- ================= GALLERIA ================= -->
 <section class="section section-light fade-in" id="galleria">
   <div class="container">
-    <h2 data-i18n="room_title">La camera</h2>
-    <p data-i18n="room_text_1">
+    <h2>La camera</h2>
+
+    <p>
       Letto matrimoniale e divano letto, fino a 4 ospiti.
       Ambienti curati, tessuti morbidi e colori caldi.
-    </p>
-    <p data-i18n="room_text_2">
-      Silenzio, comfort e privacy per un riposo totale.
     </p>
 
     <div class="gallery-wrapper">
       <button id="prev">‹</button>
-    
+
       <div class="gallery-container">
         <div class="gallery">
-        <img src="img/room1.jpg" alt="Camera Casa Balù">
-        <img src="img/room2.jpg" alt="Dettaglio camera">
-        <img src="img/bathroom.jpg" alt="Bagno">
-        <img src="img/living.jpg" alt="Zona living">
-        <img src="img/street.jpg" alt="Quartiere">
-           </div>
-         </div>
+          <img src="img/room1.jpg" alt="Camera Casa Balù">
+          <img src="img/room2.jpg" alt="Dettaglio camera">
+          <img src="img/bathroom.jpg" alt="Bagno">
+          <img src="img/living.jpg" alt="Zona living">
+          <img src="img/street.jpg" alt="Quartiere">
+        </div>
+      </div>
 
       <button id="next">›</button>
     </div>
   </div>
 </section>
 
-<!-- TERRITORIO -->
-<section class="section section-colored fade-in">
+<!-- ================= TERRITORIO ================= -->
+<section class="section section-colored fade-in" id="territory">
   <div class="container territory-grid">
     <div>
       <h2>Il territorio</h2>
       <p>
         Casa Balù si trova a Osio Sotto, in un quartiere tranquillo
-        vicino al centro del paese, in una posizione ideale per esplorare
-        Bergamo, Milano e le bellezze della Lombardia.
-      </p>
-      <p>
-        Arte, cultura, enogastronomia locale e natura
-        si incontrano in un territorio autentico e ricco di esperienze.
+        vicino al centro del paese, in posizione strategica
+        per Bergamo, Milano e la Lombardia.
       </p>
     </div>
 
@@ -215,16 +178,16 @@
   </div>
 </section>
 
-<!-- SERVIZI + PREZZI -->
+<!-- ================= SERVIZI ================= -->
 <section class="section section-light fade-in" id="servizi">
   <div class="container territory-grid">
     <div>
-      <h2 data-i18n="services_title">Servizi inclusi</h2>
+      <h2>Servizi inclusi</h2>
       <ul class="services">
         <li>Colazione inclusa</li>
         <li>Wi-Fi veloce</li>
-        <li>Animali di piccola taglia ammessi (+15€)</li>
-        <li>Ambiente silenzioso e riservato</li>
+        <li>Animali ammessi (+15€)</li>
+        <li>Ambiente silenzioso</li>
       </ul>
     </div>
 
@@ -237,59 +200,33 @@
   </div>
 </section>
 
-<!-- PRENOTAZIONE -->
+<!-- ================= PRENOTAZIONE ================= -->
 <section id="prenotazione" class="section section-colored fade-in">
   <div class="container booking-grid">
 
     <div class="calendar-box">
-      <h3 data-i18n="calendar_title">Seleziona le date</h3>
-
-      <label for="guests" data-i18n="guests_label">Numero ospiti</label>
+      <h3>Seleziona le date</h3>
       <select id="guests">
-        <option value="1">1</option>
-        <option value="2" selected>2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
+        <option>1</option><option selected>2</option><option>3</option><option>4</option>
       </select>
-
       <input type="text" id="date-range" readonly>
       <p id="price"></p>
     </div>
 
-    <form
-      action="https://formspree.io/f/xvgelnqn"
-      method="POST"
-      class="booking-form"
-    >
-      <h3 data-i18n="form_title">Richiesta di prenotazione</h3>
-
+    <form action="https://formspree.io/f/xvgelnqn" method="POST" class="booking-form">
+      <h3>Richiesta di prenotazione</h3>
       <input type="text" name="name" placeholder="Nome e cognome" required>
       <input type="email" name="email" placeholder="Email" required>
-
-      <input type="hidden" name="checkin" id="checkin">
-      <input type="hidden" name="checkout" id="checkout">
-
       <textarea name="message" rows="4" placeholder="Messaggio (opzionale)"></textarea>
-
-      <button type="submit" class="btn" data-i18n="send">
-        Invia richiesta
-      </button>
-
-      <p class="note">
-        Nessun pagamento richiesto ora.<br>
-        Riceverai conferma via email.
-      </p>
+      <button type="submit" class="btn">Invia richiesta</button>
     </form>
 
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ================= FOOTER ================= -->
 <footer id="contatti">
-  <p>
-    📞 +39 329 608 3422<br>
-    ✉️ daidonegaetano91@gmail.com
-  </p>
+  <p>📞 +39 329 608 3422<br>✉️ daidonegaetano91@gmail.com</p>
   <p>© Casa Balù – Osio Sotto (BG)</p>
 </footer>
 
@@ -300,7 +237,6 @@
 <script src="js/lang.js"></script>
 <script src="js/slider.js"></script>
 <script src="js/animations.js"></script>
-<script src="js/hover-effects.js"></script>
 <script src="js/menu.js"></script>
 
 </body>
