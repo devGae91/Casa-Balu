@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   const gallery = document.querySelector(".gallery");
   const images = document.querySelectorAll(".gallery img");
   const prevBtn = document.getElementById("prev");
@@ -10,25 +11,62 @@ document.addEventListener("DOMContentLoaded", () => {
   const gap = 24;
   let imageWidth = images[0].offsetWidth + gap;
 
+  /* ===============================
+     DOTS (AUTO-GENERATI)
+  ================================ */
+  const dotsContainer = document.createElement("div");
+  dotsContainer.className = "gallery-dots";
+
+  images.forEach((_, i) => {
+    const dot = document.createElement("span");
+    if (i === 0) dot.classList.add("active");
+    dotsContainer.appendChild(dot);
+  });
+
+  gallery.parentElement.appendChild(dotsContainer);
+  const dots = dotsContainer.querySelectorAll("span");
+
+  /* ===============================
+     UPDATE SLIDER (CENTRALIZZATO)
+  ================================ */
   function update() {
     gallery.style.transform = `translateX(${-index * imageWidth}px)`;
+
+    images.forEach((img, i) => {
+      img.classList.toggle("active", i === index);
+      img.classList.toggle("inactive", i !== index);
+    });
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === index);
+    });
   }
 
+  update();
+
+  /* ===============================
+     BUTTONS
+  ================================ */
   nextBtn?.addEventListener("click", () => {
-    if (index < images.length - 1) index++;
-    update();
+    if (index < images.length - 1) {
+      index++;
+      update();
+    }
   });
 
   prevBtn?.addEventListener("click", () => {
-    if (index > 0) index--;
-    update();
+    if (index > 0) {
+      index--;
+      update();
+    }
   });
 
-  /* === SWIPE MOBILE UX === */
+  /* ===============================
+     SWIPE MOBILE
+  ================================ */
   let startX = 0;
 
   gallery.addEventListener("touchstart", e => {
-    document.body.style.overflowX = "hidden";
     startX = e.touches[0].clientX;
   });
 
@@ -39,11 +77,36 @@ document.addEventListener("DOMContentLoaded", () => {
     if (diff < -50 && index > 0) index--;
 
     update();
-    document.body.style.overflowX = "";
   });
 
+  /* ===============================
+     RESIZE
+  ================================ */
   window.addEventListener("resize", () => {
     imageWidth = images[0].offsetWidth + gap;
     update();
   });
+
+  /* ===============================
+     LIGHTBOX PREMIUM
+  ================================ */
+  const lightbox = document.createElement("div");
+  lightbox.className = "lightbox";
+
+  const lightboxImg = document.createElement("img");
+  lightbox.appendChild(lightboxImg);
+
+  document.body.appendChild(lightbox);
+
+  images.forEach(img => {
+    img.addEventListener("click", () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.add("active");
+    });
+  });
+
+  lightbox.addEventListener("click", () => {
+    lightbox.classList.remove("active");
+  });
+
 });

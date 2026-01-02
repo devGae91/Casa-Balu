@@ -36,27 +36,35 @@
 
   <!-- STRUCTURED DATA -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LodgingBusiness",
-    "name": "Casa Balù",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Osio Sotto",
-      "addressRegion": "BG",
-      "addressCountry": "IT"
-    },
-    "priceRange": "€70–€120",
-    "amenityFeature": [
-      { "@type": "LocationFeatureSpecification", "name": "Wi-Fi" },
-      { "@type": "LocationFeatureSpecification", "name": "Colazione inclusa" },
-      { "@type": "LocationFeatureSpecification", "name": "Animali ammessi" }
-    ]
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "name": "Casa Balù",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Via Brembate 2",
+    "addressLocality": "Osio Sotto",
+    "addressRegion": "BG",
+    "addressCountry": "IT"
+  },
+  "priceRange": "€70–€120",
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Wi-Fi" },
+    { "@type": "LocationFeatureSpecification", "name": "Colazione inclusa" },
+    { "@type": "LocationFeatureSpecification", "name": "Animali ammessi" }
+  ]
+}
+
   </script>
 </head>
 
 <body>
+
+<!-- LANGUAGE SWITCH -->
+<div class="lang-switch">
+  <button data-lang="it" class="active">IT</button>
+  <button data-lang="en">EN</button>
+</div>
 
 <!-- ================= HEADER ================= -->
 <header class="main-header">
@@ -65,7 +73,7 @@
     <!-- LEFT -->
     <div class="header-left">
       <div class="logo">
-        <img src="img/logo-casa-balu.svg" alt="Casa Balù – Alloggio premium">
+        <img src="img/logo-casa-balu.svg" alt="Casa Balù – Camera premium">
       </div>
 
       <nav class="main-nav">
@@ -75,6 +83,7 @@
           <li><a href="#galleria">Galleria</a></li>
           <li><a href="#servizi">Servizi</a></li>
           <li><a href="#prenotazione">Prenota</a></li>
+          <li><a href="#contatti">Contatti</a></li>
         </ul>
       </nav>
     </div>
@@ -115,23 +124,25 @@
 <!-- ================= ESPERIENZA ================= -->
 <section class="section section-colored fade-in" id="esperienza">
   <div class="container narrow">
-    <h2>Un’esperienza autentica</h2>
-    <p>
-      Casa Balù nasce per offrire un soggiorno intimo, curato e rilassante,
-      in un ambiente caldo dove sentirsi subito a casa.
-    </p>
-    <p>
-      Ideale per lavoro, turismo o brevi pause rigeneranti,
-      in una zona tranquilla e strategica.
-    </p>
+    <h2 data-i18n="experience_title">Un’esperienza autentica</h2>
+
+<p data-i18n="experience_text_1">
+  Casa Balù nasce per offrire un soggiorno intimo, curato e rilassante,
+  in un ambiente caldo dove sentirsi subito a casa.
+</p>
+
+<p data-i18n="experience_text_2">
+  Ideale per lavoro, turismo o brevi pause rigeneranti,
+  in una zona tranquilla e strategica.
+</p>
+
   </div>
 </section>
 
 <!-- ================= GALLERIA ================= -->
 <section class="section section-light fade-in" id="galleria">
   <div class="container">
-    <h2>La camera</h2>
-
+    <h2 data-i18n="room_title">La camera</h2>
     <p>
       Letto matrimoniale e divano letto, fino a 4 ospiti.
       Ambienti curati, tessuti morbidi e colori caldi.
@@ -142,11 +153,11 @@
 
       <div class="gallery-container">
         <div class="gallery">
-          <img src="img/room1.jpg" alt="Camera Casa Balù">
-          <img src="img/room2.jpg" alt="Dettaglio camera">
-          <img src="img/bathroom.jpg" alt="Bagno">
-          <img src="img/living.jpg" alt="Zona living">
-          <img src="img/street.jpg" alt="Quartiere">
+          <img src="img/room1.jpg" alt="Camera matrimoniale Casa Balù">
+          <img src="img/room2.jpg" alt="Dettagli camera e arredi">
+          <img src="img/bathroom.jpg" alt="Bagno privato">
+          <img src="img/living.jpg" alt="Zona living e divano letto">
+          <img src="img/street.jpg" alt="Quartiere tranquillo di Osio Sotto">
         </div>
       </div>
 
@@ -182,7 +193,7 @@
 <section class="section section-light fade-in" id="servizi">
   <div class="container territory-grid">
     <div>
-      <h2>Servizi inclusi</h2>
+      <h2 data-i18n="services_title">Servizi inclusi</h2>
       <ul class="services">
         <li>Colazione inclusa</li>
         <li>Wi-Fi veloce</li>
@@ -205,7 +216,7 @@
   <div class="container booking-grid">
 
     <div class="calendar-box">
-      <h3>Seleziona le date</h3>
+      <h3 data-i18n="calendar_title">Seleziona le date</h3>
       <select id="guests">
         <option>1</option><option selected>2</option><option>3</option><option>4</option>
       </select>
@@ -214,11 +225,22 @@
     </div>
 
     <form action="https://formspree.io/f/xvgelnqn" method="POST" class="booking-form">
-      <h3>Richiesta di prenotazione</h3>
+      <h3 data-i18n="form_title">Richiesta di prenotazione</h3>
       <input type="text" name="name" placeholder="Nome e cognome" required>
       <input type="email" name="email" placeholder="Email" required>
+      <input type="hidden" name="checkin" id="checkin">
+      <input type="hidden" name="checkout" id="checkout"> 
       <textarea name="message" rows="4" placeholder="Messaggio (opzionale)"></textarea>
-      <button type="submit" class="btn">Invia richiesta</button>
+      <button type="submit" class="btn" data-i18n="send">Invia richiesta</button>
+      <p class="note">
+        Nessun pagamento richiesto ora.<br>
+        Riceverai conferma via email.
+      </p>
+
+      <small class="trust">
+        I tuoi dati non saranno condivisi con terzi.
+      </small>
+
     </form>
 
   </div>
