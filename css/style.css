@@ -9,6 +9,8 @@
   --ivory: #F7F2EC;
   --silver: #E5E5E5;
   --green: #7A8F6A;
+  --soft-shadow: 0 25px 60px rgba(0,0,0,.12);
+  --hover-shadow: 0 35px 80px rgba(0,0,0,.18);
 }
 
 * {
@@ -42,14 +44,33 @@ body {
   font-family: "Inter", sans-serif;
   background: linear-gradient(180deg, var(--gold), var(--ivory));
   color: var(--dark-brown);
-  line-height: 1.7;
+  line-height: 1.65;
+}
+
+::selection {
+  background: var(--caramel);
+  color: #fff;
 }
 
 /* ===============================
    TYPOGRAPHY REFINEMENT
 ================================ */
+
 h2 {
   letter-spacing: -0.5px;
+}
+
+h2::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--caramel);
+  margin-top: .6rem;
+}
+
+h1, h2, h3 {
+  line-height: 1.2;
 }
 
 p {
@@ -73,8 +94,9 @@ p {
   padding: clamp(4rem, 6vw, 7rem) 0;
 }
 
-.section-light {
-  background: var(--ivory);
+.section-light,
+.section-colored {
+  border-radius: 40px 40px 0 0;
 }
 
 .section-colored {
@@ -227,7 +249,7 @@ p {
   display: inline-block;
   padding: 0.4rem 1.2rem;
   border-radius: 20px;
-  background: var(--green);
+  background: linear-gradient(135deg, var(--green), #5f7452);
   color: #fff;
   font-size: 0.85rem;
   letter-spacing: 0.08em;
@@ -260,12 +282,12 @@ p {
   font-weight: 600;
   color: var(--dark-brown);
   display: inline-block;
-  transition: .3s;
+  transition: transform .2s ease, box-shadow .2s ease;
 }
 
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 15px 35px rgba(0,0,0,.25);
+  box-shadow: var(--hover-shadow);
 }
 
 /* ===============================
@@ -313,6 +335,8 @@ p {
   transform: scale(1.06);
   filter: brightness(1.05);
   box-shadow: 0 20px 50px rgba(0,0,0,.25);
+  outline: 3px solid rgba(226,178,127,.5);
+  outline-offset: 4px;
   z-index: 2;
 }
 
@@ -377,13 +401,19 @@ p {
   gap: 3rem;
 }
 
+.booking-grid {
+  background: rgba(255,255,255,.35);
+  border-radius: 30px;
+  padding: 2rem;
+}
+
 .calendar-box,
 .booking-form,
 .prices-box {
   background: white;
   padding: 2.5rem;
   border-radius: 22px;
-  box-shadow: 0 25px 60px rgba(0,0,0,.1);
+  box-shadow: var(--soft-shadow);
 }
 
 /* ===============================
@@ -412,6 +442,7 @@ footer {
   color: var(--silver);
   text-align: center;
   padding: 2rem;
+  border-top: 1px solid rgba(255,255,255,.1);
 }
 
 /* ===============================
@@ -419,7 +450,7 @@ footer {
 ================================ */
 .fade-in {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(30px);
   transition: .8s ease;
 }
 
