@@ -30,6 +30,10 @@
     box-shadow .25s ease;
 }
 
+*:focus {
+  scroll-margin-top: 120px;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -58,6 +62,7 @@ body {
 
 h2 {
   letter-spacing: -0.5px;
+  text-shadow: 0 2px 6px rgba(226,178,127,.25);
 }
 
 h2::after {
@@ -97,6 +102,9 @@ p {
 .section-light,
 .section-colored {
   border-radius: 40px 40px 0 0;
+  box-shadow: 0 30px 80px rgba(0,0,0,.06);
+  position: relative;
+  z-index: 1;
 }
 
 .section-colored {
@@ -223,6 +231,18 @@ p {
   padding-top: 90px;
 }
 
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(255,255,255,.12),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -283,11 +303,17 @@ p {
   color: var(--dark-brown);
   display: inline-block;
   transition: transform .2s ease, box-shadow .2s ease;
+  letter-spacing: .04em;
 }
 
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: var(--hover-shadow);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 14px rgba(0,0,0,.18);
 }
 
 /* ===============================
@@ -401,12 +427,14 @@ p {
   gap: 3rem;
 }
 
+/* contenitore prenotazione */
 .booking-grid {
   background: rgba(255,255,255,.35);
   border-radius: 30px;
   padding: 2rem;
 }
 
+/* box interni */
 .calendar-box,
 .booking-form,
 .prices-box {
@@ -414,6 +442,24 @@ p {
   padding: 2.5rem;
   border-radius: 22px;
   box-shadow: var(--soft-shadow);
+}
+
+/* focus conversione */
+.booking-form {
+  position: relative;
+}
+
+.booking-form::before {
+  content: "Prenotazione diretta";
+  position: absolute;
+  top: -14px;
+  left: 24px;
+  background: var(--green);
+  color: #fff;
+  font-size: .7rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: .05em;
 }
 
 /* ===============================
@@ -443,6 +489,11 @@ footer {
   text-align: center;
   padding: 2rem;
   border-top: 1px solid rgba(255,255,255,.1);
+}
+
+footer p {
+  opacity: .85;
+  font-size: .9rem;
 }
 
 /* ===============================
