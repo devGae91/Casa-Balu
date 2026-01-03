@@ -1,5 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  /* ===============================
+     GALLERY PRELOAD
+  ================================ */
+  document.querySelectorAll(".gallery img").forEach(img => {
+    const preload = new Image();
+    preload.src = img.src;
+  });
+
   const gallery = document.querySelector(".gallery");
   const images = document.querySelectorAll(".gallery img");
   const prevBtn = document.getElementById("prev");
@@ -12,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let imageWidth = images[0].offsetWidth + gap;
 
   /* ===============================
-     DOTS (AUTO-GENERATI)
+     DOTS
   ================================ */
   const dotsContainer = document.createElement("div");
   dotsContainer.className = "gallery-dots";
@@ -27,10 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const dots = dotsContainer.querySelectorAll("span");
 
   /* ===============================
-     UPDATE SLIDER (CENTRALIZZATO)
+     UPDATE
   ================================ */
   function update() {
-    gallery.style.transform = `translateX(${-index * imageWidth}px)`;
+    gallery.style.transform =
+      `translateX(${-index * imageWidth}px)`;
 
     images.forEach((img, i) => {
       img.classList.toggle("active", i === index);
@@ -88,14 +97,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ===============================
-     LIGHTBOX PREMIUM
+     LIGHTBOX
   ================================ */
   const lightbox = document.createElement("div");
   lightbox.className = "lightbox";
 
   const lightboxImg = document.createElement("img");
   lightbox.appendChild(lightboxImg);
-
   document.body.appendChild(lightbox);
 
   images.forEach(img => {

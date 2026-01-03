@@ -60,6 +60,8 @@
 
 <body>
 
+  <div id="scroll-progress"></div>
+
 <!-- LANGUAGE SWITCH -->
 <div class="lang-switch">
   <button data-lang="it" class="active">IT</button>
@@ -173,7 +175,9 @@
 <!-- ================= TERRITORIO ================= -->
 <section class="section section-colored fade-in" id="territory">
   <div class="container territory-grid">
-    <div>
+    
+    <!-- TESTO -->
+    <div class="fade-left">
       <h2>Il territorio</h2>
       <p>
         Casa Balù si trova a Osio Sotto, in un quartiere tranquillo
@@ -182,7 +186,8 @@
       </p>
     </div>
 
-    <div>
+    <!-- DISTANZE -->
+    <div class="fade-right">
       <ul class="distances">
         <li>📍 Bergamo – 20 min</li>
         <li>✈ Aeroporto Orio al Serio – 15 min</li>
@@ -190,13 +195,16 @@
         <li>🚆 Milano – 30 min</li>
       </ul>
     </div>
+
   </div>
 </section>
 
 <!-- ================= SERVIZI ================= -->
 <section class="section section-light fade-in" id="servizi">
   <div class="container territory-grid">
-    <div>
+
+    <!-- SERVIZI -->
+    <div class="fade-left">
       <h2 data-i18n="services_title">Servizi inclusi</h2>
       <ul class="services">
         <li>Colazione inclusa</li>
@@ -206,12 +214,14 @@
       </ul>
     </div>
 
-    <div class="prices-box">
+    <!-- PREZZI -->
+    <div class="prices-box fade-right">
       <h2>Prezzi</h2>
       <p>1–2 persone: <strong>70 € / notte</strong></p>
       <p>3 persone: <strong>100 € / notte</strong></p>
       <p>4 persone: <strong>120 € / notte</strong></p>
     </div>
+
   </div>
 </section>
 
@@ -264,6 +274,8 @@
 <script src="js/slider.js"></script>
 <script src="js/animations.js"></script>
 <script src="js/menu.js"></script>
+<script src="js/form-feedback.js"></script>
+
 
 </body>
 </html>

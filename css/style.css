@@ -434,6 +434,12 @@ p {
   padding: 2rem;
 }
 
+#prenotazione.highlight .booking-grid {
+  box-shadow: 0 0 0 4px rgba(226,178,127,.25),
+              0 40px 90px rgba(0,0,0,.12);
+  transition: box-shadow .6s ease;
+}
+
 /* box interni */
 .calendar-box,
 .booking-form,
@@ -471,6 +477,25 @@ textarea:focus {
   box-shadow: 0 0 0 3px rgba(226,178,127,.35);
 }
 
+.booking-form input.valid,
+.booking-form textarea.valid {
+  border: 2px solid var(--green);
+}
+
+.booking-form input.invalid,
+.booking-form textarea.invalid {
+  border: 2px solid #c0392b;
+  animation: shake .3s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
 /* ===============================
    SERVICES & DISTANCES LIST RESET
 ================================ */
@@ -478,6 +503,28 @@ textarea:focus {
 .distances li {
   list-style: none;
   margin-bottom: 0.6rem;
+}
+
+.services li {
+  transition: transform .25s ease, text-shadow .25s ease;
+}
+
+.services li:hover {
+  transform: translateX(6px);
+  text-shadow: 0 0 12px rgba(226,178,127,.6);
+}
+
+/* ===============================
+   GLOBAL UI ELEMENTS
+================================ */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: var(--caramel);
+  z-index: 2000;
 }
 
 /* ===============================
@@ -508,6 +555,24 @@ footer p {
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.fade-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: .8s ease;
+}
+
+.fade-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: .8s ease;
+}
+
+.fade-left.visible,
+.fade-right.visible {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 @keyframes floatIn {
