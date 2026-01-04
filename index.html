@@ -25,6 +25,8 @@
   <!-- CANONICAL -->
   <link rel="canonical" href="https://devgae91.github.io/Casa-Balu/">
 
+  <link rel="preload" as="image" href="img/hero.jpg">
+
   <!-- GOOGLE FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -40,27 +42,114 @@
   "@context": "https://schema.org",
   "@type": "LodgingBusiness",
   "name": "Casa Balù",
+  "description": "Camera premium a Osio Sotto, ideale per lavoro e turismo. Comfort, silenzio e posizione strategica vicino Bergamo e Milano.",
+  "url": "https://devgae91.github.io/Casa-Balu/",
+  "telephone": "+39 329 608 3422",
+  "priceRange": "€70-€120 per notte",
+  "checkinTime": "15:00",
+  "checkoutTime": "10:00",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Via Brembate 2",
+    "postalCode": "24046",
     "addressLocality": "Osio Sotto",
     "addressRegion": "BG",
     "addressCountry": "IT"
   },
-  "priceRange": "€70–€120",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "45.6149",
+    "longitude": "9.5923"
+  },
+  "hasMap": "https://www.google.com/maps?q=Via+Brembate+2+Osio+Sotto",
   "amenityFeature": [
-    { "@type": "LocationFeatureSpecification", "name": "Wi-Fi" },
-    { "@type": "LocationFeatureSpecification", "name": "Colazione inclusa" },
-    { "@type": "LocationFeatureSpecification", "name": "Animali ammessi" }
-  ]
+  {
+    "@type": "LocationFeatureSpecification",
+    "name": "Ingresso indipendente",
+    "value": true
+  },
+  {
+    "@type": "LocationFeatureSpecification",
+    "name": "Ambiente silenzioso",
+    "value": true
+  },
+  {
+    "@type": "LocationFeatureSpecification",
+    "name": "Bagno privato ad uso esclusivo",
+    "value": true
+  },
+  {
+    "@type": "LocationFeatureSpecification",
+    "name": "Wi-Fi veloce gratuito",
+    "value": true
+  },
+  {
+    "@type": "LocationFeatureSpecification",
+    "name": "Smart tv",
+    "value": true
+  },
+  {
+    "@type": "LocationFeatureSpecification",
+    "name": "Colazione inclusa",
+    "value": true
+  },
+  {
+    "@type": "LocationFeatureSpecification",
+    "name": "Letto matrimoniale",
+    "value": true
+  },
+  {
+    "@type": "LocationFeatureSpecification",
+    "name": "Divano letto",
+    "value": true
+  },
+  {
+    "@type": "LocationFeatureSpecification",
+    "name": "Letti singoli",
+    "value": true
+  },
+  {
+    "@type": "LocationFeatureSpecification",
+    "name": "Biancheria e asciugamani",
+    "value": true
+  },
+  {
+    "@type": "LocationFeatureSpecification",
+    "name": "Animali ammessi",
+    "value": true
+  },
+  {
+    "@type": "LocationFeatureSpecification",
+    "name": "Riscaldamento autonomo",
+    "value": true
+  },
+  {
+    "@type": "LocationFeatureSpecification",
+    "name": "Posizione strategica",
+    "value": true
+  },
+  {
+    "@type": "LocationFeatureSpecification",
+    "name": "Navetta aereoportuale",
+    "value": true
+  }
+],
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Bergamo e Lombardia"
+  }
 }
+</script>
 
-  </script>
 </head>
 
 <body>
 
-  <div id="scroll-progress"></div>
+<a href="#prenotazione" class="cta-mobile">
+  Prenota ora
+</a>
+
+<div id="scroll-progress"></div>
 
 <!-- LANGUAGE SWITCH -->
 <div class="lang-switch">
@@ -78,7 +167,7 @@
         <img src="img/logo-casa-balu.svg" alt="Casa Balù – Camera premium">
       </div>
 
-      <nav class="main-nav">
+      <nav class="main-nav" aria-label="Navigazione principale">
         <ul>
           <li><a href="#home">Home</a></li>
           <li><a href="#esperienza">Esperienza</a></li>
@@ -93,7 +182,7 @@
     <!-- RIGHT -->
     <div class="header-right">
       <button class="lang-btn">IT / EN</button>
-      <button class="burger" aria-label="Menu">
+      <button class="burger" aria-label="Apri menu di navigazione">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -207,22 +296,35 @@
     <div class="fade-left">
       <h2 data-i18n="services_title">Servizi inclusi</h2>
       <ul class="services">
+        <li>Ingresso indipendente</li>
+        <li>Ambiente silenzioso e riservato</li>
+        <li>Bagno privato ad uso esclusivo</li>
+        <li>Wi-Fi veloce gratuito</li>
+        <li>Smart tv</li>
         <li>Colazione inclusa</li>
-        <li>Wi-Fi veloce</li>
-        <li>Animali ammessi (+15€)</li>
-        <li>Ambiente silenzioso</li>
+        <li>Letto matrimoniale + divano letto + letti singoli</li>
+        <li>Biancheria e asciugamani</li>
+        <li>Animali ammessi (supplemento +15€)</li>
+        <li>Riscaldamento autonomo</li>
+        <li>Climatizzatore</li>
+        <li>Posizione strategica tra Bergamo e Milano</li>
+        <li>Navetta aereoportuale (supplemento)</li>
       </ul>
     </div>
 
     <!-- PREZZI -->
     <div class="prices-box fade-right">
-      <h2>Prezzi</h2>
-      <p>1–2 persone: <strong>70 € / notte</strong></p>
-      <p>3 persone: <strong>100 € / notte</strong></p>
-      <p>4 persone: <strong>120 € / notte</strong></p>
-    </div>
+  <h2>Prezzi</h2>
+  <p>1–2 persone: <strong>70 € / notte</strong></p>
+  <p>3 persone: <strong>100 € / notte</strong></p>
+  <p>4 persone: <strong>120 € / notte</strong></p>
 
-  </div>
+  <small class="price-note">
+    Prezzi per notte · Tasse incluse
+  </small>
+</div>
+
+  
 </section>
 
 <!-- ================= PRENOTAZIONE ================= -->
@@ -236,6 +338,9 @@
       </select>
       <input type="text" id="date-range" readonly>
       <p id="price"></p>
+      <small class="calendar-note">
+    Seleziona le date per conoscere disponibilità e prezzo finale
+  </small>
     </div>
 
     <form action="https://formspree.io/f/xvgelnqn" method="POST" class="booking-form">

@@ -6,9 +6,9 @@
   --gold: #F0D3B2;
   --brown: #8A5A2B;
   --dark-brown: #5C3A1E;
-  --ivory: #F7F2EC;
+  --ivory: #F6F3EE;
   --silver: #E5E5E5;
-  --green: #7A8F6A;
+  --green: #678855ff;
   --soft-shadow: 0 25px 60px rgba(0,0,0,.12);
   --hover-shadow: 0 35px 80px rgba(0,0,0,.18);
 }
@@ -49,6 +49,13 @@ body {
   background: linear-gradient(180deg, var(--gold), var(--ivory));
   color: var(--dark-brown);
   line-height: 1.65;
+  animation: pageFade .6s ease;
+  filter: saturate(.96) contrast(1.02);
+}
+
+@keyframes pageFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 ::selection {
@@ -59,6 +66,14 @@ body {
 /* ===============================
    TYPOGRAPHY REFINEMENT
 ================================ */
+h1, h2 {
+  font-weight: 600;
+}
+
+h3 {
+  font-weight: 500;
+  opacity: .9;
+}
 
 h2 {
   letter-spacing: -0.5px;
@@ -109,6 +124,16 @@ p {
 
 .section-colored {
   background: linear-gradient(135deg, var(--gold), var(--caramel));
+}
+
+.section::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--caramel);
+  margin: 3rem auto 0;
+  opacity: .4;
 }
 
 /* ===============================
@@ -450,6 +475,13 @@ p {
   box-shadow: var(--soft-shadow);
 }
 
+.price-note {
+  display: block;
+  margin-top: .8rem;
+  font-size: .8rem;
+  opacity: .7;
+}
+
 /* focus conversione */
 .booking-form {
   position: relative;
@@ -468,9 +500,23 @@ p {
   letter-spacing: .05em;
 }
 
+.calendar-note {
+  display: block;
+  margin-top: .6rem;
+  font-size: .75rem;
+  opacity: .65;
+}
+
 /* ===============================
    FORM FEEDBACK (UX)
 ================================ */
+.trust {
+  display: block;
+  margin-top: 1rem;
+  font-size: .75rem;
+  opacity: .6;
+}
+
 input:focus,
 textarea:focus {
   border-color: var(--caramel);
@@ -511,7 +557,7 @@ textarea:focus {
 
 .services li:hover {
   transform: translateX(6px);
-  text-shadow: 0 0 12px rgba(226,178,127,.6);
+  text-shadow: 0 0 10px rgba(226,178,127,.6);
 }
 
 /* ===============================
@@ -683,6 +729,21 @@ button:focus-visible {
 /* ===============================
    MENU MOBILE PREMIUM
 ================================ */
+@media (max-width: 768px) {
+  .cta-mobile {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--gold), var(--caramel));
+    padding: 14px 28px;
+    border-radius: 40px;
+    font-weight: 600;
+    color: var(--dark-brown);
+    box-shadow: 0 20px 40px rgba(0,0,0,.25);
+    z-index: 2000;
+  }
+}
 
 @media (max-width: 900px) {
 
@@ -721,3 +782,4 @@ button:focus-visible {
   }
 
 }
+
