@@ -374,8 +374,9 @@ p {
   border-radius: 18px;
   flex-shrink: 0;
   cursor: pointer;
-  transition: transform .4s ease, box-shadow .4s ease, filter .4s ease;
+  transition: transform .35s ease, box-shadow .35s ease;
   will-change: transform;
+  pointer-events: none;
 }
 
 .gallery img:hover:not(.active) {
@@ -384,7 +385,9 @@ p {
 }
 
 .gallery img.inactive {
-  opacity: .85;
+  opacity: .11;
+  transition: opacity .25s ease;
+  pointer-events: auto;
 }
 
 .gallery img.active {
