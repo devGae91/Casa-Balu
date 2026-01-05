@@ -95,7 +95,7 @@ dots.forEach((dot, i) => {
 
     parallaxRAF = requestAnimationFrame(() => {
       activeImg.style.transform =
-        `translateY(${offsetY * 6}px) scale(1.06)`;
+  `translateY(${offsetY * 4}px)`;
     });
   });
 
@@ -103,7 +103,7 @@ dots.forEach((dot, i) => {
     const activeImg = gallery.querySelector("img.active");
     if (!activeImg) return;
 
-    activeImg.style.transform = "scale(1.06)";
+    activeImg.style.transform = "translateY(0)";
   });
 
   /* ===============================
@@ -176,40 +176,5 @@ dots.forEach((dot, i) => {
       update();
     }, 150);
   });
-
-  /* ===============================
-   GALLERY TAKEOVER (FULLSCREEN)
-================================ */
-let isTakeover = false;
-
-images.forEach(img => {
-  img.addEventListener("click", () => {
-    if (window.innerWidth < 768) return;
-
-    isTakeover = true;
-    document.body.classList.add("gallery-open");
-    gallery.classList.add("takeover");
-  });
-});
-
-/* USCITA TAKEOVER */
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape" && isTakeover) {
-    closeTakeover();
-  }
-});
-
-gallery.addEventListener("click", e => {
-  if (!isTakeover) return;
-  if (e.target.tagName === "IMG") return;
-
-  closeTakeover();
-});
-
-function closeTakeover() {
-  isTakeover = false;
-  document.body.classList.remove("gallery-open");
-  gallery.classList.remove("takeover");
-}
 
 });
