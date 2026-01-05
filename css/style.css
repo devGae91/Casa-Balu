@@ -361,6 +361,7 @@ p {
   display: flex;
   gap: 24px;
   transition: transform .4s ease;
+  will-change: transform;
 }
 
 .gallery img {
@@ -371,6 +372,7 @@ p {
   flex-shrink: 0;
   cursor: pointer;
   transition: transform .4s ease, box-shadow .4s ease, filter .4s ease;
+  will-change: transform;
 }
 
 .gallery img:hover:not(.active) {
@@ -389,6 +391,49 @@ p {
   outline: 3px solid rgba(226,178,127,.5);
   outline-offset: 4px;
   z-index: 2;
+}
+
+.gallery img:focus-visible {
+  outline: 3px solid var(--caramel);
+  outline-offset: 4px;
+}
+
+/* ===============================
+   GALLERY TAKEOVER (FULLSCREEN)
+================================ */
+body.gallery-open {
+  overflow: hidden;
+}
+
+.gallery.takeover {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: radial-gradient(
+    circle at center,
+    rgba(0,0,0,.92),
+    rgba(0,0,0,.98)
+  );
+  padding: 6vh 6vw;
+  align-items: center;
+}
+
+.gallery.takeover img {
+  width: auto;
+  height: 80vh;
+  max-width: 90vw;
+  border-radius: 22px;
+  box-shadow: 0 40px 120px rgba(0,0,0,.6);
+}
+
+.gallery.takeover img.inactive {
+  filter: brightness(.5);
+  transform: scale(.92);
+}
+
+.gallery.takeover img.active {
+  transform: scale(1);
+  outline: none;
 }
 
 /* ===============================
@@ -413,6 +458,22 @@ p {
   background: var(--brown);
   transform: scale(1.35);
   box-shadow: 0 0 0 4px rgba(138,90,43,0.2);
+}
+
+.gallery-dots span {
+  cursor: pointer;
+  position: relative;
+}
+
+.gallery-dots span:hover {
+  transform: scale(1.6);
+  background: var(--caramel);
+}
+
+.gallery-dots span::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
 }
 
 /* LIGHTBOX */
@@ -781,5 +842,17 @@ button:focus-visible {
     transform: translateX(0);
   }
 
+}
+
+@media (max-width: 900px) {
+  .gallery-container::after {
+    content: "Scorri";
+    position: absolute;
+    bottom: 8px;
+    right: 12px;
+    font-size: .7rem;
+    opacity: .6;
+    letter-spacing: .08em;
+  }
 }
 

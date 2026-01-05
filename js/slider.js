@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ===============================
-     GALLERY PRELOAD
+     GALLERY PRELOAD (LCP & UX)
   ================================ */
   document.querySelectorAll(".gallery img").forEach(img => {
     const preload = new Image();
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let imageWidth = images[0].offsetWidth + gap;
 
   /* ===============================
-     DOTS
+     DOTS (AUTO)
   ================================ */
   const dotsContainer = document.createElement("div");
   dotsContainer.className = "gallery-dots";
@@ -35,86 +35,181 @@ document.addEventListener("DOMContentLoaded", () => {
   const dots = dotsContainer.querySelectorAll("span");
 
   /* ===============================
-     UPDATE
+   DOTS CLICK
+================================ */
+dots.forEach((dot, i) => {
+  dot.addEventListener("click", () => {
+    index = i;
+    update();
+  });
+});
+
+  /* ===============================
+     SLIDE STATE (ANTI-SPAM CLICK)
+  ================================ */
+  let isSliding = false;
+  const SLIDE_DURATION = 350; // ms (coerente con CSS)
+
+  /* ===============================
+     UPDATE (INP OPTIMIZED)
   ================================ */
   function update() {
-    gallery.style.transform =
-      `translateX(${-index * imageWidth}px)`;
 
-    images.forEach((img, i) => {
-      img.classList.toggle("active", i === index);
-      img.classList.toggle("inactive", i !== index);
+    // movimento (paint ottimizzato)
+    requestAnimationFrame(() => {
+      gallery.style.transform =
+        `translateX(${-index * imageWidth}px)`;
     });
 
-    dots.forEach((dot, i) => {
-      dot.classList.toggle("active", i === index);
+    // classi & dots (separato)
+    requestAnimationFrame(() => {
+      images.forEach((img, i) => {
+        img.classList.toggle("active", i === index);
+        img.classList.toggle("inactive", i !== index);
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === index);
+      });
     });
   }
 
   update();
 
+/* ===============================
+     MICRO PARALLAX (DESKTOP ONLY)
+  ================================ */
+  let parallaxRAF = null;
+
+  gallery.addEventListener("mousemove", e => {
+    if (window.innerWidth < 768) return;
+
+    const activeImg = gallery.querySelector("img.active");
+    if (!activeImg) return;
+
+    const rect = gallery.getBoundingClientRect();
+    const centerY = rect.top + rect.height / 2;
+    const offsetY = (e.clientY - centerY) / rect.height;
+
+    if (parallaxRAF) cancelAnimationFrame(parallaxRAF);
+
+    parallaxRAF = requestAnimationFrame(() => {
+      activeImg.style.transform =
+        `translateY(${offsetY * 6}px) scale(1.06)`;
+    });
+  });
+
+  gallery.addEventListener("mouseleave", () => {
+    const activeImg = gallery.querySelector("img.active");
+    if (!activeImg) return;
+
+    activeImg.style.transform = "scale(1.06)";
+  });
+
   /* ===============================
-     BUTTONS
+     BUTTONS (INP SAFE)
   ================================ */
   nextBtn?.addEventListener("click", () => {
-    if (index < images.length - 1) {
-      index++;
-      update();
-    }
+    if (isSliding || index >= images.length - 1) return;
+
+    isSliding = true;
+    index++;
+    update();
+
+    setTimeout(() => {
+      isSliding = false;
+    }, SLIDE_DURATION);
   });
 
   prevBtn?.addEventListener("click", () => {
-    if (index > 0) {
-      index--;
-      update();
-    }
+    if (isSliding || index <= 0) return;
+
+    isSliding = true;
+    index--;
+    update();
+
+    setTimeout(() => {
+      isSliding = false;
+    }, SLIDE_DURATION);
   });
 
   /* ===============================
-     SWIPE MOBILE
+     SWIPE MOBILE (SAFE)
   ================================ */
   let startX = 0;
 
   gallery.addEventListener("touchstart", e => {
     startX = e.touches[0].clientX;
-  });
+  }, { passive: true });
 
   gallery.addEventListener("touchend", e => {
+    if (isSliding) return;
+
     const diff = startX - e.changedTouches[0].clientX;
 
-    if (diff > 50 && index < images.length - 1) index++;
-    if (diff < -50 && index > 0) index--;
+    if (diff > 50 && index < images.length - 1) {
+      isSliding = true;
+      index++;
+    }
+
+    if (diff < -50 && index > 0) {
+      isSliding = true;
+      index--;
+    }
 
     update();
+
+    setTimeout(() => {
+      isSliding = false;
+    }, SLIDE_DURATION);
   });
 
   /* ===============================
-     RESIZE
+     RESIZE (DEBOUNCED)
   ================================ */
+  let resizeTimeout;
+
   window.addEventListener("resize", () => {
-    imageWidth = images[0].offsetWidth + gap;
-    update();
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      imageWidth = images[0].offsetWidth + gap;
+      update();
+    }, 150);
   });
 
   /* ===============================
-     LIGHTBOX
-  ================================ */
-  const lightbox = document.createElement("div");
-  lightbox.className = "lightbox";
+   GALLERY TAKEOVER (FULLSCREEN)
+================================ */
+let isTakeover = false;
 
-  const lightboxImg = document.createElement("img");
-  lightbox.appendChild(lightboxImg);
-  document.body.appendChild(lightbox);
+images.forEach(img => {
+  img.addEventListener("click", () => {
+    if (window.innerWidth < 768) return;
 
-  images.forEach(img => {
-    img.addEventListener("click", () => {
-      lightboxImg.src = img.src;
-      lightbox.classList.add("active");
-    });
+    isTakeover = true;
+    document.body.classList.add("gallery-open");
+    gallery.classList.add("takeover");
   });
+});
 
-  lightbox.addEventListener("click", () => {
-    lightbox.classList.remove("active");
-  });
+/* USCITA TAKEOVER */
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && isTakeover) {
+    closeTakeover();
+  }
+});
+
+gallery.addEventListener("click", e => {
+  if (!isTakeover) return;
+  if (e.target.tagName === "IMG") return;
+
+  closeTakeover();
+});
+
+function closeTakeover() {
+  isTakeover = false;
+  document.body.classList.remove("gallery-open");
+  gallery.classList.remove("takeover");
+}
 
 });
