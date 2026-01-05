@@ -109,29 +109,36 @@ dots.forEach((dot, i) => {
   /* ===============================
      BUTTONS (INP SAFE)
   ================================ */
-  nextBtn?.addEventListener("click", () => {
-    if (isSliding || index >= images.length - 1) return;
+ nextBtn?.addEventListener("click", () => {
+  if (isSliding || index >= images.length - 1) return;
 
-    isSliding = true;
-    index++;
-    update();
+  isSliding = true;
+  gallery.classList.add("is-sliding");
 
-    setTimeout(() => {
-      isSliding = false;
-    }, SLIDE_DURATION);
-  });
+  index++;
+  update();
+
+  setTimeout(() => {
+    isSliding = false;
+    gallery.classList.remove("is-sliding");
+  }, SLIDE_DURATION);
+});
 
   prevBtn?.addEventListener("click", () => {
-    if (isSliding || index <= 0) return;
+  if (isSliding || index <= 0) return;
 
-    isSliding = true;
-    index--;
-    update();
+  isSliding = true;
+  gallery.classList.add("is-sliding");
 
-    setTimeout(() => {
-      isSliding = false;
-    }, SLIDE_DURATION);
-  });
+  index--;
+  update();
+
+  setTimeout(() => {
+    isSliding = false;
+    gallery.classList.remove("is-sliding");
+  }, SLIDE_DURATION);
+});
+
 
   /* ===============================
      SWIPE MOBILE (SAFE)
@@ -143,26 +150,29 @@ dots.forEach((dot, i) => {
   }, { passive: true });
 
   gallery.addEventListener("touchend", e => {
-    if (isSliding) return;
+  if (isSliding) return;
 
-    const diff = startX - e.changedTouches[0].clientX;
+  const diff = startX - e.changedTouches[0].clientX;
 
-    if (diff > 50 && index < images.length - 1) {
-      isSliding = true;
-      index++;
-    }
+  if (diff > 50 && index < images.length - 1) {
+    isSliding = true;
+    gallery.classList.add("is-sliding");
+    index++;
+  }
 
-    if (diff < -50 && index > 0) {
-      isSliding = true;
-      index--;
-    }
+  if (diff < -50 && index > 0) {
+    isSliding = true;
+    gallery.classList.add("is-sliding");
+    index--;
+  }
 
-    update();
+  update();
 
-    setTimeout(() => {
-      isSliding = false;
-    }, SLIDE_DURATION);
-  });
+  setTimeout(() => {
+    isSliding = false;
+    gallery.classList.remove("is-sliding");
+  }, SLIDE_DURATION);
+});
 
   /* ===============================
      RESIZE (DEBOUNCED)
