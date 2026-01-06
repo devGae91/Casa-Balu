@@ -95,11 +95,6 @@ h3 {
   opacity: .9;
 }
 
-h2 {
-  letter-spacing: -0.5px;
-  text-shadow: 0 2px 6px rgba(226,178,127,.25);
-}
-
 h2::after {
   content: "";
   display: block;
@@ -137,7 +132,6 @@ p {
 .section-light,
 .section-colored {
   border-radius: 40px 40px 0 0;
-  box-shadow: 0 30px 80px rgba(0,0,0,.06);
   position: relative;
   z-index: 1;
 }
@@ -183,6 +177,11 @@ p {
   display: flex;
   align-items: center;
   gap: 2.5rem;
+  flex: 1;
+}
+
+.main-nav {
+  margin-left: 0;
 }
 
 .logo img {
@@ -298,15 +297,15 @@ p {
   );
 }
 
-.hero-content {
+  .hero-content {
   position: relative;
   z-index: 2;
   max-width: 700px;
+  margin: 0 auto;
   text-align: center;
   padding: 3.5rem;
   background: rgba(247,242,236,0.88);
   border-radius: 32px;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.25);
   animation: fadeUp .6s ease .2s both;
 }
 
@@ -387,8 +386,8 @@ p {
 }
 
 .gallery img {
-  width: 360px;
-  height: 240px;
+  width: 400px;
+  height: 270px;
   object-fit: cover;
   border-radius: 18px;
   flex-shrink: 0;
@@ -398,7 +397,7 @@ p {
 }
 
 .gallery img:hover:not(.active) {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
 .gallery img.active {
@@ -412,6 +411,26 @@ p {
 .gallery img:focus-visible {
   outline: 3px solid var(--caramel);
   outline-offset: 4px;
+}
+
+#prev, #next {
+  background: rgba(247,242,236,0.9);
+  border: 1px solid rgba(200,160,90,.6);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 1.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dark-brown);
+  transition: background .25s ease, color .25s ease;
+}
+
+#prev:hover, #next:hover {
+  background: var(--caramel);
+  color: #fff;
 }
 
 /* ===============================
@@ -517,7 +536,6 @@ p {
   background: white;
   padding: 2.5rem;
   border-radius: 22px;
-  box-shadow: var(--soft-shadow);
 }
 
 .price-note {
@@ -594,15 +612,6 @@ textarea:focus {
 .distances li {
   list-style: none;
   margin-bottom: 0.6rem;
-}
-
-.services li {
-  transition: transform .25s ease, text-shadow .25s ease;
-}
-
-.services li:hover {
-  transform: translateX(6px);
-  text-shadow: 0 0 10px rgba(226,178,127,.6);
 }
 
 /* ===============================
@@ -785,35 +794,36 @@ button:focus-visible {
     overflow: hidden;
   }
 
-  .main-nav {
-    position: fixed;
-    top: 72px;
-    right: 0;
-    width: 100%;
-    height: calc(100vh - 72px);
-    background: rgba(247,242,236,0.98);
-    backdrop-filter: blur(10px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: translateX(100%);
-    transition: transform .4s ease;
-    z-index: 999;
-  }
+.main-nav {
+  position: fixed;
+  top: 72px;
+  right: 20px;
+  width: 260px;
+  padding: 2rem 1.8rem;
+  background: rgba(247,242,236,0.98);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  transform: translateY(-20px) scale(.95);
+  opacity: 0;
+  pointer-events: none;
+  transition: .35s ease;
+  z-index: 999;
+}
 
-  .main-nav ul {
-    flex-direction: column;
-    gap: 2rem;
-    text-align: center;
-  }
-
-  .main-nav a {
-    font-size: 1.4rem;
-  }
+.main-nav ul {
+  flex-direction: column;
+  gap: 1.4rem;
+  text-align: left;
+}
+.main-nav a {
+  font-size: 1.05rem;
+}
 
   .main-nav.open {
-    transform: translateX(0);
-  }
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
 
 }
 

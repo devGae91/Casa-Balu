@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let index = 0;
   const gap = 24;
   let imageWidth = images[0].offsetWidth + gap;
+  images[0].classList.add("active");
 
   /* ===============================
      DOTS (AUTO)
