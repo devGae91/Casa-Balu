@@ -26,7 +26,7 @@
 .gallery img,
 .services li,
 .gallery-dots span {
-  transition: transform .25s ease, box-shadow .25s ease, color .2s ease;
+  transition: transform .25s ease, color .2s ease;
 }
 
 *:focus {
@@ -69,6 +69,18 @@ body {
 ::selection {
   background: var(--caramel);
   color: #fff;
+}
+
+.section-divider {
+  width: 80px;
+  height: 1px;
+  margin: 3rem auto;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(200,160,90,0.9),
+    transparent
+  );
 }
 
 /* ===============================
@@ -215,15 +227,6 @@ p {
   gap: 1rem;
 }
 
-.lang-btn {
-  border: none;
-  background: var(--caramel);
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
 /* BURGER */
 .burger {
   display: none;
@@ -311,6 +314,7 @@ p {
   display: inline-block;
   padding: 0.4rem 1.2rem;
   border-radius: 20px;
+  border: 1px solid rgba(200,160,90,0.6);
   background: linear-gradient(135deg, var(--green), #5f7452);
   color: #fff;
   font-size: 0.85rem;
@@ -339,6 +343,7 @@ p {
   margin-top: 2rem;
   padding: 0.9rem 2.5rem;
   border-radius: 50px;
+  border: 1px solid rgba(200,160,90,0.6);
   background: linear-gradient(135deg, var(--gold), var(--caramel));
   text-decoration: none;
   font-weight: 600;

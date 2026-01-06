@@ -93,12 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
     update();
   });
 
-  prevBtn?.addEventListener("click", () => {
-    if (index <= 0) return;
-    index--;
-    update();
-  });
-
   /* ===============================
      SWIPE MOBILE
   ================================ */
