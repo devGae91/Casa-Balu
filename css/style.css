@@ -366,7 +366,7 @@ p {
   align-items: center;
   gap: 1rem;
   margin-top: 2.5rem;
-  overflow: .visible;
+  overflow: visible;
 }
 
 .gallery-container {
@@ -393,25 +393,14 @@ p {
 }
 
 .gallery img:hover:not(.active) {
-  transform: scale(1.04);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.2);
-}
-
-.gallery img.inactive {
-  opacity: .95;
-  will-change: opacity;
-}
-
-.gallery.is-sliding img.inactive {
-  opacity: 1;
-}
-
-.gallery.is-sliding .gallery-dots span {
-  pointer-events: none;
+  transform: scale(1.03);
 }
 
 .gallery img.active {
-  box-shadow: 0 18px 40px rgba(0,0,0,.25);
+  transform: scale(1.06);
+  box-shadow: 0 20px 50px rgba(0,0,0,.25);
+  outline: 3px solid rgba(226,178,127,.5);
+  outline-offset: 4px;
   z-index: 2;
 }
 

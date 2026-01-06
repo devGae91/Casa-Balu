@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const gallery = document.querySelector(".gallery");
-  const images = document.querySelectorAll(".gallery img");
+  const images = Array.from(document.querySelectorAll(".gallery img"));
   const prevBtn = document.getElementById("prev");
   const nextBtn = document.getElementById("next");
 
@@ -28,67 +28,37 @@ document.addEventListener("DOMContentLoaded", () => {
   images.forEach((_, i) => {
     const dot = document.createElement("span");
     if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => {
+      if (i === index) return;
+      index = i;
+      update();
+    });
     dotsContainer.appendChild(dot);
   });
 
   gallery.parentElement.appendChild(dotsContainer);
-  const dots = dotsContainer.querySelectorAll("span");
+  const dots = Array.from(dotsContainer.children);
 
   /* ===============================
-   DOTS CLICK
-================================ */
-dots.forEach((dot, i) => {
-  dot.addEventListener("click", () => {
-    if (isSliding || i === index) return;
-
-    isSliding = true;
-    gallery.classList.add("is-sliding");
-
-    requestAnimationFrame(() => {
-      index = i;
-      update();
-    });
-
-    setTimeout(() => {
-      isSliding = false;
-      gallery.classList.remove("is-sliding");
-    }, SLIDE_DURATION);
-  });
-});
-
-  /* ===============================
-     SLIDE STATE (ANTI-SPAM CLICK)
-  ================================ */
-  let isSliding = false;
-  const SLIDE_DURATION = 350; // ms (coerente con CSS)
-
-  /* ===============================
-     UPDATE (INP OPTIMIZED)
+     UPDATE (LIGHT & FAST)
   ================================ */
   function update() {
-
-    // movimento (paint ottimizzato)
     requestAnimationFrame(() => {
-      gallery.style.transform =
-        `translateX(${-index * imageWidth}px)`;
+      gallery.style.transform = `translateX(${-index * imageWidth}px)`;
     });
 
-    // classi & dots (separato)
-    requestAnimationFrame(() => {
-      images.forEach((img, i) => {
-        img.classList.toggle("active", i === index);
-        img.classList.toggle("inactive", i !== index);
-      });
+    images.forEach((img, i) => {
+      img.classList.toggle("active", i === index);
+    });
 
-      dots.forEach((dot, i) => {
-        dot.classList.toggle("active", i === index);
-      });
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === index);
     });
   }
 
   update();
 
-/* ===============================
+  /* ===============================
      MICRO PARALLAX (DESKTOP ONLY)
   ================================ */
   let parallaxRAF = null;
@@ -100,60 +70,37 @@ dots.forEach((dot, i) => {
     if (!activeImg) return;
 
     const rect = gallery.getBoundingClientRect();
-    const centerY = rect.top + rect.height / 2;
-    const offsetY = (e.clientY - centerY) / rect.height;
+    const offsetY = (e.clientY - (rect.top + rect.height / 2)) / rect.height;
 
     if (parallaxRAF) cancelAnimationFrame(parallaxRAF);
 
     parallaxRAF = requestAnimationFrame(() => {
-      activeImg.style.transform =
-  `translateY(${offsetY * 4}px)`;
+      activeImg.style.transform = `translateY(${offsetY * 4}px) scale(1.06)`;
     });
   });
 
   gallery.addEventListener("mouseleave", () => {
     const activeImg = gallery.querySelector("img.active");
-    if (!activeImg) return;
-
-    activeImg.style.transform = "translateY(0)";
+    if (activeImg) activeImg.style.transform = "scale(1.06)";
   });
 
   /* ===============================
-     BUTTONS (INP SAFE)
+     BUTTONS
   ================================ */
- nextBtn?.addEventListener("click", () => {
-  if (isSliding || index >= images.length - 1) return;
-
-  isSliding = true;
-  gallery.classList.add("is-sliding");
-
-  index++;
-  update();
-
-  setTimeout(() => {
-    isSliding = false;
-    gallery.classList.remove("is-sliding");
-  }, SLIDE_DURATION);
-});
+  nextBtn?.addEventListener("click", () => {
+    if (index >= images.length - 1) return;
+    index++;
+    update();
+  });
 
   prevBtn?.addEventListener("click", () => {
-  if (isSliding || index <= 0) return;
-
-  isSliding = true;
-  gallery.classList.add("is-sliding");
-
-  index--;
-  update();
-
-  setTimeout(() => {
-    isSliding = false;
-    gallery.classList.remove("is-sliding");
-  }, SLIDE_DURATION);
-});
-
+    if (index <= 0) return;
+    index--;
+    update();
+  });
 
   /* ===============================
-     SWIPE MOBILE (SAFE)
+     SWIPE MOBILE
   ================================ */
   let startX = 0;
 
@@ -162,31 +109,15 @@ dots.forEach((dot, i) => {
   }, { passive: true });
 
   gallery.addEventListener("touchend", e => {
-  if (isSliding) return;
+    const diff = startX - e.changedTouches[0].clientX;
 
-  const diff = startX - e.changedTouches[0].clientX;
+    if (diff > 50 && index < images.length - 1) index++;
+    if (diff < -50 && index > 0) index--;
 
-  if (diff > 50 && index < images.length - 1) {
-    isSliding = true;
-    gallery.classList.add("is-sliding");
-    index++;
-  }
+    update();
+  });
 
-  if (diff < -50 && index > 0) {
-    isSliding = true;
-    gallery.classList.add("is-sliding");
-    index--;
-  }
-
-  update();
-
-  setTimeout(() => {
-    isSliding = false;
-    gallery.classList.remove("is-sliding");
-  }, SLIDE_DURATION);
-});
-
-    /* ===============================
+  /* ===============================
      RESIZE (DEBOUNCED)
   ================================ */
   let resizeTimeout;
@@ -224,4 +155,3 @@ dots.forEach((dot, i) => {
   }
 
 });
-
