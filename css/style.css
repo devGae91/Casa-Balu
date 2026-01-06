@@ -160,7 +160,6 @@ p {
   z-index: 1000;
   background: rgba(247,242,236,0.9);
   backdrop-filter: blur(12px);
-  box-shadow: 0 10px 30px rgba(0,0,0,.08);
 }
 
 .header-container {
@@ -363,7 +362,7 @@ p {
 }
 
 /* ===============================
-   GALLERY + LIGHTBOX
+   GALLERY + LIGHTBOX (FINAL)
 ================================ */
 .gallery-wrapper {
   display: flex;
@@ -373,18 +372,21 @@ p {
   overflow: visible;
 }
 
+/* viewport galleria */
 .gallery-container {
   overflow: hidden;
   width: 100%;
 }
 
+/* track */
 .gallery {
   display: flex;
   gap: 24px;
-  transition: transform .4s ease;
   will-change: transform;
+  transition: transform .45s cubic-bezier(.22,.61,.36,1);
 }
 
+/* IMMAGINI — STATO BASE */
 .gallery img {
   width: 400px;
   height: 270px;
@@ -392,45 +394,97 @@ p {
   border-radius: 18px;
   flex-shrink: 0;
   cursor: pointer;
-  transition: transform .35s ease, box-shadow .35s ease;
+
+  /* performance */
   will-change: transform;
+  transform: translateZ(0);
+
+  /* animazione unica e coerente */
+  transition: transform .35s ease;
 }
 
-.gallery img:hover:not(.active) {
-  transform: scale(1.04);
+/* HOVER — UGUALE PER TUTTE */
+.gallery img:hover {
+  transform: scale(1.05) translateY(-4px);
 }
 
+/* SLIDE ATTIVA */
 .gallery img.active {
-  transform: scale(1.06);
-  box-shadow: 0 20px 50px rgba(0,0,0,.25);
-  outline: 3px solid rgba(226,178,127,.5);
-  outline-offset: 4px;
+  transform: scale(1.08);
   z-index: 2;
 }
 
+/* ACCESSIBILITÀ */
 .gallery img:focus-visible {
-  outline: 3px solid var(--caramel);
+  outline: 2px solid var(--caramel);
   outline-offset: 4px;
 }
 
-#prev, #next {
-  background: rgba(247,242,236,0.9);
+/* ===============================
+   GALLERY ARROWS (PREMIUM)
+================================ */
+#prev,
+#next {
+  background: rgba(247,242,236,0.95);
   border: 1px solid rgba(200,160,90,.6);
   width: 48px;
   height: 48px;
   border-radius: 50%;
+
   font-size: 1.6rem;
+  line-height: 1;
   cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   color: var(--dark-brown);
-  transition: background .25s ease, color .25s ease;
+  transition: background .25s ease, color .25s ease, transform .25s ease;
 }
 
-#prev:hover, #next:hover {
+#prev:hover,
+#next:hover {
   background: var(--caramel);
   color: #fff;
+  transform: scale(1.08);
+}
+
+/* ===============================
+   LIGHTBOX
+================================ */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  cursor: zoom-out;
+  backdrop-filter: blur(2px);
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 85vh;
+  border-radius: 22px;
+  animation: zoomInSoft .35s cubic-bezier(.22,.61,.36,1);
+}
+
+@keyframes zoomInSoft {
+  from {
+    transform: scale(.92);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* ===============================
