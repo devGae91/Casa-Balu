@@ -38,18 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ===============================
-     HERO PARALLAX (LEGGERO)
-  ================================ */
-  const hero = document.querySelector(".hero");
-
-  if (hero) {
-    window.addEventListener("scroll", () => {
-      hero.style.backgroundPositionY =
-        window.scrollY * 0.3 + "px";
-    });
-  }
-
-  /* ===============================
      SCROLL PROGRESS BAR
   ================================ */
   const progressBar = document.getElementById("scroll-progress");

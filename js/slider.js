@@ -39,8 +39,20 @@ document.addEventListener("DOMContentLoaded", () => {
 ================================ */
 dots.forEach((dot, i) => {
   dot.addEventListener("click", () => {
-    index = i;
-    update();
+    if (isSliding || i === index) return;
+
+    isSliding = true;
+    gallery.classList.add("is-sliding");
+
+    requestAnimationFrame(() => {
+      index = i;
+      update();
+    });
+
+    setTimeout(() => {
+      isSliding = false;
+      gallery.classList.remove("is-sliding");
+    }, SLIDE_DURATION);
   });
 });
 
@@ -174,7 +186,7 @@ dots.forEach((dot, i) => {
   }, SLIDE_DURATION);
 });
 
-  /* ===============================
+    /* ===============================
      RESIZE (DEBOUNCED)
   ================================ */
   let resizeTimeout;
@@ -187,4 +199,29 @@ dots.forEach((dot, i) => {
     }, 150);
   });
 
+  /* ===============================
+     LIGHTBOX
+  ================================ */
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = lightbox?.querySelector("img");
+
+  if (lightbox && lightboxImg) {
+    images.forEach(img => {
+      img.addEventListener("click", () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add("active");
+        document.body.style.overflow = "hidden";
+      });
+    });
+
+    lightbox.addEventListener("click", e => {
+      if (e.target === lightbox || e.target === lightboxImg) {
+        lightbox.classList.remove("active");
+        lightboxImg.src = "";
+        document.body.style.overflow = "";
+      }
+    });
+  }
+
 });
+
