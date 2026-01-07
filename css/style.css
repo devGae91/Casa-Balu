@@ -66,6 +66,10 @@ body {
   filter: saturate(.96) contrast(1.02);
 }
 
+.hero {
+  filter: none;
+}
+
 ::selection {
   background: var(--caramel);
   color: #fff;
@@ -289,11 +293,7 @@ p {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(90,58,30,0.65),
-    rgba(226,178,127,0.35)
-  );
+  background: rgba(0,0,0,.35);
 }
 
   .hero-content {
@@ -362,7 +362,7 @@ p {
 }
 
 /* ===============================
-   GALLERY + LIGHTBOX (FINAL)
+   GALLERY + LIGHTBOX (OPTIMIZED)
 ================================ */
 .gallery-wrapper {
   display: flex;
@@ -372,7 +372,7 @@ p {
   overflow: visible;
 }
 
-/* viewport galleria */
+/* viewport */
 .gallery-container {
   overflow: hidden;
   width: 100%;
@@ -383,10 +383,13 @@ p {
   display: flex;
   gap: 24px;
   will-change: transform;
-  transition: transform .45s cubic-bezier(.22,.61,.36,1);
+  transition: transform .4s cubic-bezier(.22,.61,.36,1);
+  transform: translateZ(0);
 }
 
-/* IMMAGINI — STATO BASE */
+/* ===============================
+   IMMAGINI — BASE (GPU ONLY)
+================================ */
 .gallery img {
   width: 400px;
   height: 270px;
@@ -399,18 +402,18 @@ p {
   will-change: transform;
   transform: translateZ(0);
 
-  /* animazione unica e coerente */
-  transition: transform .35s ease;
+  /* animazione leggera */
+  transition: transform .28s ease;
 }
 
 /* HOVER — UGUALE PER TUTTE */
 .gallery img:hover {
-  transform: scale(1.05) translateY(-4px);
+  transform: scale(1.045) translateY(-3px);
 }
 
 /* SLIDE ATTIVA */
 .gallery img.active {
-  transform: scale(1.08);
+  transform: scale(1.065);
   z-index: 2;
 }
 
@@ -421,17 +424,17 @@ p {
 }
 
 /* ===============================
-   GALLERY ARROWS (PREMIUM)
+   GALLERY ARROWS (FAST & CLEAN)
 ================================ */
 #prev,
 #next {
   background: rgba(247,242,236,0.95);
   border: 1px solid rgba(200,160,90,.6);
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
 
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   line-height: 1;
   cursor: pointer;
 
@@ -440,14 +443,24 @@ p {
   justify-content: center;
 
   color: var(--dark-brown);
-  transition: background .25s ease, color .25s ease, transform .25s ease;
+
+  /* performance */
+  will-change: transform;
+  transform: translateZ(0);
+
+  transition: transform .22s ease, background .22s ease, color .22s ease;
 }
 
 #prev:hover,
 #next:hover {
   background: var(--caramel);
   color: #fff;
-  transform: scale(1.08);
+  transform: scale(1.06);
+}
+
+#prev:active,
+#next:active {
+  transform: scale(1);
 }
 
 /* ===============================
@@ -463,6 +476,7 @@ p {
   z-index: 9999;
   cursor: zoom-out;
   backdrop-filter: blur(2px);
+  contain: layout paint;
 }
 
 .lightbox.active {

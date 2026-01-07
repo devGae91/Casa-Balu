@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!gallery || images.length === 0) return;
 
   let index = 0;
+  let isAnimating = false;
   const gap = 24;
   let imageWidth = images[0].offsetWidth + gap;
   images[0].classList.add("active");
@@ -43,18 +44,19 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ===============================
    UPDATE (FAST & INP SAFE)
 ================================ */
+
 function update() {
-  requestAnimationFrame(() => {
-    gallery.style.transform = `translateX(${-index * imageWidth}px)`;
+  gallery.style.transform = `translateX(${-index * imageWidth}px)`;
 
-    images.forEach((img, i) => {
-      img.classList.toggle("active", i === index);
-    });
+  if (images[index]) {
+    document.querySelector(".gallery img.active")?.classList.remove("active");
+    images[index].classList.add("active");
+  }
 
-    dots.forEach((dot, i) => {
-      dot.classList.toggle("active", i === index);
-    });
-  });
+  if (dots[index]) {
+    document.querySelector(".gallery-dots .active")?.classList.remove("active");
+    dots[index].classList.add("active");
+  }
 }
 
   update();
@@ -62,17 +64,21 @@ function update() {
   /* ===============================
      BUTTONS
   ================================ */
-  prevBtn?.addEventListener("click", () => {
-    if (index <= 0) return;
-    index--;
-    update();
-  });
-
   nextBtn?.addEventListener("click", () => {
-    if (index >= images.length - 1) return;
-    index++;
-    update();
-  });
+  if (isAnimating || index >= images.length - 1) return;
+  isAnimating = true;
+  index++;
+  update();
+  setTimeout(() => isAnimating = false, 320);
+});
+
+prevBtn?.addEventListener("click", () => {
+  if (isAnimating || index <= 0) return;
+  isAnimating = true;
+  index--;
+  update();
+  setTimeout(() => isAnimating = false, 320);
+});
 
   /* ===============================
      SWIPE MOBILE
