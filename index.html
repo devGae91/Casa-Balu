@@ -31,6 +31,9 @@
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
 
+  <!-- PRELOAD HERO (CRITICO PER LCP) -->
+  <link rel="preload" as="image" href="img/hero.webp">
+  
   <!-- FLATPICKR -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
@@ -196,7 +199,7 @@
     width="1920"
     height="1080"
     fetchpriority="high"
-    decoding="sync"
+    decoding="async"
   >
 
   <div class="hero-overlay"></div>
