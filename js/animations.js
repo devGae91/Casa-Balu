@@ -1,26 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ===============================
-     FADE / SLIDE ANIMATIONS
+     REVEAL / FADE / SLIDE (UNIFIED)
   ================================ */
-  const observer = new IntersectionObserver(
+  const revealObserver = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
+          revealObserver.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.2 }
+    { threshold: 0.15 }
   );
 
   document
-    .querySelectorAll(".fade-in, .fade-left, .fade-right")
-    .forEach(el => observer.observe(el));
+    .querySelectorAll(".fade-in, .fade-left, .fade-right, .reveal")
+    .forEach(el => revealObserver.observe(el));
 
   /* ===============================
-     BOOKING HIGHLIGHT
+     BOOKING HIGHLIGHT (FOCUS UX)
   ================================ */
   const bookingSection = document.querySelector("#prenotazione");
 
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.scrollY /
         (document.body.scrollHeight - window.innerHeight);
 
-      progressBar.style.width = scroll * 100 + "%";
+      progressBar.style.width = (scroll * 100) + "%";
     });
   }
 

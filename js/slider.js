@@ -19,10 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let isAnimating = false;
   const gap = 24;
   let imageWidth = images[0].offsetWidth + gap;
+
   images[0].classList.add("active");
 
   /* ===============================
-     DOTS (AUTO)
+     DOTS (AUTO & CLEAN)
   ================================ */
   const dotsContainer = document.createElement("div");
   dotsContainer.className = "gallery-dots";
@@ -30,11 +31,13 @@ document.addEventListener("DOMContentLoaded", () => {
   images.forEach((_, i) => {
     const dot = document.createElement("span");
     if (i === 0) dot.classList.add("active");
+
     dot.addEventListener("click", () => {
-      if (i === index) return;
+      if (i === index || isAnimating) return;
       index = i;
       update();
     });
+
     dotsContainer.appendChild(dot);
   });
 
@@ -42,46 +45,45 @@ document.addEventListener("DOMContentLoaded", () => {
   const dots = Array.from(dotsContainer.children);
 
   /* ===============================
-   UPDATE (FAST & INP SAFE)
-================================ */
+     UPDATE (FAST & STABLE)
+  ================================ */
+  function update() {
+    isAnimating = true;
 
-function update() {
-  requestAnimationFrame(() => {
-    gallery.style.transform = `translateX(${-index * imageWidth}px)`;
-  });
+    requestAnimationFrame(() => {
+      gallery.style.transform = `translateX(${-index * imageWidth}px)`;
+    });
 
-  images.forEach((img, i) => {
-    img.classList.toggle("active", i === index);
-  });
+    images.forEach((img, i) => {
+      img.classList.toggle("active", i === index);
+    });
 
-  dots.forEach((dot, i) => {
-    dot.classList.toggle("active", i === index);
-  });
-}
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === index);
+    });
+
+    setTimeout(() => isAnimating = false, 300);
+  }
 
   update();
-  
+
   /* ===============================
-     BUTTONS
+     BUTTON CONTROLS
   ================================ */
   nextBtn?.addEventListener("click", () => {
-  if (isAnimating || index >= images.length - 1) return;
-  isAnimating = true;
-  index++;
-  update();
-  setTimeout(() => isAnimating = false, 320);
-});
+    if (isAnimating || index >= images.length - 1) return;
+    index++;
+    update();
+  });
 
-prevBtn?.addEventListener("click", () => {
-  if (isAnimating || index <= 0) return;
-  isAnimating = true;
-  index--;
-  update();
-  setTimeout(() => isAnimating = false, 320);
-});
+  prevBtn?.addEventListener("click", () => {
+    if (isAnimating || index <= 0) return;
+    index--;
+    update();
+  });
 
   /* ===============================
-     SWIPE MOBILE
+     SWIPE MOBILE (CONTROLLED)
   ================================ */
   let startX = 0;
 
@@ -112,7 +114,7 @@ prevBtn?.addEventListener("click", () => {
   });
 
   /* ===============================
-     LIGHTBOX
+     LIGHTBOX (MINIMAL & PREMIUM)
   ================================ */
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = lightbox?.querySelector("img");
