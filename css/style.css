@@ -11,8 +11,6 @@
   --green: #678855ff;
   --soft-shadow: 0 25px 60px rgba(0,0,0,.12);
   --hover-shadow: 0 35px 80px rgba(0,0,0,.18);
-  --gold-soft: rgba(200,160,90,.55);   /* metallo caldo */
-  --gold-soft-fade: rgba(200,160,90,.25);
 }
 
 * {
@@ -78,13 +76,13 @@ body {
 }
 
 .section-divider {
-  width: 65%;
+  width: 80px;
   height: 1px;
-  margin: 4rem auto;
+  margin: 3rem auto;
   background: linear-gradient(
     to right,
     transparent,
-    var(--gold-soft),
+    rgba(200,160,90,0.9),
     transparent
   );
 }
@@ -156,19 +154,6 @@ p {
   opacity: .4;
 }
 
-.premium-box {
-  border: 1px solid var(--gold-soft);
-  border-radius: 18px;
-  padding: 2rem;
-  background: rgba(255,255,255,.02);
-  transition: transform .22s ease, border-color .22s ease;
-}
-
-.premium-box:hover {
-  transform: translateY(-2px);
-  border-color: rgba(200,160,90,.7);
-}
-
 /* ===============================
    HEADER (UNICO & DEFINITIVO)
 ================================ */
@@ -209,17 +194,6 @@ p {
 }
 
 /* MENU */
-.mobile-menu {
-  transform: translateX(100%);
-  opacity: 0;
-  transition: transform .28s ease, opacity .28s ease;
-}
-
-.mobile-menu.open {
-  transform: translateX(0);
-  opacity: 1;
-}
-
 .main-nav ul {
   display: flex;
   gap: 2rem;
@@ -387,18 +361,6 @@ p {
   box-shadow: 0 6px 14px rgba(0,0,0,.18);
 }
 
-button {
-  transition: transform .18s ease, background-color .18s ease;
-}
-
-button:hover {
-  transform: scale(1.05);
-}
-
-button:active {
-  transform: scale(0.96);
-}
-
 /* ===============================
    GALLERY + LIGHTBOX (FINAL FIX)
 ================================ */
@@ -440,8 +402,10 @@ button:active {
   transition: transform .28s ease;
 }
 
+/* HOVER — SEMPRE ATTIVO SU TUTTE */
 .gallery img:hover {
-  transform: translateY(-3px);
+  transform: scale(1.055) translateY(-4px);
+  z-index: 3;
 }
 
 /* ACTIVE — SOLO STATO LOGICO */
@@ -450,9 +414,8 @@ button:active {
 }
 
 /* ACCESSIBILITÀ */
-.gallery img:focus-visible,
-.gallery img.active {
-  outline: 2px solid var(--gold-soft);
+.gallery img:focus-visible {
+  outline: 2px solid var(--caramel);
   outline-offset: 4px;
 }
 
@@ -774,17 +737,6 @@ footer p {
 .fade-right.visible {
   opacity: 1;
   transform: translateX(0);
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity .4s ease, transform .4s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* ===============================
