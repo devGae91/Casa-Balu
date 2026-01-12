@@ -31,6 +31,8 @@
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
 
+  <!-- PRELOAD HERO (CRITICO PER LCP) -->
+  
   <!-- FLATPICKR -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
@@ -158,6 +160,8 @@
 <!-- ================= HEADER ================= -->
 <header class="main-header">
   <div class="header-container">
+</header>
+<div class="section-divider"></div>
 
     <!-- LEFT -->
     <div class="header-left">
@@ -196,7 +200,7 @@
     width="1920"
     height="1080"
     fetchpriority="high"
-    decoding="sync"
+    decoding="async"
   >
 
   <div class="hero-overlay"></div>
@@ -224,7 +228,7 @@
 </header>
 
 <!-- ================= ESPERIENZA ================= -->
-<section class="section section-colored fade-in" id="esperienza">
+<section class="section section-colored fade-in reveal" id="esperienza">
   <div class="container narrow">
     <h2 data-i18n="experience_title">Un’esperienza autentica</h2>
 
@@ -241,8 +245,12 @@
   </div>
 </section>
 
-<!-- ================= GALLERIA ================= -->
+</section>
+<div class="section-divider"></div>
 <section class="section section-light fade-in" id="galleria">
+
+<!-- ================= GALLERIA ================= -->
+<section class="section section-light fade-in reveal" id="galleria">
   <div class="container">
     <h2 data-i18n="room_title">La camera</h2>
     <p>
@@ -269,7 +277,7 @@
 </section>
 
 <!-- ================= TERRITORIO ================= -->
-<section class="section section-colored fade-in" id="territory">
+<section class="section section-colored fade-in reveal" id="territory">
   <div class="container territory-grid">
     
     <!-- TESTO -->
@@ -296,7 +304,7 @@
 </section>
 
 <!-- ================= SERVIZI ================= -->
-<section class="section section-light fade-in" id="servizi">
+<section class="section section-light fade-in reveal" id="servizi">
   <div class="container territory-grid">
 
     <!-- SERVIZI -->
@@ -320,7 +328,7 @@
     </div>
 
     <!-- PREZZI -->
-    <div class="prices-box fade-right">
+    <div class="prices-box premium-box fade-right">
   <h2>Prezzi</h2>
   <p>1–2 persone: <strong>70 € / notte</strong></p>
   <p>3 persone: <strong>100 € / notte</strong></p>
@@ -335,10 +343,10 @@
 </section>
 
 <!-- ================= PRENOTAZIONE ================= -->
-<section id="prenotazione" class="section section-colored fade-in">
+<section id="prenotazione" class="section section-colored fade-in reveal">
   <div class="container booking-grid">
 
-    <div class="calendar-box">
+    <div class="calendar-box premium-box">
       <h3 data-i18n="calendar_title">Seleziona le date</h3>
       <select id="guests">
         <option>1</option><option selected>2</option><option>3</option><option>4</option>
@@ -350,7 +358,7 @@
   </small>
     </div>
 
-    <form action="https://formspree.io/f/xvgelnqn" method="POST" class="booking-form">
+    <form action="https://formspree.io/f/xvgelnqn" method="POST" class="booking-form premium-box">
       <h3 data-i18n="form_title">Richiesta di prenotazione</h3>
       <input type="text" name="name" placeholder="Nome e cognome" required>
       <input type="email" name="email" placeholder="Email" required>
