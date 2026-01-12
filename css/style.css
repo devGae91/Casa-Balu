@@ -362,7 +362,7 @@ p {
 }
 
 /* ===============================
-   GALLERY + LIGHTBOX (FINAL FIX)
+   GALLERY + LIGHTBOX (OPTIMIZED)
 ================================ */
 .gallery-wrapper {
   display: flex;
@@ -372,6 +372,7 @@ p {
   overflow: visible;
 }
 
+/* viewport */
 .gallery-container {
   overflow: hidden;
   width: 100%;
@@ -386,7 +387,9 @@ p {
   transform: translateZ(0);
 }
 
-/* IMMAGINI — BASE */
+/* ===============================
+   IMMAGINI — BASE (GPU ONLY)
+================================ */
 .gallery img {
   width: 400px;
   height: 270px;
@@ -399,17 +402,18 @@ p {
   will-change: transform;
   transform: translateZ(0);
 
+  /* animazione leggera */
   transition: transform .28s ease;
 }
 
-/* HOVER — SEMPRE ATTIVO SU TUTTE */
+/* HOVER — UGUALE PER TUTTE */
 .gallery img:hover {
-  transform: scale(1.055) translateY(-4px);
-  z-index: 3;
+  transform: scale(1.045) translateY(-3px);
 }
 
-/* ACTIVE — SOLO STATO LOGICO */
+/* SLIDE ATTIVA */
 .gallery img.active {
+  transform: scale(1.065);
   z-index: 2;
 }
 

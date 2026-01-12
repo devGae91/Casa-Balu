@@ -46,17 +46,17 @@ document.addEventListener("DOMContentLoaded", () => {
 ================================ */
 
 function update() {
-  requestAnimationFrame(() => {
-    gallery.style.transform = `translateX(${-index * imageWidth}px)`;
-  });
+  gallery.style.transform = `translateX(${-index * imageWidth}px)`;
 
-  images.forEach((img, i) => {
-    img.classList.toggle("active", i === index);
-  });
+  if (images[index]) {
+    document.querySelector(".gallery img.active")?.classList.remove("active");
+    images[index].classList.add("active");
+  }
 
-  dots.forEach((dot, i) => {
-    dot.classList.toggle("active", i === index);
-  });
+  if (dots[index]) {
+    document.querySelector(".gallery-dots .active")?.classList.remove("active");
+    dots[index].classList.add("active");
+  }
 }
 
   update();
