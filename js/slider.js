@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ===============================
-     GALLERY PRELOAD (LCP & UX)
+     GALLERY PRELOAD (SAFE)
   ================================ */
   document.querySelectorAll(".gallery img").forEach(img => {
-    const preload = new Image();
-    preload.src = img.src;
+    if (!img.complete) {
+      const preload = new Image();
+      preload.src = img.src;
+    }
   });
 
   const gallery = document.querySelector(".gallery");
@@ -23,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   images[0].classList.add("active");
 
   /* ===============================
-     DOTS (AUTO & CLEAN)
+     DOTS (AUTO)
   ================================ */
   const dotsContainer = document.createElement("div");
   dotsContainer.className = "gallery-dots";
@@ -34,8 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     dot.addEventListener("click", () => {
       if (i === index || isAnimating) return;
-      index = i;
-      update();
+      goTo(i);
     });
 
     dotsContainer.appendChild(dot);
@@ -45,9 +46,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const dots = Array.from(dotsContainer.children);
 
   /* ===============================
-     UPDATE (FAST & STABLE)
+     CORE UPDATE
   ================================ */
-  function update() {
+  function goTo(newIndex) {
+    if (isAnimating) return;
+
+    index = newIndex;
     isAnimating = true;
 
     requestAnimationFrame(() => {
@@ -61,43 +65,54 @@ document.addEventListener("DOMContentLoaded", () => {
     dots.forEach((dot, i) => {
       dot.classList.toggle("active", i === index);
     });
-
-    setTimeout(() => isAnimating = false, 300);
   }
 
-  update();
+  gallery.addEventListener("transitionend", () => {
+    isAnimating = false;
+  });
+
+  goTo(0);
 
   /* ===============================
      BUTTON CONTROLS
   ================================ */
   nextBtn?.addEventListener("click", () => {
-    if (isAnimating || index >= images.length - 1) return;
-    index++;
-    update();
+    if (index < images.length - 1) {
+      goTo(index + 1);
+    }
   });
 
   prevBtn?.addEventListener("click", () => {
-    if (isAnimating || index <= 0) return;
-    index--;
-    update();
+    if (index > 0) {
+      goTo(index - 1);
+    }
   });
 
   /* ===============================
-     SWIPE MOBILE (CONTROLLED)
+     SWIPE (INTENTIONAL)
   ================================ */
   let startX = 0;
+  let startY = 0;
 
   gallery.addEventListener("touchstart", e => {
     startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
   }, { passive: true });
 
   gallery.addEventListener("touchend", e => {
-    const diff = startX - e.changedTouches[0].clientX;
+    const diffX = startX - e.changedTouches[0].clientX;
+    const diffY = startY - e.changedTouches[0].clientY;
 
-    if (diff > 50 && index < images.length - 1) index++;
-    if (diff < -50 && index > 0) index--;
+    // ignora swipe verticali
+    if (Math.abs(diffY) > Math.abs(diffX)) return;
 
-    update();
+    if (diffX > 60 && index < images.length - 1) {
+      goTo(index + 1);
+    }
+
+    if (diffX < -60 && index > 0) {
+      goTo(index - 1);
+    }
   });
 
   /* ===============================
@@ -109,15 +124,21 @@ document.addEventListener("DOMContentLoaded", () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       imageWidth = images[0].offsetWidth + gap;
-      update();
+      goTo(index);
     }, 150);
   });
 
   /* ===============================
-     LIGHTBOX (MINIMAL & PREMIUM)
+     LIGHTBOX (PREMIUM)
   ================================ */
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = lightbox?.querySelector("img");
+
+  function closeLightbox() {
+    lightbox.classList.remove("active");
+    lightboxImg.src = "";
+    document.body.style.overflow = "";
+  }
 
   if (lightbox && lightboxImg) {
     images.forEach(img => {
@@ -129,10 +150,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     lightbox.addEventListener("click", e => {
-      if (e.target === lightbox || e.target === lightboxImg) {
-        lightbox.classList.remove("active");
-        lightboxImg.src = "";
-        document.body.style.overflow = "";
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && lightbox.classList.contains("active")) {
+        closeLightbox();
       }
     });
   }
