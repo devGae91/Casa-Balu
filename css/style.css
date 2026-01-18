@@ -408,12 +408,17 @@ button:active {
   align-items: center;
   gap: 1rem;
   margin-top: 2.5rem;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .gallery-container {
   overflow: hidden;
   width: 100%;
+  min-height: 270px; /* desktop */
+}
+
+.gallery-container {
+  contain: layout paint;
 }
 
 /* track */
@@ -481,7 +486,7 @@ button:active {
   /* performance */
   will-change: transform;
   transform: translateZ(0);
-
+ touch-action: manipulation;
   transition: transform .22s ease, background .22s ease, color .22s ease;
 }
 
@@ -719,6 +724,12 @@ button:focus-visible,
   outline: 2px solid var(--gold-soft);
   outline-offset: 4px;
   border-radius: 6px;
+}
+
+a,
+button,
+.gallery img {
+  transition: outline-offset .15s ease, box-shadow .15s ease;
 }
 
 /* ===============================

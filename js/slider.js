@@ -74,19 +74,26 @@ document.addEventListener("DOMContentLoaded", () => {
   goTo(0);
 
   /* ===============================
-     BUTTON CONTROLS
-  ================================ */
-  nextBtn?.addEventListener("click", () => {
-    if (index < images.length - 1) {
+   BUTTON CONTROLS (INP OPTIMIZED)
+================================ */
+nextBtn?.addEventListener("click", () => {
+  if (isAnimating) return;
+  if (index < images.length - 1) {
+    requestAnimationFrame(() => {
       goTo(index + 1);
-    }
-  });
+    });
+  }
+});
 
-  prevBtn?.addEventListener("click", () => {
-    if (index > 0) {
+prevBtn?.addEventListener("click", () => {
+  if (isAnimating) return;
+  if (index > 0) {
+    requestAnimationFrame(() => {
       goTo(index - 1);
-    }
-  });
+    });
+  }
+});
+
 
   /* ===============================
      SWIPE (INTENTIONAL)
