@@ -28,7 +28,7 @@
 .gallery img,
 .services li,
 .gallery-dots span {
-  transition: transform .25s ease, color .2s ease;
+  transition: transform .22s ease, color .2s ease;
 }
 
 *:focus {
@@ -331,7 +331,7 @@ p {
   padding: 3.5rem;
   background: rgba(247,242,236,0.88);
   border-radius: 32px;
-  animation: fadeUp .6s ease .2s both;
+  animation: fadeUp .45s ease both;
 }
 
 .hero-badge {
@@ -380,6 +380,7 @@ p {
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: var(--hover-shadow);
+  filter: brightness(1.04);
 }
 
 .btn:active {
@@ -392,7 +393,7 @@ button {
 }
 
 button:hover {
-  transform: scale(1.05);
+  transform: translateY(-2px);
 }
 
 button:active {
@@ -441,7 +442,7 @@ button:active {
 }
 
 .gallery img:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
 /* ACTIVE — SOLO STATO LOGICO */
@@ -564,7 +565,7 @@ button:active {
 }
 
 .gallery-dots span:hover {
-  transform: scale(1.6);
+  transform: scale(1.25);
   background: var(--caramel);
 }
 
@@ -577,6 +578,11 @@ button:active {
 .gallery-dots {
   padding-bottom: 12px;
 }
+
+.gallery-dots {
+  min-height: 24px;
+}
+
 /* LIGHTBOX */
 .lightbox {
   position: fixed;
@@ -649,12 +655,13 @@ button:active {
 /* focus conversione */
 .booking-form {
   position: relative;
+  padding-top: 3.4rem;
 }
 
 .booking-form::before {
   content: "Prenotazione diretta";
   position: absolute;
-  top: -14px;
+  top: 12px;
   left: 24px;
   background: var(--green);
   color: #fff;
@@ -726,6 +733,17 @@ textarea:focus {
   width: 0;
   background: var(--caramel);
   z-index: 2000;
+}
+
+/* ===============================
+   ACCESSIBILITY – FOCUS PREMIUM
+================================ */
+a:focus-visible,
+button:focus-visible,
+.gallery img:focus-visible {
+  outline: 2px solid var(--gold-soft);
+  outline-offset: 4px;
+  border-radius: 6px;
 }
 
 /* ===============================
