@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     isAnimating = true;
 
     requestAnimationFrame(() => {
-      gallery.style.transform = `translateX(${-index * imageWidth}px)`;
+      gallery.style.transform = `translate3d(${-index * imageWidth}px, 0, 0)`;
     });
 
     images.forEach((img, i) => {
