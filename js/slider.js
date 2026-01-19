@@ -74,25 +74,37 @@ document.addEventListener("DOMContentLoaded", () => {
   goTo(0);
 
   /* ===============================
-   BUTTON CONTROLS (INP OPTIMIZED)
+   BUTTON CONTROLS (INP OPTIMIZED FINAL)
 ================================ */
-nextBtn?.addEventListener("click", () => {
+
+nextBtn?.addEventListener("click", e => {
   if (isAnimating) return;
+
+  // feedback immediato (0ms)
+  e.currentTarget.style.opacity = "0.85";
+  requestAnimationFrame(() => {
+    e.currentTarget.style.opacity = "";
+  });
+
   if (index < images.length - 1) {
-    requestAnimationFrame(() => {
-      goTo(index + 1);
-    });
+    goTo(index + 1);
   }
 });
 
-prevBtn?.addEventListener("click", () => {
+prevBtn?.addEventListener("click", e => {
   if (isAnimating) return;
+
+  // feedback immediato (0ms)
+  e.currentTarget.style.opacity = "0.85";
+  requestAnimationFrame(() => {
+    e.currentTarget.style.opacity = "";
+  });
+
   if (index > 0) {
-    requestAnimationFrame(() => {
-      goTo(index - 1);
-    });
+    goTo(index - 1);
   }
 });
+
 
 
   /* ===============================

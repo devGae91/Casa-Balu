@@ -69,6 +69,10 @@ body {
 }
 
 .hero {
+  contain: layout paint style;
+}
+
+.hero {
   filter: none;
 }
 
@@ -178,6 +182,9 @@ p {
   width: 100%;
   z-index: 1000;
   background: rgba(247,242,236,0.9);
+}
+
+body.loaded .main-header {
   backdrop-filter: blur(12px);
 }
 
@@ -331,6 +338,9 @@ p {
   padding: 3.5rem;
   background: rgba(247,242,236,0.88);
   border-radius: 32px;
+}
+
+body.loaded .hero-content {
   animation: fadeUp .45s ease both;
 }
 
@@ -487,7 +497,7 @@ button:active {
   will-change: transform;
   transform: translateZ(0);
  touch-action: manipulation;
-  transition: transform .22s ease, background .22s ease, color .22s ease;
+  transition: background .18s ease, color .18s ease;
 }
 
 #prev:hover,
