@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let isAnimating = false;
   const gap = 24;
   let imageWidth = images[0].offsetWidth + gap;
+  let lastWidth = imageWidth;
 
   images[0].classList.add("active");
 
@@ -80,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
 nextBtn?.addEventListener("click", e => {
   if (isAnimating) return;
 
-  // feedback immediato (0ms)
+  // feedback immediato (riduce INP)
   e.currentTarget.style.opacity = "0.85";
   requestAnimationFrame(() => {
     e.currentTarget.style.opacity = "";
@@ -94,7 +95,6 @@ nextBtn?.addEventListener("click", e => {
 prevBtn?.addEventListener("click", e => {
   if (isAnimating) return;
 
-  // feedback immediato (0ms)
   e.currentTarget.style.opacity = "0.85";
   requestAnimationFrame(() => {
     e.currentTarget.style.opacity = "";
@@ -104,8 +104,6 @@ prevBtn?.addEventListener("click", e => {
     goTo(index - 1);
   }
 });
-
-
 
   /* ===============================
      SWIPE (INTENTIONAL)
@@ -146,6 +144,9 @@ prevBtn?.addEventListener("click", e => {
       goTo(index);
     }, 150);
   });
+
+  if (images[0].offsetWidth + gap === lastWidth) return;
+lastWidth = images[0].offsetWidth + gap;
 
   /* ===============================
      LIGHTBOX (PREMIUM)

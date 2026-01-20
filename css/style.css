@@ -63,17 +63,8 @@ body {
   }
 }
 
-.hero,
-.section {
-  filter: saturate(.96) contrast(1.02);
-}
-
 .hero {
   contain: paint;
-}
-
-.hero {
-  filter: none;
 }
 
 ::selection {
@@ -322,12 +313,11 @@ body.loaded .main-header {
   );
   pointer-events: none;
 }
-
 .hero-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,.35);
-  reminder-events: none;
+  pointer-events: none;
 }
 
   .hero-content {
@@ -484,7 +474,7 @@ button:active {
   width: 46px;
   height: 46px;
   border-radius: 50%;
-
+  contain: paint;
   font-size: 1.5rem;
   line-height: 1;
   cursor: pointer;
@@ -862,7 +852,7 @@ button:focus-visible {
 ================================ */
 .trust {
   display: block;
-  margin-top: .5rem;
+  margin-top: .1rem;
   font-size: .75rem;
   opacity: .7;
 }
