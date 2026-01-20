@@ -69,7 +69,7 @@ body {
 }
 
 .hero {
-  contain: layout paint style;
+  contain: paint;
 }
 
 .hero {
@@ -327,6 +327,7 @@ body.loaded .main-header {
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,.35);
+  reminder-events: none;
 }
 
   .hero-content {
@@ -338,6 +339,7 @@ body.loaded .main-header {
   padding: 3.5rem;
   background: rgba(247,242,236,0.88);
   border-radius: 32px;
+  animation: none;
 }
 
 body.loaded .hero-content {
