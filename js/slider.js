@@ -1,15 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ===============================
-     GALLERY PRELOAD (SAFE)
+     ELEMENTI BASE
   ================================ */
-  document.querySelectorAll(".gallery img").forEach(img => {
-    if (!img.complete) {
-      const preload = new Image();
-      preload.src = img.src;
-    }
-  });
-
   const gallery = document.querySelector(".gallery");
   const images = Array.from(document.querySelectorAll(".gallery img"));
   const prevBtn = document.getElementById("prev");
@@ -17,11 +10,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!gallery || images.length === 0) return;
 
+  /* ===============================
+     PRELOAD LEGGERO (SAFE)
+     → solo prime 2 immagini
+  ================================ */
+  images.slice(0, 2).forEach(img => {
+    if (!img.complete) {
+      const preload = new Image();
+      preload.src = img.src;
+    }
+  });
+
+  /* ===============================
+     STATO
+  ================================ */
   let index = 0;
   let isAnimating = false;
   const gap = 24;
   let imageWidth = images[0].offsetWidth + gap;
-  let lastWidth = imageWidth;
 
   images[0].classList.add("active");
 
@@ -47,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const dots = Array.from(dotsContainer.children);
 
   /* ===============================
-     CORE UPDATE
+     CORE SLIDER
   ================================ */
   function goTo(newIndex) {
     if (isAnimating) return;
@@ -56,7 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
     isAnimating = true;
 
     requestAnimationFrame(() => {
-      gallery.style.transform = `translate3d(${-index * imageWidth}px, 0, 0)`;
+      gallery.style.transform =
+        `translate3d(${-index * imageWidth}px, 0, 0)`;
     });
 
     images.forEach((img, i) => {
@@ -75,38 +82,33 @@ document.addEventListener("DOMContentLoaded", () => {
   goTo(0);
 
   /* ===============================
-   BUTTON CONTROLS (INP OPTIMIZED FINAL)
-================================ */
+     BUTTON CONTROLS (INP SAFE)
+  ================================ */
+  nextBtn?.addEventListener("click", e => {
+    if (isAnimating || index >= images.length - 1) return;
 
-nextBtn?.addEventListener("click", e => {
-  if (isAnimating) return;
+    // feedback immediato (riduce INP)
+    e.currentTarget.style.opacity = "0.85";
+    requestAnimationFrame(() => {
+      e.currentTarget.style.opacity = "";
+    });
 
-  // feedback immediato (riduce INP)
-  e.currentTarget.style.opacity = "0.85";
-  requestAnimationFrame(() => {
-    e.currentTarget.style.opacity = "";
-  });
-
-  if (index < images.length - 1) {
     goTo(index + 1);
-  }
-});
-
-prevBtn?.addEventListener("click", e => {
-  if (isAnimating) return;
-
-  e.currentTarget.style.opacity = "0.85";
-  requestAnimationFrame(() => {
-    e.currentTarget.style.opacity = "";
   });
 
-  if (index > 0) {
+  prevBtn?.addEventListener("click", e => {
+    if (isAnimating || index <= 0) return;
+
+    e.currentTarget.style.opacity = "0.85";
+    requestAnimationFrame(() => {
+      e.currentTarget.style.opacity = "";
+    });
+
     goTo(index - 1);
-  }
-});
+  });
 
   /* ===============================
-     SWIPE (INTENTIONAL)
+     SWIPE (INTENZIONALE)
   ================================ */
   let startX = 0;
   let startY = 0;
@@ -120,7 +122,6 @@ prevBtn?.addEventListener("click", e => {
     const diffX = startX - e.changedTouches[0].clientX;
     const diffY = startY - e.changedTouches[0].clientY;
 
-    // ignora swipe verticali
     if (Math.abs(diffY) > Math.abs(diffX)) return;
 
     if (diffX > 60 && index < images.length - 1) {
@@ -145,11 +146,8 @@ prevBtn?.addEventListener("click", e => {
     }, 150);
   });
 
-  if (images[0].offsetWidth + gap === lastWidth) return;
-lastWidth = images[0].offsetWidth + gap;
-
   /* ===============================
-     LIGHTBOX (PREMIUM)
+     LIGHTBOX (PREMIUM & ACCESSIBILE)
   ================================ */
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = lightbox?.querySelector("img");
@@ -162,17 +160,30 @@ lastWidth = images[0].offsetWidth + gap;
 
   if (lightbox && lightboxImg) {
     images.forEach(img => {
+
+      // click
       img.addEventListener("click", () => {
         lightboxImg.src = img.src;
         lightbox.classList.add("active");
         document.body.style.overflow = "hidden";
       });
+
+      // tastiera (ENTER)
+      img.addEventListener("keydown", e => {
+        if (e.key === "Enter") {
+          lightboxImg.src = img.src;
+          lightbox.classList.add("active");
+          document.body.style.overflow = "hidden";
+        }
+      });
     });
 
+    // click fuori
     lightbox.addEventListener("click", e => {
       if (e.target === lightbox) closeLightbox();
     });
 
+    // ESC
     document.addEventListener("keydown", e => {
       if (e.key === "Escape" && lightbox.classList.contains("active")) {
         closeLightbox();

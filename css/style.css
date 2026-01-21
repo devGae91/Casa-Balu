@@ -417,9 +417,6 @@ button:active {
   overflow: hidden;
   width: 100%;
   min-height: 270px; /* desktop */
-}
-
-.gallery-container {
   contain: layout paint;
 }
 
@@ -663,13 +660,6 @@ button:active {
 /* ===============================
    FORM FEEDBACK (UX)
 ================================ */
-.trust {
-  display: block;
-  margin-top: 1rem;
-  font-size: .75rem;
-  opacity: .6;
-}
-
 input:focus,
 textarea:focus {
   border-color: var(--caramel);
@@ -852,7 +842,7 @@ button:focus-visible {
 ================================ */
 .trust {
   display: block;
-  margin-top: .1rem;
+  margin-top: .5rem;
   font-size: .75rem;
   opacity: .7;
 }
