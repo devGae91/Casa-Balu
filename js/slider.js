@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!gallery || images.length === 0) return;
 
   /* ===============================
-     PRELOAD LEGGERO (SAFE)
+     PRELOAD LEGGERO
   ================================ */
   images.slice(0, 2).forEach(img => {
     if (!img.complete) {
@@ -27,11 +27,12 @@ document.addEventListener("DOMContentLoaded", () => {
   let isAnimating = false;
   const gap = 24;
   let imageWidth = images[0].offsetWidth + gap;
+  const ANIM_DURATION = 280; // deve combaciare col CSS
 
   images[0].classList.add("active");
 
   /* ===============================
-     DOTS (AUTO)
+     DOTS
   ================================ */
   const dotsContainer = document.createElement("div");
   dotsContainer.className = "gallery-dots";
@@ -41,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (i === 0) dot.classList.add("active");
 
     dot.addEventListener("click", () => {
-      if (i === index || isAnimating) return;
+      if (isAnimating || i === index) return;
       goTo(i);
     });
 
@@ -52,13 +53,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const dots = Array.from(dotsContainer.children);
 
   /* ===============================
-     CORE SLIDER (INP FIX)
+     CORE SLIDER (ROBUSTO)
   ================================ */
   function goTo(newIndex) {
     if (isAnimating) return;
 
-    index = newIndex;
     isAnimating = true;
+    index = newIndex;
 
     gallery.classList.add("is-sliding");
 
@@ -74,40 +75,35 @@ document.addEventListener("DOMContentLoaded", () => {
     dots.forEach((dot, i) => {
       dot.classList.toggle("active", i === index);
     });
-  }
 
-  gallery.addEventListener("transitionend", () => {
-    gallery.classList.remove("is-sliding");
-    isAnimating = false;
-  });
+    // 🔒 sblocco GARANTITO (no deadlock)
+    setTimeout(() => {
+      isAnimating = false;
+      gallery.classList.remove("is-sliding");
+    }, ANIM_DURATION);
+  }
 
   goTo(0);
 
   /* ===============================
-     BUTTON CONTROLS (INP SAFE)
+     FRECCE (INP SAFE)
   ================================ */
-  function safeButtonFeedback(btn) {
-    if (!btn) return;
-    btn.classList.add("pressed");
-    requestAnimationFrame(() => {
-      btn.classList.remove("pressed");
-    });
-  }
-
   nextBtn?.addEventListener("click", () => {
     if (isAnimating || index >= images.length - 1) return;
-    safeButtonFeedback(nextBtn);
+    nextBtn.classList.add("pressed");
+    requestAnimationFrame(() => nextBtn.classList.remove("pressed"));
     goTo(index + 1);
   });
 
   prevBtn?.addEventListener("click", () => {
     if (isAnimating || index <= 0) return;
-    safeButtonFeedback(prevBtn);
+    prevBtn.classList.add("pressed");
+    requestAnimationFrame(() => prevBtn.classList.remove("pressed"));
     goTo(index - 1);
   });
 
   /* ===============================
-     SWIPE (INTENZIONALE)
+     SWIPE
   ================================ */
   let startX = 0;
   let startY = 0;
@@ -118,48 +114,42 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { passive: true });
 
   gallery.addEventListener("touchend", e => {
+    if (isAnimating) return;
+
     const diffX = startX - e.changedTouches[0].clientX;
     const diffY = startY - e.changedTouches[0].clientY;
 
     if (Math.abs(diffY) > Math.abs(diffX)) return;
 
-    if (diffX > 60 && index < images.length - 1) {
-      goTo(index + 1);
-    }
-
-    if (diffX < -60 && index > 0) {
-      goTo(index - 1);
-    }
+    if (diffX > 60 && index < images.length - 1) goTo(index + 1);
+    if (diffX < -60 && index > 0) goTo(index - 1);
   });
 
   /* ===============================
-     RESIZE (DEBOUNCED)
+     RESIZE
   ================================ */
   let resizeTimeout;
-
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       imageWidth = images[0].offsetWidth + gap;
-      goTo(index);
+      gallery.style.transition = "none";
+      gallery.style.transform =
+        `translate3d(${-index * imageWidth}px,0,0)`;
+      requestAnimationFrame(() => {
+        gallery.style.transition = "";
+      });
     }, 150);
   });
 
   /* ===============================
-     LIGHTBOX (PREMIUM & ACCESSIBILE)
+     LIGHTBOX
   ================================ */
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = lightbox?.querySelector("img");
 
-  function closeLightbox() {
-    lightbox.classList.remove("active");
-    lightboxImg.src = "";
-    document.body.style.overflow = "";
-  }
-
   if (lightbox && lightboxImg) {
     images.forEach(img => {
-
       img.addEventListener("click", () => {
         lightboxImg.src = img.src;
         lightbox.classList.add("active");
@@ -176,12 +166,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     lightbox.addEventListener("click", e => {
-      if (e.target === lightbox) closeLightbox();
+      if (e.target === lightbox) {
+        lightbox.classList.remove("active");
+        lightboxImg.src = "";
+        document.body.style.overflow = "";
+      }
     });
 
     document.addEventListener("keydown", e => {
       if (e.key === "Escape" && lightbox.classList.contains("active")) {
-        closeLightbox();
+        lightbox.classList.remove("active");
+        lightboxImg.src = "";
+        document.body.style.overflow = "";
       }
     });
   }

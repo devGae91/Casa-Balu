@@ -300,6 +300,9 @@ body.loaded .main-header {
   height: 100%;
   object-fit: cover;
   z-index: 0;
+  content-visibility: auto;
+  animation: none;
+  filter: none;
 }
 
 .hero::after {
