@@ -429,6 +429,11 @@ button:active {
   transform: translateZ(0);
 }
 
+.gallery.is-sliding,
+.gallery.is-sliding img {
+  transition: none !important;
+}
+
 /* IMMAGINI — BASE */
 .gallery img {
   width: 400px;
@@ -494,6 +499,11 @@ button:active {
   background: var(--caramel);
   color: #fff;
   transform: scale(1.06);
+}
+
+#prev.pressed,
+#next.pressed {
+  opacity: 0.85;
 }
 
 #prev:active,

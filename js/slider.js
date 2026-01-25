@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ===============================
      PRELOAD LEGGERO (SAFE)
-     → solo prime 2 immagini
   ================================ */
   images.slice(0, 2).forEach(img => {
     if (!img.complete) {
@@ -53,13 +52,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const dots = Array.from(dotsContainer.children);
 
   /* ===============================
-     CORE SLIDER
+     CORE SLIDER (INP FIX)
   ================================ */
   function goTo(newIndex) {
     if (isAnimating) return;
 
     index = newIndex;
     isAnimating = true;
+
+    gallery.classList.add("is-sliding");
 
     requestAnimationFrame(() => {
       gallery.style.transform =
@@ -76,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   gallery.addEventListener("transitionend", () => {
+    gallery.classList.remove("is-sliding");
     isAnimating = false;
   });
 
@@ -84,26 +86,23 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ===============================
      BUTTON CONTROLS (INP SAFE)
   ================================ */
-  nextBtn?.addEventListener("click", e => {
-    if (isAnimating || index >= images.length - 1) return;
-
-    // feedback immediato (riduce INP)
-    e.currentTarget.style.opacity = "0.85";
+  function safeButtonFeedback(btn) {
+    if (!btn) return;
+    btn.classList.add("pressed");
     requestAnimationFrame(() => {
-      e.currentTarget.style.opacity = "";
+      btn.classList.remove("pressed");
     });
+  }
 
+  nextBtn?.addEventListener("click", () => {
+    if (isAnimating || index >= images.length - 1) return;
+    safeButtonFeedback(nextBtn);
     goTo(index + 1);
   });
 
-  prevBtn?.addEventListener("click", e => {
+  prevBtn?.addEventListener("click", () => {
     if (isAnimating || index <= 0) return;
-
-    e.currentTarget.style.opacity = "0.85";
-    requestAnimationFrame(() => {
-      e.currentTarget.style.opacity = "";
-    });
-
+    safeButtonFeedback(prevBtn);
     goTo(index - 1);
   });
 
@@ -161,14 +160,12 @@ document.addEventListener("DOMContentLoaded", () => {
   if (lightbox && lightboxImg) {
     images.forEach(img => {
 
-      // click
       img.addEventListener("click", () => {
         lightboxImg.src = img.src;
         lightbox.classList.add("active");
         document.body.style.overflow = "hidden";
       });
 
-      // tastiera (ENTER)
       img.addEventListener("keydown", e => {
         if (e.key === "Enter") {
           lightboxImg.src = img.src;
@@ -178,12 +175,10 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // click fuori
     lightbox.addEventListener("click", e => {
       if (e.target === lightbox) closeLightbox();
     });
 
-    // ESC
     document.addEventListener("keydown", e => {
       if (e.key === "Escape" && lightbox.classList.contains("active")) {
         closeLightbox();
