@@ -26,11 +26,17 @@ document.addEventListener("DOMContentLoaded", () => {
   let index = 0;
   let isAnimating = false;
   const gap = 24;
-  let imageWidth = images[0].offsetWidth + gap;
+  let imageWidth = 0;
+  function updateImageWidth() {
+  imageWidth = images[0].getBoundingClientRect().width + gap;
+}
   const ANIM_DURATION = 280; // deve combaciare col CSS
 
   images[0].classList.add("active");
-
+requestAnimationFrame(() => {
+  updateImageWidth();
+  gallery.style.transform = `translate3d(0,0,0)`;
+});
   /* ===============================
      DOTS
   ================================ */
@@ -49,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     dotsContainer.appendChild(dot);
   });
 
-  gallery.parentElement.appendChild(dotsContainer);
+  gallery.closest(".gallery-wrapper").appendChild(dotsContainer);
   const dots = Array.from(dotsContainer.children);
 
   /* ===============================
@@ -132,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
-      imageWidth = images[0].offsetWidth + gap;
+      updateImageWidth();
       gallery.style.transition = "none";
       gallery.style.transform =
         `translate3d(${-index * imageWidth}px,0,0)`;

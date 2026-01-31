@@ -333,6 +333,8 @@ body.loaded .main-header {
   background: rgba(247,242,236,0.88);
   border-radius: 32px;
   animation: none;
+  content-visibility: auto;
+  contain-intrinsic-size: 600px;
 }
 
 body.loaded .hero-content {
