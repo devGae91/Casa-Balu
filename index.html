@@ -15,7 +15,7 @@
   <meta name="robots" content="index, follow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#E2B27F">
-  
+
   <!-- OPEN GRAPH -->
   <meta property="og:title" content="Casa Balù – Camera Premium a Osio Sotto">
   <meta property="og:description" content="Comfort, silenzio e posizione strategica. Fino a 4 ospiti, colazione inclusa.">
@@ -353,26 +353,75 @@
 <section id="prenotazione" class="section section-colored fade-in reveal">
   <div class="container booking-grid">
 
+    <!-- CALENDARIO -->
     <div class="calendar-box premium-box">
       <h3 data-i18n="calendar_title">Seleziona le date</h3>
-      <select id="guests">
-        <option>1</option><option selected>2</option><option>3</option><option>4</option>
+
+      <select id="guests" name="guests" autocomplete="off">
+        <option value="1">1</option>
+        <option value="2" selected>2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
       </select>
-      <input type="text" id="date-range" readonly>
+
+      <input
+        type="text"
+        id="date-range"
+        name="date-range"
+        readonly
+        autocomplete="off"
+      >
+
       <p id="price"></p>
+
       <small class="calendar-note">
-    Seleziona le date per conoscere disponibilità e prezzo finale
-  </small>
+        Seleziona le date per conoscere disponibilità e prezzo finale
+      </small>
     </div>
 
-    <form action="https://formspree.io/f/xvgelnqn" method="POST" class="booking-form premium-box">
+    <!-- FORM PRENOTAZIONE -->
+    <form
+      action="https://formspree.io/f/xvgelnqn"
+      method="POST"
+      class="booking-form premium-box"
+    >
+
       <h3 data-i18n="form_title">Richiesta di prenotazione</h3>
-      <input type="text" name="name" placeholder="Nome e cognome" required>
-      <input type="email" name="email" placeholder="Email" required>
+
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Nome e cognome"
+        autocomplete="name"
+        required
+      >
+
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Email"
+        autocomplete="email"
+        required
+      >
+
+      <!-- DATE NASCOSTE DAL CALENDARIO -->
       <input type="hidden" name="checkin" id="checkin">
-      <input type="hidden" name="checkout" id="checkout"> 
-      <textarea name="message" rows="4" placeholder="Messaggio (opzionale)"></textarea>
-      <button type="submit" class="btn" data-i18n="send">Invia richiesta</button>
+      <input type="hidden" name="checkout" id="checkout">
+
+      <textarea
+        id="message"
+        name="message"
+        rows="4"
+        placeholder="Messaggio (opzionale)"
+        autocomplete="off"
+      ></textarea>
+
+      <button type="submit" class="btn" data-i18n="send">
+        Invia richiesta
+      </button>
+
       <p class="note">
         Nessun pagamento richiesto ora.<br>
         Riceverai conferma via email.

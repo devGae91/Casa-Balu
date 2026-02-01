@@ -20,7 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let isAnimating = false;
 
   const GAP = 24; // deve combaciare col CSS
-  let imageWidth = images[0].offsetWidth + GAP;
+  function calcImageWidth() {
+  return images[0].getBoundingClientRect().width + GAP;
+}
+
+let imageWidth = calcImageWidth();
   const ANIM_DURATION = 280; // ms – uguale al CSS
 
   images[0].classList.add("active");
@@ -112,6 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =============================== RESIZE ================================ */
   let resizeTimeout;
 
+  imageWidth = calcImageWidth();
+  
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimeout);
 
