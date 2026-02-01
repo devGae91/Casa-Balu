@@ -27,10 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const isOpen = nav.classList.contains("open");
     isOpen ? closeMenu() : openMenu();
   });
-burger.setAttribute(
-  "aria-expanded",
-  nav.classList.contains("open")
-);
+
   /* ===============================
      CLOSE ON LINK CLICK
   ================================ */

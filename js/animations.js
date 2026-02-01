@@ -1,9 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-  /* ===============================
-     FADE / REVEAL OBSERVER (PREMIUM)
-  ================================ */
-
+  /* =============================== FADE / REVEAL OBSERVER ================================ */
   const animatedElements = document.querySelectorAll(
     ".fade-in, .fade-left, .fade-right, .reveal"
   );
@@ -15,12 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
           if (!entry.isIntersecting) return;
 
           const el = entry.target;
-
-          // micro delay naturale (ordine DOM)
           const delay = [...animatedElements].indexOf(el) * 60;
-          el.style.transitionDelay = `${Math.min(delay, 240)}ms`;
 
+          el.style.transitionDelay = `${Math.min(delay, 240)}ms`;
           el.classList.add("visible");
+
           animationObserver.unobserve(el);
         });
       },
@@ -33,10 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     animatedElements.forEach(el => animationObserver.observe(el));
   }
 
-  /* ===============================
-     BOOKING HIGHLIGHT (FOCUS UX)
-  ================================ */
-
+  /* =============================== BOOKING HIGHLIGHT ================================ */
   const bookingSection = document.querySelector("#prenotazione");
 
   if (bookingSection) {
@@ -53,10 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     bookingObserver.observe(bookingSection);
   }
 
-  /* ===============================
-     SCROLL PROGRESS BAR (SMOOTH)
-  ================================ */
-
+  /* =============================== SCROLL PROGRESS BAR ================================ */
   const progressBar = document.getElementById("scroll-progress");
   let ticking = false;
 
@@ -76,5 +65,4 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-
 });

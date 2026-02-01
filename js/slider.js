@@ -1,8 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-  /* ===============================
-     ELEMENTI BASE
-  ================================ */
+  /* =============================== ELEMENTI BASE ================================ */
   const gallery = document.querySelector(".gallery");
   const images = Array.from(document.querySelectorAll(".gallery img"));
   const prevBtn = document.getElementById("prev");
@@ -10,9 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!gallery || images.length === 0) return;
 
-  /* ===============================
-     PRELOAD LEGGERO
-  ================================ */
+  /* =============================== PRELOAD LEGGERO ================================ */
   images.slice(0, 2).forEach(img => {
     if (!img.complete) {
       const preload = new Image();
@@ -20,26 +15,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* ===============================
-     STATO
-  ================================ */
+  /* =============================== STATO ================================ */
   let index = 0;
   let isAnimating = false;
-  const gap = 24;
-  let imageWidth = 0;
-  function updateImageWidth() {
-  imageWidth = images[0].getBoundingClientRect().width + gap;
-}
-  const ANIM_DURATION = 280; // deve combaciare col CSS
+
+  const GAP = 24; // deve combaciare col CSS
+  let imageWidth = images[0].offsetWidth + GAP;
+  const ANIM_DURATION = 280; // ms – uguale al CSS
 
   images[0].classList.add("active");
-requestAnimationFrame(() => {
-  updateImageWidth();
-  gallery.style.transform = `translate3d(0,0,0)`;
-});
-  /* ===============================
-     DOTS
-  ================================ */
+
+  /* =============================== DOTS ================================ */
   const dotsContainer = document.createElement("div");
   dotsContainer.className = "gallery-dots";
 
@@ -55,12 +41,10 @@ requestAnimationFrame(() => {
     dotsContainer.appendChild(dot);
   });
 
-  gallery.closest(".gallery-wrapper").appendChild(dotsContainer);
+  gallery.parentElement.appendChild(dotsContainer);
   const dots = Array.from(dotsContainer.children);
 
-  /* ===============================
-     CORE SLIDER (ROBUSTO)
-  ================================ */
+  /* =============================== CORE SLIDER ================================ */
   function goTo(newIndex) {
     if (isAnimating) return;
 
@@ -70,8 +54,7 @@ requestAnimationFrame(() => {
     gallery.classList.add("is-sliding");
 
     requestAnimationFrame(() => {
-      gallery.style.transform =
-        `translate3d(${-index * imageWidth}px, 0, 0)`;
+      gallery.style.transform = `translate3d(${-index * imageWidth}px, 0, 0)`;
     });
 
     images.forEach((img, i) => {
@@ -82,7 +65,6 @@ requestAnimationFrame(() => {
       dot.classList.toggle("active", i === index);
     });
 
-    // 🔒 sblocco GARANTITO (no deadlock)
     setTimeout(() => {
       isAnimating = false;
       gallery.classList.remove("is-sliding");
@@ -91,9 +73,7 @@ requestAnimationFrame(() => {
 
   goTo(0);
 
-  /* ===============================
-     FRECCE (INP SAFE)
-  ================================ */
+  /* =============================== FRECCE ================================ */
   nextBtn?.addEventListener("click", () => {
     if (isAnimating || index >= images.length - 1) return;
     nextBtn.classList.add("pressed");
@@ -108,9 +88,7 @@ requestAnimationFrame(() => {
     goTo(index - 1);
   });
 
-  /* ===============================
-     SWIPE
-  ================================ */
+  /* =============================== SWIPE MOBILE ================================ */
   let startX = 0;
   let startY = 0;
 
@@ -131,26 +109,24 @@ requestAnimationFrame(() => {
     if (diffX < -60 && index > 0) goTo(index - 1);
   });
 
-  /* ===============================
-     RESIZE
-  ================================ */
+  /* =============================== RESIZE ================================ */
   let resizeTimeout;
+
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimeout);
+
     resizeTimeout = setTimeout(() => {
-      updateImageWidth();
+      imageWidth = images[0].offsetWidth + GAP;
       gallery.style.transition = "none";
-      gallery.style.transform =
-        `translate3d(${-index * imageWidth}px,0,0)`;
+      gallery.style.transform = `translate3d(${-index * imageWidth}px, 0, 0)`;
+
       requestAnimationFrame(() => {
         gallery.style.transition = "";
       });
     }, 150);
   });
 
-  /* ===============================
-     LIGHTBOX
-  ================================ */
+  /* =============================== LIGHTBOX ================================ */
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = lightbox?.querySelector("img");
 
@@ -172,20 +148,19 @@ requestAnimationFrame(() => {
     });
 
     lightbox.addEventListener("click", e => {
-      if (e.target === lightbox) {
-        lightbox.classList.remove("active");
-        lightboxImg.src = "";
-        document.body.style.overflow = "";
-      }
+      if (e.target === lightbox) closeLightbox();
     });
 
     document.addEventListener("keydown", e => {
       if (e.key === "Escape" && lightbox.classList.contains("active")) {
-        lightbox.classList.remove("active");
-        lightboxImg.src = "";
-        document.body.style.overflow = "";
+        closeLightbox();
       }
     });
   }
 
+  function closeLightbox() {
+    lightbox.classList.remove("active");
+    lightboxImg.src = "";
+    document.body.style.overflow = "";
+  }
 });
