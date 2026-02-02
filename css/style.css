@@ -411,6 +411,7 @@ button:active {
    GALLERY + LIGHTBOX (FINAL FIX)
 ================================ */
 .gallery-wrapper {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -419,6 +420,7 @@ button:active {
 }
 
 .gallery-container {
+  position: relative;
   overflow: hidden;
   width: 100%;
   min-height: 270px; /* desktop */
@@ -445,16 +447,16 @@ button:active {
 /* IMMAGINI — BASE */
 .gallery img {
   width: 400px;
-  height: 270px;
-  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  height: auto;
+  object-fit: contain;
+  background: #000; /* evita flash bianco */
   border-radius: 18px;
   flex-shrink: 0;
   cursor: pointer;
 
-  /* performance */
   will-change: transform;
   transform: translateZ(0);
-
   transition: transform .28s ease;
 }
 
@@ -561,10 +563,17 @@ button:active {
    GALLERY DOTS (INDICATORI)
 ================================ */
 .gallery-dots {
+  position: absolute;
+  left: 50%;
+  bottom: -28px;
+  transform: translateX(-50%);
+
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-top: 1.8rem;
+
+  min-height: 24px;
+  padding-bottom: 12px;
 }
 
 .gallery-dots span {
