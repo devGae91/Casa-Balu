@@ -21,7 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const GAP = 24; // deve combaciare col CSS
   function calcImageWidth() {
-  return images[0].getBoundingClientRect().width + GAP;
+  const img = images[0];
+  return Math.round(img.offsetWidth + GAP);
 }
 
 let imageWidth = calcImageWidth();
@@ -41,6 +42,15 @@ let imageWidth = calcImageWidth();
       if (isAnimating || i === index) return;
       goTo(i);
     });
+    
+    dot.setAttribute("tabindex", "0");
+
+dot.addEventListener("keydown", e => {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    if (!isAnimating && i !== index) goTo(i);
+  }
+});
 
     dotsContainer.appendChild(dot);
   });

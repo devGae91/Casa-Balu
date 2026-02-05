@@ -416,15 +416,13 @@ button:active {
   align-items: center;
   gap: 1rem;
   margin-top: 2.5rem;
-  overflow: hidden;
 }
 
 .gallery-container {
   position: relative;
   overflow: hidden;
   width: 100%;
-  min-height: 270px; /* desktop */
-  contain: layout paint;
+  padding-bottom: 0;
 }
 
 /* track */
@@ -435,6 +433,7 @@ button:active {
   transition: transform .28s cubic-bezier(.22,.61,.36,1);
   transform: translateZ(0);
   contain: strict;
+  align-items: center;
 }
 
 .gallery.is-sliding {
