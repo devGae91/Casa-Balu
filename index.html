@@ -27,6 +27,8 @@
   <link rel="canonical" href="https://devgae91.github.io/Casa-Balu/">
 
   <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <!-- CSS -->
@@ -155,8 +157,8 @@
 
 <!-- LANGUAGE SWITCH -->
 <div class="lang-switch">
-  <button data-lang="it" class="active">IT</button>
-  <button data-lang="en">EN</button>
+  <button data-lang="it" class="active" type="button">IT</button>
+  <button data-lang="en" type="button">EN</button>
 </div>
 
 <!-- ================= HEADER ================= -->
@@ -188,6 +190,7 @@
     <div class="header-right">
     <button
   class="burger"
+  type="button"
   aria-label="Apri menu di navigazione"
   aria-expanded="false"
   aria-controls="main-navigation">
@@ -206,8 +209,8 @@
     src="img/hero.jpg"
     alt="Casa Balù – Camera elegante e accogliente"
     class="hero-img"
-    width="1600"
-    height="900"
+    width="6000"
+    height="4000"
     loading="eager"
     fetchpriority="high"
   >
@@ -270,11 +273,11 @@
 
       <div class="gallery-container">
         <div class="gallery">
-          <img src="img/room1.jpg" alt="Camera matrimoniale Casa Balù" tabindex="0">
-          <img src="img/room2.jpg" loading="lazy" alt="Dettagli camera e arredi" tabindex="0">
-          <img src="img/bathroom.jpg" loading="lazy" alt="Bagno privato" tabindex="0">
-          <img src="img/living.jpg" loading="lazy" alt="Zona living e divano letto" tabindex="0">
-          <img src="img/street.jpg" loading="lazy" alt="Quartiere tranquillo di Osio Sotto" tabindex="0">
+        <img src="img/room1.jpg" width="6000" height="4000" alt="Camera matrimoniale Casa Balù" tabindex="0">
+        <img src="img/room2.jpg" width="4032" height="3024" loading="lazy" decoding="async" alt="Dettagli camera e arredi" tabindex="0">
+        <img src="img/bathroom.jpg" width="6000" height="4000" loading="lazy" decoding="async" alt="Bagno privato" tabindex="0">
+        <img src="img/living.jpg" width="6000" height="4000" loading="lazy" decoding="async" alt="Zona living e divano letto" tabindex="0">
+        <img src="img/street.jpg" width="4032" height="3024" loading="lazy" decoding="async" alt="Quartiere tranquillo di Osio Sotto" tabindex="0">  
         </div>
       </div>
 
@@ -454,7 +457,7 @@
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
-  <img src="" alt="Anteprima immagine">
+<img src="" width="6000" height="4000" loading="lazy" decoding="async" alt="Anteprima immagine">
 </div>
 
 <script>
