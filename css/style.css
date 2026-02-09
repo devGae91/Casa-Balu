@@ -441,7 +441,7 @@ button:active {
   display: flex;
   gap: 24px;
   will-change: transform;
-  transition: transform .28s cubic-bezier(.22,.61,.36,1);
+  transition: transform .2s cubic-bezier(.22,.61,.36,1);
   transform: translateZ(0);
   contain: layout paint;
   align-items: center;

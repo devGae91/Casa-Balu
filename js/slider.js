@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   let imageWidth = calcImageWidth();
-  const ANIM_DURATION = prefersReducedMotion.matches ? 0 : 280; // ms – uguale al CSS
+  const ANIM_DURATION = prefersReducedMotion.matches ? 0 : 200; // ms – uguale al CSS
 
   images[0].classList.add("active");
 
@@ -50,17 +50,18 @@ document.addEventListener("DOMContentLoaded", () => {
     
     dot.setAttribute("tabindex", "0");
 
-  dot.addEventListener("keydown", e => {
-    if (e.key === "Enter" || e.key === " ") {
-     e.preventDefault();
-     if (!isAnimating && i !== index) goTo(i);
-  }
-});
+    dot.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        if (!isAnimating && i !== index) goTo(i);
+      }
+    });
 
     dotsContainer.appendChild(dot);
   });
 
-  gallery.parentElement.appendChild(dotsContainer);
+  const dotsHost = gallery.closest(".gallery-wrapper") || gallery.parentElement;
+  dotsHost?.appendChild(dotsContainer);
   const dots = Array.from(dotsContainer.children);
 
   /* =============================== CORE SLIDER ================================ */
