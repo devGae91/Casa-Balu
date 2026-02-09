@@ -443,7 +443,7 @@ button:active {
   will-change: transform;
   transition: transform .28s cubic-bezier(.22,.61,.36,1);
   transform: translateZ(0);
-  contain: strict;
+  contain: layout paint;
   align-items: center;
 }
 
