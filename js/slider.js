@@ -28,9 +28,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   let imageWidth = calcImageWidth();
-  const ANIM_DURATION = prefersReducedMotion.matches ? 0 : 200; // ms – uguale al CSS
-
+  const ANIM_DURATION = prefersReducedMotion.matches ? 0 : 400; // ms – uguale al CSS
   images[0].classList.add("active");
+  images.forEach(img => {
+    img.setAttribute("tabindex", "0");
+    img.setAttribute("role", "button");
+  });
 
   /* =============================== DOTS ================================ */
   const dotsContainer = document.createElement("div");
@@ -64,6 +67,11 @@ document.addEventListener("DOMContentLoaded", () => {
   dotsHost?.appendChild(dotsContainer);
   const dots = Array.from(dotsContainer.children);
 
+  function updateArrowState() {
+    if (prevBtn) prevBtn.disabled = index === 0;
+    if (nextBtn) nextBtn.disabled = index === images.length - 1;
+  }
+
   /* =============================== CORE SLIDER ================================ */
   function goTo(newIndex) {
     if (isAnimating) return;
@@ -86,6 +94,8 @@ document.addEventListener("DOMContentLoaded", () => {
       dot.setAttribute("aria-current", i === index ? "true" : "false");
     });
 
+    updateArrowState();
+
     if (ANIM_DURATION === 0) {
       isAnimating = false;
       gallery.classList.remove("is-sliding");
@@ -102,14 +112,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =============================== FRECCE ================================ */
   nextBtn?.addEventListener("click", () => {
-    if (isAnimating || index >= images.length - 1) return;
+     if (isAnimating || index >= images.length - 1 || nextBtn.disabled) return;
     nextBtn.classList.add("pressed");
     requestAnimationFrame(() => nextBtn.classList.remove("pressed"));
     goTo(index + 1);
   });
 
   prevBtn?.addEventListener("click", () => {
-    if (isAnimating || index <= 0) return;
+    if (isAnimating || index <= 0 || prevBtn.disabled) return;
     prevBtn.classList.add("pressed");
     requestAnimationFrame(() => prevBtn.classList.remove("pressed"));
     goTo(index - 1);
@@ -172,26 +182,26 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =============================== LIGHTBOX ================================ */
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = lightbox?.querySelector("img");
+  
+  function openLightbox(img) {
+    if (!lightbox || !lightboxImg) return;
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.classList.add("active");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
 
   if (lightbox && lightboxImg) {
     lightbox.setAttribute("aria-hidden", "true");
     lightbox.setAttribute("tabindex", "-1");
     images.forEach(img => {
-      img.addEventListener("click", () => {
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
-        lightbox.classList.add("active");
-        lightbox.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-      });
+    img.addEventListener("click", () => openLightbox(img));  
 
       img.addEventListener("keydown", e => {
-        if (e.key === "Enter") {
-          lightboxImg.src = img.src;
-          lightboxImg.alt = img.alt;
-          lightbox.classList.add("active");
-          lightbox.setAttribute("aria-hidden", "false");
-          document.body.style.overflow = "hidden";
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openLightbox(img);
         }
       });
     });

@@ -422,18 +422,16 @@ button:active {
    GALLERY + LIGHTBOX (FINAL FIX)
 ================================ */
 .gallery-wrapper {
-  position: relative;
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-top: 2.5rem;
+  overflow: visible;
 }
 
 .gallery-container {
-  position: relative;
   overflow: hidden;
   width: 100%;
-  padding-bottom: 0;
 }
 
 /* track */
@@ -441,37 +439,27 @@ button:active {
   display: flex;
   gap: 24px;
   will-change: transform;
-  transition: transform .2s cubic-bezier(.22,.61,.36,1);
+  transition: transform .4s cubic-bezier(.22,.61,.36,1);
   transform: translateZ(0);
-  contain: layout paint;
-  align-items: center;
-}
-
-.gallery.is-sliding {
-  pointer-events: none;
-}
-.gallery.is-sliding img {
-  transition: none !important;
 }
 
 /* IMMAGINI — BASE */
 .gallery img {
   width: 400px;
-  aspect-ratio: 4 / 3;
-  height: auto;
-  object-fit: contain;
-  background: #000; /* evita flash bianco */
+  height: 270px;
+  object-fit: cover;
   border-radius: 18px;
   flex-shrink: 0;
   cursor: pointer;
 
   will-change: transform;
   transform: translateZ(0);
+
   transition: transform .28s ease;
 }
 
 .gallery img:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 /* ACTIVE — SOLO STATO LOGICO */
@@ -496,7 +484,7 @@ button:active {
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  contain: paint;
+  
   font-size: 1.5rem;
   line-height: 1;
   cursor: pointer;
@@ -510,8 +498,7 @@ button:active {
   /* performance */
   will-change: transform;
   transform: translateZ(0);
-  touch-action: manipulation;
-  transition: background .18s ease, color .18s ease;
+  transition: transform .22s ease, background .22s ease, color .22s ease;
 }
 
 #prev:hover,
@@ -521,14 +508,16 @@ button:active {
   transform: scale(1.06);
 }
 
-#prev.pressed,
-#next.pressed {
-  opacity: 0.85;
-}
-
 #prev:active,
 #next:active {
   transform: scale(1);
+}
+
+#prev:disabled,
+#next:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  transform: none;
 }
 
 /* ===============================
@@ -573,17 +562,10 @@ button:active {
    GALLERY DOTS (INDICATORI)
 ================================ */
 .gallery-dots {
-  position: absolute;
-  left: 50%;
-  bottom: -28px;
-  transform: translateX(-50%);
-
   display: flex;
   justify-content: center;
   gap: 10px;
-
-  min-height: 24px;
-  padding-bottom: 12px;
+  margin-top: 1.8rem;
 }
 
 .gallery-dots span {
@@ -591,6 +573,8 @@ button:active {
   height: 9px;
   background: rgba(0,0,0,.35);
   border-radius: 50%;
+  cursor: pointer;
+  position: relative;
   transition: transform .3s ease, background .3s ease;
 }
 
@@ -600,13 +584,8 @@ button:active {
   box-shadow: 0 0 0 4px rgba(138,90,43,0.2);
 }
 
-.gallery-dots span {
-  cursor: pointer;
-  position: relative;
-}
-
 .gallery-dots span:hover {
-  transform: scale(1.25);
+  transform: scale(1.6);
   background: var(--caramel);
 }
 
@@ -614,6 +593,34 @@ button:active {
   content: "";
   position: absolute;
   inset: -6px;
+}
+
+.gallery-dots {
+  padding-bottom: 12px;
+}
+/* LIGHTBOX */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  cursor: zoom-out;
+  backdrop-filter: blur(2px);
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 85vh;
+  border-radius: 22px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.45);
+  animation: zoomInSoft .35s cubic-bezier(.22,.61,.36,1);
 }
 
 @keyframes zoomIn {
